@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
-import ARCamera from "@/components/ARCamera";
 
 const Kuis = () => {
   const navigate = useNavigate();
-  const [showARCamera, setShowARCamera] = useState(false);
   const [detectedCard, setDetectedCard] = useState(null);
   const [showQuizDialog, setShowQuizDialog] = useState(false);
   const [showManualQuizDialog, setShowManualQuizDialog] = useState(false);
