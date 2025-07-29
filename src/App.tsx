@@ -63,6 +63,14 @@ const App = () => (
                 }
               />
               <Route
+                path="/ar-scan"
+                element={
+                  <ProtectedRoute>
+                    <ARScan />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
                 path="/leaderboard"
                 element={
                   <ProtectedRoute>
