@@ -11,7 +11,7 @@ const Kuis = () => {
   const [showManualQuizDialog, setShowManualQuizDialog] = useState(false);
 
   const handleARScan = () => {
-    setShowARCamera(true);
+    navigate("/ar-scan");
   };
 
   const handleCardDetected = (cardData) => {
