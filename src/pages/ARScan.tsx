@@ -14,16 +14,16 @@ const ARScan = () => {
       try {
         // Request camera permission
         const stream = await navigator.mediaDevices.getUserMedia({
-          video: { 
-            facingMode: 'environment',
+          video: {
+            facingMode: "environment",
             width: { ideal: 640, max: 1280 },
-            height: { ideal: 480, max: 720 }
-          }
+            height: { ideal: 480, max: 720 },
+          },
         });
-        
+
         // Stop the test stream
-        stream.getTracks().forEach(track => track.stop());
-        
+        stream.getTracks().forEach((track) => track.stop());
+
         if (!mounted) return;
 
         // Wait for A-Frame to be ready
@@ -46,11 +46,12 @@ const ARScan = () => {
 
           setIsInitialized(true);
         }, 2000);
-
       } catch (err) {
         console.error("Camera initialization error:", err);
         if (mounted) {
-          setError("Tidak dapat mengakses kamera. Pastikan izin kamera sudah diberikan.");
+          setError(
+            "Tidak dapat mengakses kamera. Pastikan izin kamera sudah diberikan.",
+          );
         }
       }
     };
@@ -96,7 +97,15 @@ const ARScan = () => {
   }
 
   return (
-    <div style={{ margin: 0, padding: 0, overflow: "hidden", height: "100vh", width: "100vw" }}>
+    <div
+      style={{
+        margin: 0,
+        padding: 0,
+        overflow: "hidden",
+        height: "100vh",
+        width: "100vw",
+      }}
+    >
       {/* Back button */}
       <button
         onClick={handleBack}
@@ -118,7 +127,9 @@ const ARScan = () => {
 
       {/* Instructions */}
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-40 bg-black/80 text-white px-4 py-2 rounded-lg text-center">
-        <p className="text-sm font-medium">📱 Arahkan kamera ke pola Historic Block</p>
+        <p className="text-sm font-medium">
+          📱 Arahkan kamera ke pola Historic Block
+        </p>
       </div>
 
       {/* Start Quiz Button */}
@@ -150,7 +161,7 @@ const ARScan = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          zIndex: 1
+          zIndex: 1,
         }}
       >
         <a-marker
@@ -170,7 +181,11 @@ const ARScan = () => {
             look-at="[camera]"
           />
         </a-marker>
-        <a-entity camera look-controls-enabled="false" cursor="rayOrigin: mouse"></a-entity>
+        <a-entity
+          camera
+          look-controls-enabled="false"
+          cursor="rayOrigin: mouse"
+        ></a-entity>
       </a-scene>
     </div>
   );

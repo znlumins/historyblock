@@ -85,38 +85,43 @@ const ARCamera = () => {
 
     // Check if we're in a secure context
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      setError("Kamera tidak didukung di browser ini. Gunakan HTTPS atau browser yang lebih baru.");
+      setError(
+        "Kamera tidak didukung di browser ini. Gunakan HTTPS atau browser yang lebih baru.",
+      );
       return;
     }
 
     // Request camera permission first
-    navigator.mediaDevices.getUserMedia({ 
-      video: { 
-        facingMode: 'environment',
-        width: { ideal: 640 },
-        height: { ideal: 480 }
-      } 
-    })
-    .then(stream => {
-      // Stop the test stream
-      stream.getTracks().forEach(track => track.stop());
-      
-      if (mounted) {
-        console.log("Camera permission granted, initializing AR...");
-        initAR();
-      }
-    })
-    .catch(err => {
-      console.error("Camera error:", err);
-      if (mounted) {
-        setError(`Kamera tidak dapat diakses: ${err.message}. Pastikan izin kamera sudah diberikan.`);
-      }
-    });
+    navigator.mediaDevices
+      .getUserMedia({
+        video: {
+          facingMode: "environment",
+          width: { ideal: 640 },
+          height: { ideal: 480 },
+        },
+      })
+      .then((stream) => {
+        // Stop the test stream
+        stream.getTracks().forEach((track) => track.stop());
+
+        if (mounted) {
+          console.log("Camera permission granted, initializing AR...");
+          initAR();
+        }
+      })
+      .catch((err) => {
+        console.error("Camera error:", err);
+        if (mounted) {
+          setError(
+            `Kamera tidak dapat diakses: ${err.message}. Pastikan izin kamera sudah diberikan.`,
+          );
+        }
+      });
 
     return () => {
       mounted = false;
       if (sceneRef.current) {
-        sceneRef.current.innerHTML = '';
+        sceneRef.current.innerHTML = "";
       }
     };
   }, []);
@@ -125,7 +130,9 @@ const ARCamera = () => {
     return (
       <div className="min-h-screen bg-historic-cream flex items-center justify-center p-4">
         <div className="bg-white rounded-lg p-6 max-w-md w-full text-center shadow-lg">
-          <h2 className="text-xl font-bold text-historic-brown mb-4">Error Kamera</h2>
+          <h2 className="text-xl font-bold text-historic-brown mb-4">
+            Error Kamera
+          </h2>
           <p className="text-gray-700 mb-6">{error}</p>
           <div className="space-y-3">
             <button
@@ -186,13 +193,13 @@ const ARCamera = () => {
       </button>
 
       {/* A-Frame scene container */}
-      <div 
-        ref={sceneRef} 
+      <div
+        ref={sceneRef}
         className="w-full h-full"
-        style={{ 
-          position: 'relative',
-          width: '100vw', 
-          height: '100vh' 
+        style={{
+          position: "relative",
+          width: "100vw",
+          height: "100vh",
         }}
       />
     </div>
