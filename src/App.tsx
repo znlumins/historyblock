@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 
 // Protected pages
 import Kuis from "./pages/Kuis";
+import ARScan from "./pages/ARScan";
 import Leaderboard from "./pages/Leaderboard";
 import Profile from "./pages/Profile";
 import Stats from "./pages/Stats";
