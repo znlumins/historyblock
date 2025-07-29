@@ -1,0 +1,194 @@
+/* Accessibility Features CSS */
+
+/* High Contrast Mode */
+.high-contrast {
+  filter: contrast(150%) brightness(1.2);
+}
+
+.high-contrast * {
+  border-color: #000 !important;
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+.high-contrast .bg-historic-brown,
+.high-contrast .bg-historic-brown-dark {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .text-white {
+  color: #fff !important;
+  background-color: #000 !important;
+}
+
+/* Large Text Mode */
+.large-text {
+  font-size: 125% !important;
+}
+
+.large-text h1 {
+  font-size: 150% !important;
+}
+
+.large-text h2 {
+  font-size: 140% !important;
+}
+
+.large-text h3 {
+  font-size: 130% !important;
+}
+
+.large-text p,
+.large-text span,
+.large-text div {
+  font-size: 125% !important;
+  line-height: 1.6 !important;
+}
+
+.large-text button {
+  font-size: 125% !important;
+  padding: 0.75rem 1.5rem !important;
+}
+
+/* Reduce Motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+.reduce-motion .animate-spin,
+.reduce-motion .animate-bounce,
+.reduce-motion .animate-pulse {
+  animation: none !important;
+}
+
+/* Screen Reader Improvements */
+.screen-reader-text {
+  position: absolute !important;
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.screen-reader-text:focus {
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+  clip-path: none !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
+}
+
+/* Color Blind Support */
+.color-blind-support {
+  /* Deuteranopia friendly colors */
+  --historic-brown: #8b4513;
+  --historic-brown-dark: #a0522d;
+  --historic-yellow: #ffd700;
+  --historic-orange: #ff8c00;
+}
+
+.color-blind-support .bg-historic-brown {
+  background-color: #8b4513 !important;
+}
+
+.color-blind-support .bg-historic-brown-dark {
+  background-color: #a0522d !important;
+}
+
+.color-blind-support .bg-historic-yellow {
+  background-color: #ffd700 !important;
+}
+
+.color-blind-support .text-historic-brown {
+  color: #8b4513 !important;
+}
+
+.color-blind-support .text-historic-brown-dark {
+  color: #a0522d !important;
+}
+
+/* Focus indicators for keyboard navigation */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid #ff8c00 !important;
+  outline-offset: 2px !important;
+}
+
+/* High contrast focus indicators */
+.high-contrast button:focus,
+.high-contrast a:focus,
+.high-contrast input:focus {
+  outline: 3px solid #000 !important;
+  background-color: #ffff00 !important;
+  color: #000 !important;
+}
+
+/* Voice navigation indicators */
+.voice-navigation .voice-command {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  z-index: 9999;
+}
+
+.voice-navigation .listening {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Mobile accessibility improvements */
+@media (max-width: 768px) {
+  .large-text button {
+    min-height: 48px !important;
+    min-width: 48px !important;
+  }
+
+  .large-text input,
+  .large-text select {
+    min-height: 48px !important;
+  }
+}
+
+/* Print accessibility */
+@media print {
+  .high-contrast * {
+    color: black !important;
+    background: white !important;
+  }
+}
