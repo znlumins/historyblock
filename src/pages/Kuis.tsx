@@ -14,7 +14,6 @@ const Kuis = () => {
 
   const handleCardDetected = (cardData) => {
     setDetectedCard(cardData);
-    setShowARCamera(false);
 
     // Simpan kuis yang sudah discan ke localStorage
     const scannedQuizzes = JSON.parse(
