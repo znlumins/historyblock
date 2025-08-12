@@ -46,13 +46,20 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/ar" element={<AR />} />
 
-<<<<<<< HEAD
           {/* Protected Routes */}
           <Route
             path="/kuis"
             element={
               <ProtectedRoute>
                 <Kuis />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ar-scan"
+            element={
+              <ProtectedRoute>
+                <ARScan />
               </ProtectedRoute>
             }
           />
@@ -96,65 +103,6 @@ const App = () => (
               </ProtectedRoute>
             }
           />
-=======
-              {/* Protected Routes */}
-              <Route
-                path="/kuis"
-                element={
-                  <ProtectedRoute>
-                    <Kuis />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/ar-scan"
-                element={
-                  <ProtectedRoute>
-                    <ARScan />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/leaderboard"
-                element={
-                  <ProtectedRoute>
-                    <Leaderboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/stats"
-                element={
-                  <ProtectedRoute>
-                    <Stats />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/achievements"
-                element={
-                  <ProtectedRoute>
-                    <Achievements />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <ProtectedRoute>
-                    <Settings />
-                  </ProtectedRoute>
-                }
-              />
->>>>>>> bbc8f80fb1c626acffebf497a4f7307e6c11b362
 
           {/* Quiz Routes */}
           <Route
