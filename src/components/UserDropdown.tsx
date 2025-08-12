@@ -54,28 +54,28 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
       {/* User Profile Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-gradient-to-r from-historic-yellow to-historic-orange rounded-lg border-0 h-12 px-4 relative hover:from-historic-orange hover:to-historic-yellow transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-3 min-w-[200px]"
+        className="bg-yellow-500 hover:bg-yellow-600 rounded-lg px-4 py-2 text-white flex items-center gap-3 transition-colors"
       >
         {/* User Avatar */}
         <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-          <span className="text-white font-quicksand font-bold text-sm">
+          <span className="text-white font-bold text-sm">
             {getInitials(userName)}
           </span>
         </div>
 
         {/* User Info */}
-        <div className="flex flex-col items-start flex-1">
-          <div className="text-white font-quicksand font-bold text-sm leading-tight truncate max-w-[120px]">
+        <div className="flex flex-col items-start">
+          <div className="text-white font-bold text-sm">
             {userName}
           </div>
-          <div className="text-historic-yellow-light font-quicksand text-xs leading-tight">
+          <div className="text-yellow-100 text-xs">
             {userLevel}
           </div>
         </div>
 
         {/* Dropdown Arrow */}
         <svg
-          className={`w-4 h-4 text-white transition-transform duration-200 ${
+          className={`w-4 h-4 text-white transition-transform ${
             isOpen ? "rotate-180" : ""
           }`}
           fill="none"
@@ -93,20 +93,20 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-14 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50 animate-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 top-14 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
           {/* User Info Header */}
-          <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
+          <div className="px-4 py-3 border-b border-gray-100">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-historic-brown rounded-full flex items-center justify-center">
-                <span className="text-white font-quicksand font-bold">
+              <div className="w-10 h-10 bg-gray-600 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold">
                   {getInitials(userName)}
                 </span>
               </div>
               <div className="flex-1">
-                <div className="font-quicksand font-bold text-gray-800 dark:text-gray-200 text-sm">
+                <div className="font-bold text-gray-800 text-sm">
                   {userName}
                 </div>
-                <div className="font-quicksand text-xs text-gray-600 dark:text-gray-400">
+                <div className="text-xs text-gray-600">
                   {userLevel}
                 </div>
               </div>
@@ -119,13 +119,13 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
               <Link
                 key={index}
                 to={item.href}
-                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors group"
                 onClick={() => setIsOpen(false)}
               >
-                <span className="text-lg group-hover:scale-110 transition-transform">
+                <span className="text-lg">
                   {item.icon}
                 </span>
-                <span className="font-quicksand text-gray-700 dark:text-gray-300 group-hover:text-historic-brown dark:group-hover:text-historic-yellow">
+                <span className="text-gray-700">
                   {item.label}
                 </span>
               </Link>
@@ -134,16 +134,14 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
             {/* Admin Menu (only for admin users) */}
             {user?.role === "admin" && (
               <>
-                <div className="border-t border-gray-100 dark:border-gray-700 my-2"></div>
+                <div className="border-t border-gray-100 my-2"></div>
                 <Link
                   to="/admin"
-                  className="flex items-center gap-3 px-4 py-3 hover:bg-historic-cream dark:hover:bg-gray-700 transition-colors group"
+                  className="flex items-center gap-3 px-4 py-3 hover:bg-yellow-50 transition-colors group"
                   onClick={() => setIsOpen(false)}
                 >
-                  <span className="text-lg group-hover:scale-110 transition-transform">
-                    🛠️
-                  </span>
-                  <span className="font-quicksand text-historic-brown dark:text-historic-yellow font-semibold">
+                  <span className="text-lg">🛠️</span>
+                  <span className="text-yellow-600 font-semibold">
                     Admin Dashboard
                   </span>
                 </Link>
@@ -152,19 +150,15 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
           </div>
 
           {/* Separator */}
-          <div className="border-t border-gray-100 dark:border-gray-700 my-2"></div>
+          <div className="border-t border-gray-100 my-2"></div>
 
           {/* Logout */}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-left hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group"
+            className="flex items-center gap-3 px-4 py-3 w-full text-left hover:bg-red-50 transition-colors group"
           >
-            <span className="text-lg group-hover:scale-110 transition-transform">
-              🚪
-            </span>
-            <span className="font-quicksand text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300">
-              Keluar
-            </span>
+            <span className="text-lg">🚪</span>
+            <span className="text-red-600">Keluar</span>
           </button>
         </div>
       )}
