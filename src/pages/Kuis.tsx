@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 
 const Kuis = () => {
   const navigate = useNavigate();
-  const [showARCamera, setShowARCamera] = useState(false);
   const [detectedCard, setDetectedCard] = useState(null);
   const [showQuizDialog, setShowQuizDialog] = useState(false);
   const [showManualQuizDialog, setShowManualQuizDialog] = useState(false);
