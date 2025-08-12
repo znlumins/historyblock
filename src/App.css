@@ -1,47 +1,29 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Basic global styles */
+.app {
+  min-height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Custom Historic Block colors */
+.bg-historic-brown {
+  background-color: #654321;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bg-historic-yellow {
+  background-color: #facc15;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.bg-historic-cream {
+  background-color: #f7f3e9;
 }
 
-.card {
-  padding: 2em;
+.text-historic-brown {
+  color: #654321;
 }
 
-.read-the-docs {
-  color: #888;
+.text-historic-yellow {
+  color: #facc15;
 }
 
-video[autoplay][playsinline] {
-  @apply fixed top-0 left-0 w-screen h-screen object-cover z-10 !important;
+.border-historic-brown {
+  border-color: #654321;
 }
-
