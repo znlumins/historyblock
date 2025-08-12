@@ -5,81 +5,245 @@ import Navbar from "@/components/Navbar";
 const Index = () => {
   const { isAuthenticated } = useAuth();
 
+  const styles = {
+    container: {
+      minHeight: "100vh",
+      backgroundColor: "white",
+    },
+    heroSection: {
+      padding: "80px 16px",
+      background: "linear-gradient(to right, #fffbeb, #fef3c7)",
+    },
+    heroContainer: {
+      maxWidth: "1024px",
+      margin: "0 auto",
+      textAlign: "center" as const,
+    },
+    heroTitle: {
+      fontSize: "3rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "24px",
+      lineHeight: "1.2",
+    },
+    heroSubtitle: {
+      fontSize: "1.25rem",
+      color: "#4b5563",
+      marginBottom: "32px",
+      maxWidth: "512px",
+      margin: "0 auto 32px auto",
+      lineHeight: "1.6",
+    },
+    buttonContainer: {
+      display: "flex",
+      gap: "16px",
+      justifyContent: "center",
+      flexWrap: "wrap" as const,
+    },
+    primaryButton: {
+      display: "inline-block",
+      backgroundColor: "#eab308",
+      color: "white",
+      padding: "12px 32px",
+      borderRadius: "8px",
+      fontSize: "18px",
+      fontWeight: "600",
+      textDecoration: "none",
+      transition: "background-color 0.2s",
+    },
+    secondaryButton: {
+      display: "inline-block",
+      backgroundColor: "white",
+      color: "#eab308",
+      border: "1px solid #eab308",
+      padding: "12px 32px",
+      borderRadius: "8px",
+      fontSize: "18px",
+      fontWeight: "600",
+      textDecoration: "none",
+      transition: "background-color 0.2s",
+    },
+    featuresSection: {
+      padding: "64px 16px",
+      backgroundColor: "white",
+    },
+    featuresContainer: {
+      maxWidth: "1536px",
+      margin: "0 auto",
+    },
+    featuresTitle: {
+      fontSize: "2rem",
+      fontWeight: "700",
+      textAlign: "center" as const,
+      color: "#1f2937",
+      marginBottom: "48px",
+    },
+    featuresGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+      gap: "32px",
+    },
+    featureCard: {
+      textAlign: "center" as const,
+      padding: "24px",
+      backgroundColor: "#f9fafb",
+      borderRadius: "8px",
+    },
+    featureIcon: {
+      fontSize: "3rem",
+      marginBottom: "16px",
+    },
+    featureTitle: {
+      fontSize: "1.25rem",
+      fontWeight: "600",
+      color: "#1f2937",
+      marginBottom: "8px",
+    },
+    featureDescription: {
+      color: "#4b5563",
+    },
+    footer: {
+      backgroundColor: "#1f2937",
+      color: "white",
+      padding: "32px 16px",
+    },
+    footerContainer: {
+      maxWidth: "1536px",
+      margin: "0 auto",
+      textAlign: "center" as const,
+    },
+    footerTitle: {
+      fontSize: "18px",
+      fontWeight: "600",
+      marginBottom: "8px",
+    },
+    footerSubtitle: {
+      color: "#9ca3af",
+    },
+  };
+
+  // Media queries simulation for responsive design
+  const isMobile = window.innerWidth < 768;
+
+  const mobileStyles = {
+    heroTitle: {
+      ...styles.heroTitle,
+      fontSize: isMobile ? "2rem" : "3rem",
+    },
+    heroSubtitle: {
+      ...styles.heroSubtitle,
+      fontSize: isMobile ? "1rem" : "1.25rem",
+    },
+    buttonContainer: {
+      ...styles.buttonContainer,
+      flexDirection: isMobile ? ("column" as const) : ("row" as const),
+      alignItems: "center",
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div style={styles.container}>
       <Navbar />
       
       {/* Hero Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-yellow-50 to-orange-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+      <section style={styles.heroSection}>
+        <div style={styles.heroContainer}>
+          <h1 style={mobileStyles.heroTitle}>
             🏛️ Historic Block
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p style={mobileStyles.heroSubtitle}>
             Belajar sejarah Indonesia dengan cara yang menyenangkan! 
             Mainkan kuis interaktif dan tes pengetahuan sejarahmu.
           </p>
           
-          {isAuthenticated ? (
-            <Link
-              to="/kuis"
-              className="inline-block bg-yellow-500 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition-colors"
-            >
-              🎯 Mulai Kuis
-            </Link>
-          ) : (
-            <div className="space-x-4">
+          <div style={mobileStyles.buttonContainer}>
+            {isAuthenticated ? (
               <Link
-                to="/register"
-                className="inline-block bg-yellow-500 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-600 transition-colors"
+                to="/kuis"
+                style={styles.primaryButton}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#ca8a04";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#eab308";
+                }}
               >
-                📝 Daftar Sekarang
+                🎯 Mulai Kuis
               </Link>
-              <Link
-                to="/login"
-                className="inline-block bg-white text-yellow-600 border border-yellow-500 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-yellow-50 transition-colors"
-              >
-                🚪 Masuk
-              </Link>
-            </div>
-          )}
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  style={styles.primaryButton}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#ca8a04";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#eab308";
+                  }}
+                >
+                  📝 Daftar Sekarang
+                </Link>
+                <Link
+                  to="/login"
+                  style={styles.secondaryButton}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#fef3c7";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "white";
+                  }}
+                >
+                  🚪 Masuk
+                </Link>
+              </>
+            )}
+          </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+      <section style={styles.featuresSection}>
+        <div style={styles.featuresContainer}>
+          <h2 style={styles.featuresTitle}>
             ✨ Fitur Unggulan
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-4xl mb-4">📱</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">AR Scanner</h3>
-              <p className="text-gray-600">Scan kartu Historic Block untuk memulai kuis</p>
+          <div style={styles.featuresGrid}>
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>📱</div>
+              <h3 style={styles.featureTitle}>AR Scanner</h3>
+              <p style={styles.featureDescription}>
+                Scan kartu Historic Block untuk memulai kuis
+              </p>
             </div>
             
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-4xl mb-4">📚</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Kuis Manual</h3>
-              <p className="text-gray-600">Pilih topik dan tingkat kesulitan sendiri</p>
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>📚</div>
+              <h3 style={styles.featureTitle}>Kuis Manual</h3>
+              <p style={styles.featureDescription}>
+                Pilih topik dan tingkat kesulitan sendiri
+              </p>
             </div>
             
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-4xl mb-4">🏆</div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Leaderboard</h3>
-              <p className="text-gray-600">Kompetisi dengan pemain lain</p>
+            <div style={styles.featureCard}>
+              <div style={styles.featureIcon}>🏆</div>
+              <h3 style={styles.featureTitle}>Leaderboard</h3>
+              <p style={styles.featureDescription}>
+                Kompetisi dengan pemain lain
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-lg font-semibold mb-2">Historic Block</p>
-          <p className="text-gray-400">Belajar sejarah dengan cara yang menyenangkan</p>
+      <footer style={styles.footer}>
+        <div style={styles.footerContainer}>
+          <p style={styles.footerTitle}>Historic Block</p>
+          <p style={styles.footerSubtitle}>
+            Belajar sejarah dengan cara yang menyenangkan
+          </p>
         </div>
       </footer>
     </div>
