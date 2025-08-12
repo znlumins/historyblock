@@ -74,13 +74,6 @@ const Kuis = () => {
       {/* Header */}
       <Navbar />
 
-      {/* AR Camera Modal */}
-      {showARCamera && (
-        <ARCamera
-          onCardDetected={handleCardDetected}
-          onClose={() => setShowARCamera(false)}
-        />
-      )}
 
       {/* Manual Quiz Selection Dialog */}
       {showManualQuizDialog && (
