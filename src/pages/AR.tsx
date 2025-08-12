@@ -8,7 +8,6 @@ const AR = () => {
         <p className="text-gray-600 mb-4">
           AR functionality akan ditambahkan di sini
         </p>
-        {/* AR.js content will be added here manually */}
       </div>
     </div>
   );
