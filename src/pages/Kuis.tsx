@@ -9,7 +9,11 @@ const Kuis = () => {
   const [showManualQuizDialog, setShowManualQuizDialog] = useState(false);
 
   const handleARScan = () => {
+<<<<<<< HEAD
     navigate("/ar");
+=======
+    navigate("/ar-scan");
+>>>>>>> bbc8f80fb1c626acffebf497a4f7307e6c11b362
   };
 
   const handleCardDetected = (cardData) => {
