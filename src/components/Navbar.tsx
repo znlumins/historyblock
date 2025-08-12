@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -16,151 +16,397 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const styles = {
+    header: {
+      width: "100%",
+      height: "80px",
+      backgroundColor: "#654321",
+      borderBottom: "4px solid #8b4513",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      padding: "0 20px",
+      position: "relative" as const,
+    },
+    container: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%",
+      height: "100%",
+    },
+    logoContainer: {
+      display: "flex",
+      alignItems: "center",
+      width: "256px",
+    },
+    logo: {
+      width: "62px",
+      height: "62px",
+      transition: "transform 0.2s",
+    },
+    nav: {
+      display: "none",
+      alignItems: "center",
+      gap: "32px",
+      justifyContent: "center",
+      flex: 1,
+    },
+    navLink: {
+      fontSize: "16px",
+      fontWeight: "400",
+      transition: "color 0.2s",
+      textDecoration: "none",
+      color: "white",
+    },
+    navLinkActive: {
+      fontSize: "16px",
+      fontWeight: "700",
+      transition: "color 0.2s",
+      textDecoration: "none",
+      color: "#fef9c3",
+    },
+    rightContainer: {
+      display: "flex",
+      alignItems: "center",
+      gap: "16px",
+      width: "256px",
+      justifyContent: "flex-end",
+    },
+    desktopAuth: {
+      display: "none",
+      alignItems: "center",
+    },
+    authContainer: {
+      display: "flex",
+      alignItems: "center",
+      gap: "16px",
+    },
+    loginLink: {
+      color: "white",
+      textDecoration: "none",
+      transition: "color 0.2s",
+    },
+    registerButton: {
+      background: "linear-gradient(to right, #facc15, #f97316)",
+      color: "white",
+      padding: "8px 24px",
+      borderRadius: "8px",
+      textDecoration: "none",
+      fontWeight: "600",
+      transition: "all 0.2s",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+    },
+    mobileMenuButton: {
+      color: "white",
+      background: "none",
+      border: "none",
+      padding: "8px",
+      cursor: "pointer",
+      transition: "color 0.2s",
+    },
+    mobileOverlay: {
+      position: "fixed" as const,
+      inset: "0",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      zIndex: 50,
+    },
+    mobileMenu: {
+      backgroundColor: "white",
+      width: "100%",
+      maxWidth: "384px",
+      height: "100%",
+      boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+      overflowY: "auto" as const,
+      transform: "translateX(0)",
+      transition: "transform 0.3s ease-in-out",
+    },
+    mobileHeader: {
+      backgroundColor: "#654321",
+      padding: "16px",
+      borderBottom: "1px solid #8b4513",
+    },
+    mobileHeaderContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      marginBottom: "16px",
+    },
+    mobileLogo: {
+      width: "40px",
+      height: "40px",
+    },
+    closeButton: {
+      color: "white",
+      background: "none",
+      border: "none",
+      padding: "8px",
+      cursor: "pointer",
+      transition: "color 0.2s",
+    },
+    userProfile: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      backgroundColor: "#8b4513",
+      borderRadius: "8px",
+      padding: "12px",
+    },
+    userAvatar: {
+      width: "48px",
+      height: "48px",
+      backgroundColor: "#facc15",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    userInfo: {
+      flex: 1,
+    },
+    userName: {
+      fontWeight: "700",
+      color: "white",
+      fontSize: "14px",
+    },
+    userLevel: {
+      color: "#fef9c3",
+      fontSize: "12px",
+    },
+    mobileNav: {
+      padding: "16px",
+      display: "flex",
+      flexDirection: "column" as const,
+      gap: "16px",
+    },
+    mobileNavLink: {
+      display: "block",
+      fontSize: "18px",
+      padding: "12px 16px",
+      borderRadius: "8px",
+      transition: "background-color 0.2s",
+      textDecoration: "none",
+      color: "#374151",
+    },
+    mobileNavLinkActive: {
+      display: "block",
+      fontSize: "18px",
+      padding: "12px 16px",
+      borderRadius: "8px",
+      transition: "background-color 0.2s",
+      textDecoration: "none",
+      backgroundColor: "#facc15",
+      color: "#654321",
+      fontWeight: "700",
+    },
+    divider: {
+      borderTop: "1px solid #d1d5db",
+      margin: "16px 0",
+    },
+    logoutButton: {
+      position: "absolute" as const,
+      bottom: "16px",
+      left: "16px",
+      right: "16px",
+      width: "calc(100% - 32px)",
+      fontSize: "18px",
+      padding: "12px 16px",
+      borderRadius: "8px",
+      backgroundColor: "#dc2626",
+      color: "white",
+      border: "none",
+      cursor: "pointer",
+      transition: "background-color 0.2s",
+    },
+  };
+
+  // Media queries simulation
+  const isDesktop = window.innerWidth >= 1024;
+
   return (
     <>
-      <header className="w-full h-16 md:h-20 lg:h-[110px] bg-historic-brown border-b-2 md:border-b-4 border-historic-brown-dark shadow-lg px-4 md:px-8 lg:px-20 relative">
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Georgia:wght@400&display=swap"
-        />
-
-        <div className="flex items-center justify-between w-full h-full">
+      <header style={styles.header}>
+        <div style={styles.container}>
           {/* Left side - Logo */}
-          <div className="flex items-center lg:w-64">
+          <div style={styles.logoContainer}>
             <Link to="/" onClick={closeMobileMenu}>
               <img
                 src="https://cdn.builder.io/api/v1/image/assets/TEMP/507170e63ed72fa0abf94c821deabb0a1109b706?placeholderIfAbsent=true"
                 alt="HISTORIC BLOCK"
-                className="w-[50px] h-[50px] md:w-[62px] md:h-[62px] hover:scale-105 transition-transform"
+                style={{
+                  ...styles.logo,
+                  ":hover": { transform: "scale(1.05)" }
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)";
+                }}
               />
             </Link>
           </div>
 
           {/* Center - Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8 justify-center flex-1">
-            <Link
-              to="/"
-              className={`font-quicksand text-base transition-colors ${
-                isActive("/")
-                  ? "text-historic-yellow-light font-bold"
-                  : "text-white hover:text-historic-yellow-light"
-              }`}
-            >
-              Beranda
-            </Link>
+          {isDesktop && (
+            <nav style={{ ...styles.nav, display: "flex" }}>
+              <Link
+                to="/"
+                style={isActive("/") ? styles.navLinkActive : styles.navLink}
+                onMouseEnter={(e) => {
+                  if (!isActive("/")) e.currentTarget.style.color = "#fef9c3";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive("/")) e.currentTarget.style.color = "white";
+                }}
+              >
+                Beranda
+              </Link>
 
-            {isAuthenticated ? (
-              <>
-                <Link
-                  to="/kuis"
-                  className={`font-quicksand text-base transition-colors ${
-                    isActive("/kuis")
-                      ? "text-historic-yellow-light font-bold"
-                      : "text-white hover:text-historic-yellow-light"
-                  }`}
-                >
-                  Kuis
-                </Link>
-                <Link
-                  to="/leaderboard"
-                  className={`font-quicksand text-base transition-colors ${
-                    isActive("/leaderboard")
-                      ? "text-historic-yellow-light font-bold"
-                      : "text-white hover:text-historic-yellow-light"
-                  }`}
-                >
-                  Leaderboard
-                </Link>
-                <Link
-                  to="/tutorial"
-                  className={`font-quicksand text-base transition-colors ${
-                    isActive("/tutorial")
-                      ? "text-historic-yellow-light font-bold"
-                      : "text-white hover:text-historic-yellow-light"
-                  }`}
-                >
-                  Tutorial Gameplay
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  to="/tutorial"
-                  className={`font-quicksand text-base transition-colors ${
-                    isActive("/tutorial")
-                      ? "text-historic-yellow-light font-bold"
-                      : "text-white hover:text-historic-yellow-light"
-                  }`}
-                >
-                  Tutorial Gameplay
-                </Link>
-                <Link
-                  to="/login"
-                  className={`font-quicksand text-base transition-colors ${
-                    isActive("/leaderboard")
-                      ? "text-historic-yellow-light font-bold"
-                      : "text-white hover:text-historic-yellow-light"
-                  }`}
-                >
-                  Leaderboard
-                </Link>
-              </>
-            )}
-          </nav>
-
-          {/* Right side - Auth Actions and Mobile Menu Button */}
-          <div className="flex items-center gap-4 lg:w-64 justify-end">
-            {/* Desktop Auth Actions */}
-            <div className="hidden lg:flex items-center">
-              {isAuthenticated && user ? (
-                <UserDropdown userName={user.name} userLevel={user.level} />
+              {isAuthenticated ? (
+                <>
+                  <Link
+                    to="/kuis"
+                    style={isActive("/kuis") ? styles.navLinkActive : styles.navLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/kuis")) e.currentTarget.style.color = "#fef9c3";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/kuis")) e.currentTarget.style.color = "white";
+                    }}
+                  >
+                    Kuis
+                  </Link>
+                  <Link
+                    to="/leaderboard"
+                    style={isActive("/leaderboard") ? styles.navLinkActive : styles.navLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "#fef9c3";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "white";
+                    }}
+                  >
+                    Leaderboard
+                  </Link>
+                  <Link
+                    to="/tutorial"
+                    style={isActive("/tutorial") ? styles.navLinkActive : styles.navLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "#fef9c3";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
+                    }}
+                  >
+                    Tutorial Gameplay
+                  </Link>
+                </>
               ) : (
-                <div className="flex items-center gap-4">
+                <>
+                  <Link
+                    to="/tutorial"
+                    style={isActive("/tutorial") ? styles.navLinkActive : styles.navLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "#fef9c3";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
+                    }}
+                  >
+                    Tutorial Gameplay
+                  </Link>
                   <Link
                     to="/login"
-                    className="font-quicksand text-white hover:text-historic-yellow-light transition-colors"
+                    style={isActive("/leaderboard") ? styles.navLinkActive : styles.navLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "#fef9c3";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "white";
+                    }}
                   >
-                    Masuk
+                    Leaderboard
                   </Link>
-                  <Link
-                    to="/register"
-                    className="bg-gradient-to-r from-historic-yellow to-historic-orange hover:from-historic-orange hover:to-historic-yellow text-white font-quicksand px-6 py-2 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-                  >
-                    Daftar
-                  </Link>
-                </div>
+                </>
               )}
-            </div>
+            </nav>
+          )}
+
+          {/* Right side - Auth Actions and Mobile Menu Button */}
+          <div style={styles.rightContainer}>
+            {/* Desktop Auth Actions */}
+            {isDesktop && (
+              <div style={{ ...styles.desktopAuth, display: "flex" }}>
+                {isAuthenticated && user ? (
+                  <UserDropdown userName={user.name} userLevel={user.level} />
+                ) : (
+                  <div style={styles.authContainer}>
+                    <Link
+                      to="/login"
+                      style={styles.loginLink}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = "#fef9c3";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = "white";
+                      }}
+                    >
+                      Masuk
+                    </Link>
+                    <Link
+                      to="/register"
+                      style={styles.registerButton}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
+                        e.currentTarget.style.boxShadow = "0 10px 15px -3px rgb(0 0 0 / 0.1)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px -1px rgb(0 0 0 / 0.1)";
+                      }}
+                    >
+                      Daftar
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden text-white hover:text-historic-yellow-light transition-colors p-2"
-              aria-label="Toggle menu"
-            >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            {!isDesktop && (
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                style={styles.mobileMenuButton}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = "#fef9c3";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "white";
+                }}
               >
-                {isMobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
+                <svg
+                  style={{ width: "24px", height: "24px" }}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {isMobileMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -168,29 +414,35 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-50"
+          style={styles.mobileOverlay}
           onClick={closeMobileMenu}
         >
           <div
-            className="bg-white w-full max-w-sm h-full shadow-xl overflow-y-auto transform transition-transform duration-300 ease-in-out animate-in slide-in-from-left"
+            style={styles.mobileMenu}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Mobile Menu Header */}
-            <div className="bg-historic-brown p-4 border-b border-historic-brown-dark">
-              <div className="flex items-center justify-between mb-4">
+            <div style={styles.mobileHeader}>
+              <div style={styles.mobileHeaderContainer}>
                 <Link to="/" onClick={closeMobileMenu}>
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets/TEMP/507170e63ed72fa0abf94c821deabb0a1109b706?placeholderIfAbsent=true"
                     alt="HISTORIC BLOCK"
-                    className="w-[40px] h-[40px]"
+                    style={styles.mobileLogo}
                   />
                 </Link>
                 <button
                   onClick={closeMobileMenu}
-                  className="text-white hover:text-historic-yellow-light transition-colors p-2"
+                  style={styles.closeButton}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#fef9c3";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "white";
+                  }}
                 >
                   <svg
-                    className="w-6 h-6"
+                    style={{ width: "24px", height: "24px" }}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -207,17 +459,17 @@ const Navbar = () => {
 
               {/* User Profile Info in Mobile Menu */}
               {isAuthenticated && user && (
-                <div className="flex items-center gap-3 bg-historic-brown-dark rounded-lg p-3">
-                  <div className="w-12 h-12 bg-historic-yellow rounded-full flex items-center justify-center">
-                    <span className="font-quicksand font-bold text-historic-brown-dark text-lg">
+                <div style={styles.userProfile}>
+                  <div style={styles.userAvatar}>
+                    <span style={{ fontWeight: "700", color: "#654321", fontSize: "18px" }}>
                       {user.name.charAt(0)}
                     </span>
                   </div>
-                  <div className="flex-1">
-                    <div className="font-quicksand font-bold text-white text-sm">
+                  <div style={styles.userInfo}>
+                    <div style={styles.userName}>
                       {user.name}
                     </div>
-                    <div className="font-quicksand text-historic-yellow-light text-xs">
+                    <div style={styles.userLevel}>
                       {user.level}
                     </div>
                   </div>
@@ -226,15 +478,17 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Content */}
-            <nav className="p-4 space-y-4">
+            <nav style={styles.mobileNav}>
               <Link
                 to="/"
                 onClick={closeMobileMenu}
-                className={`block font-quicksand text-lg py-3 px-4 rounded-lg transition-colors ${
-                  isActive("/")
-                    ? "bg-historic-yellow text-historic-brown-dark font-bold"
-                    : "text-gray-800 hover:bg-gray-100"
-                }`}
+                style={isActive("/") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                onMouseEnter={(e) => {
+                  if (!isActive("/")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive("/")) e.currentTarget.style.backgroundColor = "transparent";
+                }}
               >
                 🏠 Beranda
               </Link>
@@ -244,66 +498,96 @@ const Navbar = () => {
                   <Link
                     to="/kuis"
                     onClick={closeMobileMenu}
-                    className={`block font-quicksand text-lg py-3 px-4 rounded-lg transition-colors ${
-                      isActive("/kuis")
-                        ? "bg-historic-yellow text-historic-brown-dark font-bold"
-                        : "text-gray-800 hover:bg-gray-100"
-                    }`}
+                    style={isActive("/kuis") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     🎯 Kuis
                   </Link>
                   <Link
                     to="/leaderboard"
                     onClick={closeMobileMenu}
-                    className={`block font-quicksand text-lg py-3 px-4 rounded-lg transition-colors ${
-                      isActive("/leaderboard")
-                        ? "bg-historic-yellow text-historic-brown-dark font-bold"
-                        : "text-gray-800 hover:bg-gray-100"
-                    }`}
+                    style={isActive("/leaderboard") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     🏆 Leaderboard
                   </Link>
                   <Link
                     to="/tutorial"
                     onClick={closeMobileMenu}
-                    className={`block font-quicksand text-lg py-3 px-4 rounded-lg transition-colors ${
-                      isActive("/tutorial")
-                        ? "bg-historic-yellow text-historic-brown-dark font-bold"
-                        : "text-gray-800 hover:bg-gray-100"
-                    }`}
+                    style={isActive("/tutorial") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     📖 Tutorial Gameplay
                   </Link>
 
                   {/* Mobile Menu Divider */}
-                  <div className="border-t border-gray-300 my-4"></div>
+                  <div style={styles.divider}></div>
 
                   {/* User Menu Items for Mobile */}
                   <Link
                     to="/profile"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    style={styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     👤 Profil Saya
                   </Link>
                   <Link
                     to="/stats"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    style={styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     📊 Statistik
                   </Link>
                   <Link
                     to="/achievements"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    style={styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     🏆 Achievement
                   </Link>
                   <Link
                     to="/settings"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    style={styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     ⚙️ Pengaturan
                   </Link>
@@ -311,11 +595,22 @@ const Navbar = () => {
                   {/* Admin Menu for Mobile */}
                   {user?.role === "admin" && (
                     <>
-                      <div className="border-t border-gray-300 my-4"></div>
+                      <div style={styles.divider}></div>
                       <Link
                         to="/admin"
                         onClick={closeMobileMenu}
-                        className="block font-quicksand text-lg py-3 px-4 rounded-lg bg-historic-cream text-historic-brown-dark hover:bg-historic-yellow transition-colors font-semibold"
+                        style={{
+                          ...styles.mobileNavLink,
+                          backgroundColor: "#f7f3e9",
+                          color: "#654321",
+                          fontWeight: "600",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = "#facc15";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = "#f7f3e9";
+                        }}
                       >
                         🛠️ Admin Dashboard
                       </Link>
@@ -327,36 +622,62 @@ const Navbar = () => {
                   <Link
                     to="/tutorial"
                     onClick={closeMobileMenu}
-                    className={`block font-quicksand text-lg py-3 px-4 rounded-lg transition-colors ${
-                      isActive("/tutorial")
-                        ? "bg-historic-yellow text-historic-brown-dark font-bold"
-                        : "text-gray-800 hover:bg-gray-100"
-                    }`}
+                    style={isActive("/tutorial") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     📖 Tutorial Gameplay
                   </Link>
                   <Link
                     to="/login"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    style={styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     🏆 Leaderboard
                   </Link>
 
                   {/* Mobile Auth Actions */}
-                  <div className="border-t border-gray-300 my-4"></div>
+                  <div style={styles.divider}></div>
 
                   <Link
                     to="/login"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg text-gray-800 hover:bg-gray-100 transition-colors"
+                    style={styles.mobileNavLink}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = "#f3f4f6";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }}
                   >
                     🚪 Masuk
                   </Link>
                   <Link
                     to="/register"
                     onClick={closeMobileMenu}
-                    className="block font-quicksand text-lg py-3 px-4 rounded-lg bg-gradient-to-r from-historic-yellow to-historic-orange text-white hover:from-historic-orange hover:to-historic-yellow transition-all duration-200 shadow-lg"
+                    style={{
+                      ...styles.mobileNavLink,
+                      background: "linear-gradient(to right, #facc15, #f97316)",
+                      color: "white",
+                      fontWeight: "600",
+                      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
+                    }}
                   >
                     ✨ Daftar
                   </Link>
@@ -366,17 +687,21 @@ const Navbar = () => {
 
             {/* Mobile Menu Footer */}
             {isAuthenticated && (
-              <div className="absolute bottom-4 left-4 right-4">
-                <button
-                  onClick={() => {
-                    closeMobileMenu();
-                    logout();
-                  }}
-                  className="w-full font-quicksand text-lg py-3 px-4 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-colors"
-                >
-                  🚪 Keluar
-                </button>
-              </div>
+              <button
+                onClick={() => {
+                  closeMobileMenu();
+                  // logout(); // Add logout function call here
+                }}
+                style={styles.logoutButton}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#b91c1c";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#dc2626";
+                }}
+              >
+                🚪 Keluar
+              </button>
             )}
           </div>
         </div>
