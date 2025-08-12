@@ -22,16 +22,16 @@ const Settings = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleToggleChange = (key: string) => {
-    setToggles(prev => ({
+    setToggles((prev) => ({
       ...prev,
-      [key]: !prev[key]
+      [key]: !prev[key],
     }));
   };
 
@@ -169,20 +169,18 @@ const Settings = () => {
   return (
     <div style={styles.container}>
       <Navbar />
-      
+
       <div style={styles.content}>
         <div style={styles.contentContainer}>
           <h1 style={styles.pageTitle}>⚙️ Pengaturan</h1>
-          
+
           {/* Profile Settings */}
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>👤 Profil Saya</h2>
-            
+
             <div style={styles.formGroup}>
               <div style={styles.inputGroup}>
-                <label style={styles.label}>
-                  Nama Lengkap
-                </label>
+                <label style={styles.label}>Nama Lengkap</label>
                 <input
                   type="text"
                   name="fullName"
@@ -191,7 +189,8 @@ const Settings = () => {
                   style={styles.input}
                   onFocus={(e) => {
                     e.target.style.borderColor = "#eab308";
-                    e.target.style.boxShadow = "0 0 0 3px rgba(234, 179, 8, 0.1)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(234, 179, 8, 0.1)";
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = "#d1d5db";
@@ -199,11 +198,9 @@ const Settings = () => {
                   }}
                 />
               </div>
-              
+
               <div style={styles.inputGroup}>
-                <label style={styles.label}>
-                  Email
-                </label>
+                <label style={styles.label}>Email</label>
                 <input
                   type="email"
                   name="email"
@@ -212,7 +209,8 @@ const Settings = () => {
                   style={styles.input}
                   onFocus={(e) => {
                     e.target.style.borderColor = "#eab308";
-                    e.target.style.boxShadow = "0 0 0 3px rgba(234, 179, 8, 0.1)";
+                    e.target.style.boxShadow =
+                      "0 0 0 3px rgba(234, 179, 8, 0.1)";
                   }}
                   onBlur={(e) => {
                     e.target.style.borderColor = "#d1d5db";
@@ -226,43 +224,61 @@ const Settings = () => {
           {/* Privacy Settings */}
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>🔒 Privasi</h2>
-            
+
             <div style={styles.toggleGroup}>
               <div style={styles.toggleItem}>
                 <div style={styles.toggleInfo}>
-                  <div style={styles.toggleLabel}>Tampilkan nama di leaderboard</div>
-                  <div style={styles.toggleDescription}>Nama Anda akan terlihat di papan peringkat</div>
+                  <div style={styles.toggleLabel}>
+                    Tampilkan nama di leaderboard
+                  </div>
+                  <div style={styles.toggleDescription}>
+                    Nama Anda akan terlihat di papan peringkat
+                  </div>
                 </div>
                 <button
-                  onClick={() => handleToggleChange('showNameInLeaderboard')}
+                  onClick={() => handleToggleChange("showNameInLeaderboard")}
                   style={{
                     ...styles.toggleButton,
-                    ...(toggles.showNameInLeaderboard ? styles.toggleButtonActive : styles.toggleButtonInactive)
+                    ...(toggles.showNameInLeaderboard
+                      ? styles.toggleButtonActive
+                      : styles.toggleButtonInactive),
                   }}
                 >
-                  <div style={{
-                    ...styles.toggleSlider,
-                    ...(toggles.showNameInLeaderboard ? styles.toggleSliderActive : styles.toggleSliderInactive)
-                  }} />
+                  <div
+                    style={{
+                      ...styles.toggleSlider,
+                      ...(toggles.showNameInLeaderboard
+                        ? styles.toggleSliderActive
+                        : styles.toggleSliderInactive),
+                    }}
+                  />
                 </button>
               </div>
-              
+
               <div style={styles.toggleItem}>
                 <div style={styles.toggleInfo}>
                   <div style={styles.toggleLabel}>Profil publik</div>
-                  <div style={styles.toggleDescription}>Pengguna lain dapat melihat profil Anda</div>
+                  <div style={styles.toggleDescription}>
+                    Pengguna lain dapat melihat profil Anda
+                  </div>
                 </div>
                 <button
-                  onClick={() => handleToggleChange('publicProfile')}
+                  onClick={() => handleToggleChange("publicProfile")}
                   style={{
                     ...styles.toggleButton,
-                    ...(toggles.publicProfile ? styles.toggleButtonActive : styles.toggleButtonInactive)
+                    ...(toggles.publicProfile
+                      ? styles.toggleButtonActive
+                      : styles.toggleButtonInactive),
                   }}
                 >
-                  <div style={{
-                    ...styles.toggleSlider,
-                    ...(toggles.publicProfile ? styles.toggleSliderActive : styles.toggleSliderInactive)
-                  }} />
+                  <div
+                    style={{
+                      ...styles.toggleSlider,
+                      ...(toggles.publicProfile
+                        ? styles.toggleSliderActive
+                        : styles.toggleSliderInactive),
+                    }}
+                  />
                 </button>
               </div>
             </div>
@@ -271,62 +287,86 @@ const Settings = () => {
           {/* Notification Settings */}
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>🔔 Notifikasi</h2>
-            
+
             <div style={styles.toggleGroup}>
               <div style={styles.toggleItem}>
                 <div style={styles.toggleInfo}>
                   <div style={styles.toggleLabel}>Efek suara</div>
-                  <div style={styles.toggleDescription}>Putar suara saat bermain kuis</div>
+                  <div style={styles.toggleDescription}>
+                    Putar suara saat bermain kuis
+                  </div>
                 </div>
                 <button
-                  onClick={() => handleToggleChange('soundEffects')}
+                  onClick={() => handleToggleChange("soundEffects")}
                   style={{
                     ...styles.toggleButton,
-                    ...(toggles.soundEffects ? styles.toggleButtonActive : styles.toggleButtonInactive)
+                    ...(toggles.soundEffects
+                      ? styles.toggleButtonActive
+                      : styles.toggleButtonInactive),
                   }}
                 >
-                  <div style={{
-                    ...styles.toggleSlider,
-                    ...(toggles.soundEffects ? styles.toggleSliderActive : styles.toggleSliderInactive)
-                  }} />
+                  <div
+                    style={{
+                      ...styles.toggleSlider,
+                      ...(toggles.soundEffects
+                        ? styles.toggleSliderActive
+                        : styles.toggleSliderInactive),
+                    }}
+                  />
                 </button>
               </div>
-              
+
               <div style={styles.toggleItem}>
                 <div style={styles.toggleInfo}>
                   <div style={styles.toggleLabel}>Notifikasi kuis harian</div>
-                  <div style={styles.toggleDescription}>Ingatkan untuk bermain kuis setiap hari</div>
+                  <div style={styles.toggleDescription}>
+                    Ingatkan untuk bermain kuis setiap hari
+                  </div>
                 </div>
                 <button
-                  onClick={() => handleToggleChange('dailyQuizNotification')}
+                  onClick={() => handleToggleChange("dailyQuizNotification")}
                   style={{
                     ...styles.toggleButton,
-                    ...(toggles.dailyQuizNotification ? styles.toggleButtonActive : styles.toggleButtonInactive)
+                    ...(toggles.dailyQuizNotification
+                      ? styles.toggleButtonActive
+                      : styles.toggleButtonInactive),
                   }}
                 >
-                  <div style={{
-                    ...styles.toggleSlider,
-                    ...(toggles.dailyQuizNotification ? styles.toggleSliderActive : styles.toggleSliderInactive)
-                  }} />
+                  <div
+                    style={{
+                      ...styles.toggleSlider,
+                      ...(toggles.dailyQuizNotification
+                        ? styles.toggleSliderActive
+                        : styles.toggleSliderInactive),
+                    }}
+                  />
                 </button>
               </div>
-              
+
               <div style={styles.toggleItem}>
                 <div style={styles.toggleInfo}>
                   <div style={styles.toggleLabel}>Update leaderboard</div>
-                  <div style={styles.toggleDescription}>Notifikasi saat posisi Anda berubah</div>
+                  <div style={styles.toggleDescription}>
+                    Notifikasi saat posisi Anda berubah
+                  </div>
                 </div>
                 <button
-                  onClick={() => handleToggleChange('leaderboardUpdate')}
+                  onClick={() => handleToggleChange("leaderboardUpdate")}
                   style={{
                     ...styles.toggleButton,
-                    ...(toggles.leaderboardUpdate ? styles.toggleButtonActive : styles.toggleButtonInactive)
+                    ...(toggles.leaderboardUpdate
+                      ? styles.toggleButtonActive
+                      : styles.toggleButtonInactive),
                   }}
                 >
-                  <div style={{
-                    ...styles.toggleSlider,
-                    ...(toggles.leaderboardUpdate ? styles.toggleSliderActive : styles.toggleSliderInactive)
-                  }} />
+                  <div
+                    style={{
+                      ...styles.toggleSlider,
+                      ...(toggles.leaderboardUpdate
+                        ? styles.toggleSliderActive
+                        : styles.toggleSliderInactive),
+                    }}
+                  />
                 </button>
               </div>
             </div>

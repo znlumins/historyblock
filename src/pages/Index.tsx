@@ -144,18 +144,16 @@ const Index = () => {
   return (
     <div style={styles.container}>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section style={styles.heroSection}>
         <div style={styles.heroContainer}>
-          <h1 style={mobileStyles.heroTitle}>
-            🏛️ Historic Block
-          </h1>
+          <h1 style={mobileStyles.heroTitle}>🏛️ Historic Block</h1>
           <p style={mobileStyles.heroSubtitle}>
-            Belajar sejarah Indonesia dengan cara yang menyenangkan! 
-            Mainkan kuis interaktif dan tes pengetahuan sejarahmu.
+            Belajar sejarah Indonesia dengan cara yang menyenangkan! Mainkan
+            kuis interaktif dan tes pengetahuan sejarahmu.
           </p>
-          
+
           <div style={mobileStyles.buttonContainer}>
             {isAuthenticated ? (
               <Link
@@ -205,10 +203,8 @@ const Index = () => {
       {/* Features Section */}
       <section style={styles.featuresSection}>
         <div style={styles.featuresContainer}>
-          <h2 style={styles.featuresTitle}>
-            ✨ Fitur Unggulan
-          </h2>
-          
+          <h2 style={styles.featuresTitle}>✨ Fitur Unggulan</h2>
+
           <div style={styles.featuresGrid}>
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>📱</div>
@@ -217,7 +213,7 @@ const Index = () => {
                 Scan kartu Historic Block untuk memulai kuis
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>📚</div>
               <h3 style={styles.featureTitle}>Kuis Manual</h3>
@@ -225,7 +221,7 @@ const Index = () => {
                 Pilih topik dan tingkat kesulitan sendiri
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>🏆</div>
               <h3 style={styles.featureTitle}>Leaderboard</h3>

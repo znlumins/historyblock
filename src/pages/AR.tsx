@@ -37,14 +37,13 @@ const AR = () => {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>
-          📱 AR Scanner
-        </h1>
+        <h1 style={styles.title}>📱 AR Scanner</h1>
         <p style={styles.description}>
           Halaman ini siap untuk implementasi AR.js manual
         </p>
         <div style={styles.note}>
-          💡 Tip: Implementasikan AR.js secara manual di halaman ini untuk scanning kartu Historic Block
+          💡 Tip: Implementasikan AR.js secara manual di halaman ini untuk
+          scanning kartu Historic Block
         </div>
       </div>
     </div>

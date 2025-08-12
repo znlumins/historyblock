@@ -199,27 +199,23 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
         onClick={() => setIsOpen(!isOpen)}
         style={styles.button}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
+          e.currentTarget.style.background =
+            "linear-gradient(to right, #f97316, #facc15)";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
+          e.currentTarget.style.background =
+            "linear-gradient(to right, #facc15, #f97316)";
         }}
       >
         {/* User Avatar */}
         <div style={styles.avatar}>
-          <span style={styles.avatarText}>
-            {getInitials(userName)}
-          </span>
+          <span style={styles.avatarText}>{getInitials(userName)}</span>
         </div>
 
         {/* User Info */}
         <div style={styles.userInfo}>
-          <div style={styles.userName}>
-            {userName}
-          </div>
-          <div style={styles.userLevel}>
-            {userLevel}
-          </div>
+          <div style={styles.userName}>{userName}</div>
+          <div style={styles.userLevel}>{userLevel}</div>
         </div>
 
         {/* Dropdown Arrow */}
@@ -253,12 +249,8 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
                 </span>
               </div>
               <div style={styles.dropdownUserInfo}>
-                <div style={styles.dropdownUserName}>
-                  {userName}
-                </div>
-                <div style={styles.dropdownUserLevel}>
-                  {userLevel}
-                </div>
+                <div style={styles.dropdownUserName}>{userName}</div>
+                <div style={styles.dropdownUserLevel}>{userLevel}</div>
               </div>
             </div>
           </div>
@@ -278,12 +270,8 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
                   e.currentTarget.style.backgroundColor = "transparent";
                 }}
               >
-                <span style={styles.menuItemIcon}>
-                  {item.icon}
-                </span>
-                <span>
-                  {item.label}
-                </span>
+                <span style={styles.menuItemIcon}>{item.icon}</span>
+                <span>{item.label}</span>
               </Link>
             ))}
 
