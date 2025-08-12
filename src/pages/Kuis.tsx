@@ -56,31 +56,291 @@ const Kuis = () => {
     return JSON.parse(localStorage.getItem("scannedQuizzes") || "[]");
   };
 
+  const styles = {
+    container: {
+      minHeight: "100vh",
+      backgroundColor: "white",
+    },
+    overlay: {
+      position: "fixed" as const,
+      inset: "0",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 50,
+    },
+    modal: {
+      backgroundColor: "white",
+      borderRadius: "12px",
+      padding: "32px",
+      maxWidth: "768px",
+      margin: "16px",
+      maxHeight: "90vh",
+      overflowY: "auto" as const,
+    },
+    modalSmall: {
+      backgroundColor: "white",
+      borderRadius: "12px",
+      padding: "32px",
+      maxWidth: "512px",
+      margin: "16px",
+    },
+    modalCenter: {
+      textAlign: "center" as const,
+      marginBottom: "24px",
+    },
+    modalIcon: {
+      fontSize: "4rem",
+      marginBottom: "16px",
+    },
+    modalTitle: {
+      fontSize: "1.5rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "8px",
+    },
+    modalDescription: {
+      color: "#4b5563",
+    },
+    sectionTitle: {
+      fontSize: "1.125rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "16px",
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
+    },
+    grid: {
+      display: "grid",
+      gap: "16px",
+      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    },
+    quizCard: {
+      padding: "16px",
+      border: "2px solid #fbbf24",
+      borderRadius: "8px",
+      textAlign: "left" as const,
+      transition: "border-color 0.2s",
+      backgroundColor: "#fefce8",
+      cursor: "pointer",
+    },
+    quizCardHover: {
+      borderColor: "#f97316",
+    },
+    cardContent: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+    },
+    cardIcon: {
+      fontSize: "1.5rem",
+    },
+    cardTitle: {
+      fontWeight: "700",
+      color: "#1f2937",
+    },
+    cardSubtitle: {
+      fontSize: "0.875rem",
+      color: "#4b5563",
+    },
+    cardMeta: {
+      fontSize: "0.75rem",
+      color: "#6b7280",
+    },
+    divider: {
+      borderTop: "1px solid #e5e7eb",
+      margin: "24px 0",
+    },
+    buttonPrimary: {
+      backgroundColor: "#eab308",
+      color: "white",
+      padding: "12px 24px",
+      borderRadius: "8px",
+      fontWeight: "600",
+      border: "none",
+      cursor: "pointer",
+      transition: "background-color 0.2s",
+      textDecoration: "none",
+      display: "inline-block",
+    },
+    buttonSecondary: {
+      backgroundColor: "transparent",
+      color: "#374151",
+      padding: "12px 24px",
+      borderRadius: "8px",
+      fontWeight: "400",
+      border: "1px solid #d1d5db",
+      cursor: "pointer",
+      transition: "background-color 0.2s",
+      textDecoration: "none",
+      display: "inline-block",
+    },
+    buttonFull: {
+      width: "100%",
+      marginTop: "24px",
+    },
+    buttonGroup: {
+      display: "flex",
+      gap: "16px",
+    },
+    mainContent: {
+      padding: "64px 16px",
+      backgroundColor: "#f9fafb",
+    },
+    contentContainer: {
+      maxWidth: "1024px",
+      margin: "0 auto",
+    },
+    pageTitle: {
+      fontSize: "2.5rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "16px",
+      textAlign: "center" as const,
+    },
+    pageDescription: {
+      fontSize: "1.125rem",
+      color: "#4b5563",
+      maxWidth: "512px",
+      margin: "0 auto",
+      textAlign: "center" as const,
+    },
+    optionsGrid: {
+      display: "grid",
+      gap: "32px",
+      gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+      marginBottom: "48px",
+    },
+    optionCard: {
+      backgroundColor: "white",
+      borderRadius: "12px",
+      padding: "32px",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      textAlign: "center" as const,
+      border: "2px solid #fbbf24",
+      transition: "border-color 0.2s",
+    },
+    optionCardSecondary: {
+      backgroundColor: "white",
+      borderRadius: "12px",
+      padding: "32px",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      textAlign: "center" as const,
+      border: "2px solid #e5e7eb",
+      transition: "border-color 0.2s",
+    },
+    optionIcon: {
+      fontSize: "4rem",
+      marginBottom: "16px",
+    },
+    optionTitle: {
+      fontSize: "1.5rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "16px",
+    },
+    optionDescription: {
+      color: "#4b5563",
+      marginBottom: "24px",
+    },
+    featureList: {
+      display: "flex",
+      flexDirection: "column" as const,
+      gap: "12px",
+      marginBottom: "24px",
+    },
+    featureItem: {
+      display: "flex",
+      alignItems: "center",
+      fontSize: "0.875rem",
+      color: "#4b5563",
+    },
+    statsCard: {
+      backgroundColor: "white",
+      borderRadius: "12px",
+      padding: "24px",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+    },
+    statsTitle: {
+      fontSize: "1.25rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "16px",
+      textAlign: "center" as const,
+    },
+    statsGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+      gap: "16px",
+      textAlign: "center" as const,
+    },
+    statItem: {
+      backgroundColor: "#f3f4f6",
+      borderRadius: "8px",
+      padding: "16px",
+    },
+    statValue: {
+      fontSize: "1.5rem",
+      fontWeight: "700",
+      color: "#1f2937",
+    },
+    statLabel: {
+      fontSize: "0.875rem",
+      color: "#4b5563",
+    },
+    footer: {
+      backgroundColor: "#1f2937",
+      color: "white",
+      padding: "32px 16px",
+    },
+    footerContainer: {
+      maxWidth: "1536px",
+      margin: "0 auto",
+      textAlign: "center" as const,
+    },
+    footerTitle: {
+      fontSize: "18px",
+      fontWeight: "600",
+      marginBottom: "8px",
+    },
+    footerSubtitle: {
+      color: "#9ca3af",
+      marginBottom: "16px",
+    },
+    footerLink: {
+      color: "#9ca3af",
+      textDecoration: "underline",
+      transition: "color 0.2s",
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-white">
+    <div style={styles.container}>
       <Navbar />
 
       {/* Manual Quiz Selection Dialog */}
       {showManualQuizDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-8 max-w-3xl mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="text-center mb-6">
-              <div className="text-6xl mb-4">📚</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
+        <div style={styles.overlay}>
+          <div style={styles.modal}>
+            <div style={styles.modalCenter}>
+              <div style={styles.modalIcon}>📚</div>
+              <h3 style={styles.modalTitle}>
                 Pilih Quiz Manual
               </h3>
-              <p className="text-gray-600">
+              <p style={styles.modalDescription}>
                 Pilih quiz berdasarkan era atau tingkat kesulitan
               </p>
             </div>
 
             {/* Kuis yang Sudah Discan */}
             {getScannedQuizzes().length > 0 && (
-              <div className="mb-8">
-                <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <div style={{ marginBottom: "32px" }}>
+                <h4 style={styles.sectionTitle}>
                   📱 Kuis yang Sudah Discan ({getScannedQuizzes().length})
                 </h4>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div style={styles.grid}>
                   {getScannedQuizzes().map((quiz, index) => (
                     <button
                       key={index}
@@ -88,19 +348,25 @@ const Kuis = () => {
                         setShowManualQuizDialog(false);
                         navigate(`/quiz/${quiz.id.replace("hc", "quiz-")}`);
                       }}
-                      className="p-4 border-2 border-yellow-400 rounded-lg hover:border-orange-400 text-left transition-colors bg-yellow-50"
+                      style={styles.quizCard}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "#f97316";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "#fbbf24";
+                      }}
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="text-2xl">🎯</div>
+                      <div style={styles.cardContent}>
+                        <div style={styles.cardIcon}>🎯</div>
                         <div>
-                          <h5 className="font-bold text-gray-800">
+                          <h5 style={styles.cardTitle}>
                             {quiz.name}
                           </h5>
-                          <p className="text-sm text-gray-600">
+                          <p style={styles.cardSubtitle}>
                             {quiz.era} • {quiz.difficulty} • Discan{" "}
                             {quiz.timesScanned} kali
                           </p>
-                          <p className="text-xs text-gray-500">
+                          <p style={styles.cardMeta}>
                             Terakhir discan:{" "}
                             {new Date(
                               quiz.lastScannedAt || quiz.scannedAt,
@@ -111,31 +377,37 @@ const Kuis = () => {
                     </button>
                   ))}
                 </div>
-                <div className="border-t border-gray-200 my-6"></div>
+                <div style={styles.divider}></div>
               </div>
             )}
 
             {/* Kuis Manual */}
             {getScannedQuizzes().length > 0 ? (
               <div>
-                <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <h4 style={styles.sectionTitle}>
                   📖 Kuis Lainnya yang Tersedia
                 </h4>
-                <div className="grid gap-4 md:grid-cols-2">
+                <div style={styles.grid}>
                   <button
                     onClick={() => {
                       setShowManualQuizDialog(false);
                       navigate("/quiz/quiz-proklamasi");
                     }}
-                    className="p-4 border-2 border-gray-200 rounded-lg hover:border-gray-400 text-left transition-colors"
+                    style={styles.quizCard}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "#f97316";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "#fbbf24";
+                    }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="text-2xl">🇮🇩</div>
+                    <div style={styles.cardContent}>
+                      <div style={styles.cardIcon}>🇮🇩</div>
                       <div>
-                        <h4 className="font-bold text-gray-800">
+                        <h4 style={styles.cardTitle}>
                           Proklamasi Kemerdekaan
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p style={styles.cardSubtitle}>
                           Era Kemerdekaan • Mudah • 500 poin
                         </p>
                       </div>
@@ -147,15 +419,21 @@ const Kuis = () => {
                       setShowManualQuizDialog(false);
                       navigate("/quiz/quiz-majapahit");
                     }}
-                    className="p-4 border-2 border-gray-200 rounded-lg hover:border-gray-400 text-left transition-colors"
+                    style={styles.quizCard}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "#f97316";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "#fbbf24";
+                    }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="text-2xl">🏛️</div>
+                    <div style={styles.cardContent}>
+                      <div style={styles.cardIcon}>🏛️</div>
                       <div>
-                        <h4 className="font-bold text-gray-800">
+                        <h4 style={styles.cardTitle}>
                           Kerajaan Majapahit
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p style={styles.cardSubtitle}>
                           Era Hindu-Buddha • Sedang • 750 poin
                         </p>
                       </div>
@@ -167,15 +445,21 @@ const Kuis = () => {
                       setShowManualQuizDialog(false);
                       navigate("/quiz/quiz-diponegoro");
                     }}
-                    className="p-4 border-2 border-gray-200 rounded-lg hover:border-gray-400 text-left transition-colors"
+                    style={styles.quizCard}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "#f97316";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "#fbbf24";
+                    }}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="text-2xl">⚔️</div>
+                    <div style={styles.cardContent}>
+                      <div style={styles.cardIcon}>⚔️</div>
                       <div>
-                        <h4 className="font-bold text-gray-800">
+                        <h4 style={styles.cardTitle}>
                           Perang Diponegoro
                         </h4>
-                        <p className="text-sm text-gray-600">
+                        <p style={styles.cardSubtitle}>
                           Era Kolonial • Sulit • 1000 poin
                         </p>
                       </div>
@@ -184,12 +468,12 @@ const Kuis = () => {
                 </div>
               </div>
             ) : (
-              <div className="text-center py-8">
-                <div className="text-6xl mb-4">📱</div>
-                <h4 className="font-bold text-xl text-gray-800 mb-2">
+              <div style={{ textAlign: "center", padding: "32px 0" }}>
+                <div style={styles.modalIcon}>📱</div>
+                <h4 style={styles.modalTitle}>
                   Scan Kartu Historic Block Dulu!
                 </h4>
-                <p className="text-gray-600 mb-4">
+                <p style={styles.modalDescription}>
                   Untuk mengakses kuis manual, kamu perlu scan kartu Historic
                   Block terlebih dahulu menggunakan AR Scanner.
                 </p>
@@ -198,7 +482,13 @@ const Kuis = () => {
                     setShowManualQuizDialog(false);
                     handleARScan();
                   }}
-                  className="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition-colors"
+                  style={{ ...styles.buttonPrimary, marginTop: "16px" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#ca8a04";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#eab308";
+                  }}
                 >
                   🎯 Mulai AR Scan
                 </button>
@@ -207,7 +497,13 @@ const Kuis = () => {
 
             <button
               onClick={() => setShowManualQuizDialog(false)}
-              className="w-full px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700 mt-6"
+              style={{ ...styles.buttonSecondary, ...styles.buttonFull }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#f9fafb";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
             >
               Tutup
             </button>
@@ -217,45 +513,57 @@ const Kuis = () => {
 
       {/* Quiz Detection Dialog */}
       {showQuizDialog && detectedCard && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-8 max-w-lg mx-4">
-            <div className="text-center mb-6">
-              <div className="text-6xl mb-4">🎯</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
+        <div style={styles.overlay}>
+          <div style={styles.modalSmall}>
+            <div style={styles.modalCenter}>
+              <div style={styles.modalIcon}>🎯</div>
+              <h3 style={styles.modalTitle}>
                 Kartu Terdeteksi!
               </h3>
-              <div className="bg-gray-100 rounded-lg p-4 mb-4">
-                <h4 className="text-xl font-bold text-gray-800">
+              <div style={{ backgroundColor: "#f3f4f6", borderRadius: "8px", padding: "16px", marginBottom: "16px" }}>
+                <h4 style={{ fontSize: "1.25rem", fontWeight: "700", color: "#1f2937" }}>
                   {detectedCard.name}
                 </h4>
-                <p className="text-gray-600 mt-1">
+                <p style={{ color: "#4b5563", marginTop: "4px" }}>
                   Era: {detectedCard.era}
                 </p>
-                <p className="text-gray-600">
+                <p style={{ color: "#4b5563" }}>
                   Tingkat: {detectedCard.difficulty}
                 </p>
-                <p className="text-sm text-gray-700 mt-2">
+                <p style={{ fontSize: "0.875rem", color: "#374151", marginTop: "8px" }}>
                   {detectedCard.description}
                 </p>
               </div>
             </div>
 
-            <div className="text-center mb-6">
-              <p className="text-gray-600">
+            <div style={{ textAlign: "center", marginBottom: "24px" }}>
+              <p style={styles.modalDescription}>
                 Apakah Anda siap memulai kuis berdasarkan kartu ini?
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div style={styles.buttonGroup}>
               <button
                 onClick={() => setShowQuizDialog(false)}
-                className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-700"
+                style={styles.buttonSecondary}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#f9fafb";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                }}
               >
                 Nanti
               </button>
               <button
                 onClick={handleStartQuiz}
-                className="flex-1 bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition-colors font-semibold"
+                style={styles.buttonPrimary}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#ca8a04";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#eab308";
+                }}
               >
                 Mulai Kuis
               </button>
@@ -265,78 +573,112 @@ const Kuis = () => {
       )}
 
       {/* Main Content */}
-      <div className="py-16 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+      <div style={styles.mainContent}>
+        <div style={styles.contentContainer}>
+          <div style={{ textAlign: "center", marginBottom: "48px" }}>
+            <h1 style={styles.pageTitle}>
               🎮 Kuis Historic Block
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p style={styles.pageDescription}>
               Mulai petualangan sejarah Anda! Gunakan AR untuk memindai kartu
               atau pilih kuis manual.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div style={styles.optionsGrid}>
             {/* AR Scan Option */}
-            <div className="bg-white rounded-xl p-8 shadow-lg text-center border-2 border-yellow-400 hover:border-orange-400 transition-colors">
-              <div className="text-6xl mb-4">📱</div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <div 
+              style={styles.optionCard}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#f97316";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "#fbbf24";
+              }}
+            >
+              <div style={styles.optionIcon}>📱</div>
+              <h2 style={styles.optionTitle}>
                 AR Scan Kartu
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p style={styles.optionDescription}>
                 Gunakan kamera untuk memindai kartu Historic Block dan mulai
                 kuis otomatis
               </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="mr-2">✅</span>
+              <div style={styles.featureList}>
+                <div style={styles.featureItem}>
+                  <span style={{ marginRight: "8px" }}>✅</span>
                   Deteksi kartu otomatis
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="mr-2">✅</span>
+                <div style={styles.featureItem}>
+                  <span style={{ marginRight: "8px" }}>✅</span>
                   Kuis disesuaikan dengan kartu
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="mr-2">✅</span>
+                <div style={styles.featureItem}>
+                  <span style={{ marginRight: "8px" }}>✅</span>
                   Pengalaman interaktif
                 </div>
               </div>
               <button
                 onClick={handleARScan}
-                className="bg-yellow-500 text-white px-8 py-3 rounded-lg hover:bg-yellow-600 transition-colors font-semibold w-full"
+                style={{ ...styles.buttonPrimary, width: "100%" }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#ca8a04";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#eab308";
+                }}
               >
                 🎯 Mulai AR Scan
               </button>
             </div>
 
             {/* Manual Quiz Option */}
-            <div className="bg-white rounded-xl p-8 shadow-lg text-center border-2 border-gray-200 hover:border-yellow-400 transition-colors">
-              <div className="text-6xl mb-4">📚</div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <div 
+              style={styles.optionCardSecondary}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "#fbbf24";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "#e5e7eb";
+              }}
+            >
+              <div style={styles.optionIcon}>📚</div>
+              <h2 style={styles.optionTitle}>
                 Kuis Manual
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p style={styles.optionDescription}>
                 Pilih sendiri topik dan tingkat kesulitan kuis sejarah yang
                 ingin dimainkan
               </p>
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="mr-2">✅</span>
+              <div style={styles.featureList}>
+                <div style={styles.featureItem}>
+                  <span style={{ marginRight: "8px" }}>✅</span>
                   Pilih topik sendiri
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="mr-2">✅</span>
+                <div style={styles.featureItem}>
+                  <span style={{ marginRight: "8px" }}>✅</span>
                   Berbagai tingkat kesulitan
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <span className="mr-2">✅</span>
+                <div style={styles.featureItem}>
+                  <span style={{ marginRight: "8px" }}>✅</span>
                   Akses semua materi
                 </div>
               </div>
               <button
                 onClick={() => setShowManualQuizDialog(true)}
-                className="bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors font-semibold w-full"
+                style={{ 
+                  ...styles.buttonSecondary, 
+                  width: "100%",
+                  backgroundColor: "#6b7280",
+                  color: "white",
+                  borderColor: "#6b7280",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#4b5563";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#6b7280";
+                }}
               >
                 📖 Pilih Kuis Manual
               </button>
@@ -344,26 +686,26 @@ const Kuis = () => {
           </div>
 
           {/* Quick Stats */}
-          <div className="bg-white rounded-xl p-6 shadow-lg">
-            <h3 className="text-xl font-bold text-gray-800 mb-4 text-center">
+          <div style={styles.statsCard}>
+            <h3 style={styles.statsTitle}>
               📊 Statistik Cepat
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="text-2xl font-bold text-gray-800">15</div>
-                <div className="text-sm text-gray-600">Kuis Selesai</div>
+            <div style={styles.statsGrid}>
+              <div style={styles.statItem}>
+                <div style={styles.statValue}>15</div>
+                <div style={styles.statLabel}>Kuis Selesai</div>
               </div>
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="text-2xl font-bold text-gray-800">85%</div>
-                <div className="text-sm text-gray-600">Akurasi</div>
+              <div style={styles.statItem}>
+                <div style={styles.statValue}>85%</div>
+                <div style={styles.statLabel}>Akurasi</div>
               </div>
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="text-2xl font-bold text-gray-800">1,250</div>
-                <div className="text-sm text-gray-600">Total Poin</div>
+              <div style={styles.statItem}>
+                <div style={styles.statValue}>1,250</div>
+                <div style={styles.statLabel}>Total Poin</div>
               </div>
-              <div className="bg-gray-100 rounded-lg p-4">
-                <div className="text-2xl font-bold text-gray-800">#5</div>
-                <div className="text-sm text-gray-600">Ranking</div>
+              <div style={styles.statItem}>
+                <div style={styles.statValue}>#5</div>
+                <div style={styles.statLabel}>Ranking</div>
               </div>
             </div>
           </div>
@@ -371,14 +713,23 @@ const Kuis = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-lg font-semibold mb-2">Historic Block</p>
-          <p className="text-gray-400 mb-4">
+      <footer style={styles.footer}>
+        <div style={styles.footerContainer}>
+          <p style={styles.footerTitle}>Historic Block</p>
+          <p style={styles.footerSubtitle}>
             Belajar sejarah dengan cara yang menyenangkan
           </p>
-          <div className="flex justify-center items-center gap-6 text-sm">
-            <Link to="/about" className="text-gray-400 hover:text-white transition-colors underline">
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "24px", fontSize: "14px" }}>
+            <Link 
+              to="/about" 
+              style={styles.footerLink}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "white";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "#9ca3af";
+              }}
+            >
               About
             </Link>
           </div>
