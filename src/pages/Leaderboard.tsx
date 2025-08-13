@@ -187,8 +187,9 @@ const Leaderboard = () => {
       <section className="w-full bg-gradient-to-r from-historic-cream-light to-historic-cream py-8 md:py-12 lg:py-20 px-4 md:px-8 lg:px-20 flex-1 transition-colors">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <h1 className="font-georgia text-5xl text-historic-brown-dark mb-4">
-              🏆 Papan Peringkat
+            <h1 className="font-georgia text-5xl text-historic-brown-dark mb-4 flex items-center justify-center gap-3">
+              <Trophy size={48} className="text-historic-brown-dark" />
+              Papan Peringkat
             </h1>
             <p className="font-merriweather text-xl text-gray-600">
               Para ahli sejarah terbaik dengan skor tertinggi
@@ -348,7 +349,7 @@ const Leaderboard = () => {
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="text-4xl mb-4">👑</div>
+                <div className="text-4xl mb-4">���</div>
                 <h3 className="font-quicksand text-lg font-bold text-historic-brown mb-2">
                   Master Sejarah
                 </h3>
