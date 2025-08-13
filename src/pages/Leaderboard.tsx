@@ -409,7 +409,8 @@ const Leaderboard = () => {
               to="/kuis"
               className="inline-block bg-historic-brown text-white px-8 py-4 rounded-xl font-quicksand font-bold text-lg hover:bg-historic-brown-dark transition-colors shadow-lg"
             >
-              🎯 Mulai Quiz Sekarang
+              <Target size={20} className="mr-2" />
+              Mulai Quiz Sekarang
             </Link>
           </div>
         </div>
