@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { Home, Target, Trophy, BookOpen, Menu, X, User, BarChart3, Award, Settings, LogOut, Shield } from "lucide-react";
 import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -56,6 +57,9 @@ const Navbar = () => {
       transition: "color 0.2s",
       textDecoration: "none",
       color: "white",
+      display: "flex",
+      alignItems: "center",
+      gap: "6px",
     },
     navLinkActive: {
       fontSize: "16px",
@@ -63,6 +67,9 @@ const Navbar = () => {
       transition: "color 0.2s",
       textDecoration: "none",
       color: "#fef9c3",
+      display: "flex",
+      alignItems: "center",
+      gap: "6px",
     },
     rightContainer: {
       display: "flex",
@@ -178,7 +185,9 @@ const Navbar = () => {
       gap: "16px",
     },
     mobileNavLink: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
       fontSize: "18px",
       padding: "12px 16px",
       borderRadius: "8px",
@@ -187,7 +196,9 @@ const Navbar = () => {
       color: "#374151",
     },
     mobileNavLinkActive: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
       fontSize: "18px",
       padding: "12px 16px",
       borderRadius: "8px",
@@ -215,6 +226,10 @@ const Navbar = () => {
       border: "none",
       cursor: "pointer",
       transition: "background-color 0.2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "8px",
     },
   };
 
@@ -233,7 +248,7 @@ const Navbar = () => {
                 alt="HISTORIC BLOCK"
                 style={{
                   ...styles.logo,
-                  ":hover": { transform: "scale(1.05)" },
+                  ":hover": { transform: "scale(1.05)" }
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
@@ -258,6 +273,7 @@ const Navbar = () => {
                   if (!isActive("/")) e.currentTarget.style.color = "white";
                 }}
               >
+                <Home size={16} />
                 Beranda
               </Link>
 
@@ -265,93 +281,70 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/kuis"
-                    style={
-                      isActive("/kuis") ? styles.navLinkActive : styles.navLink
-                    }
+                    style={isActive("/kuis") ? styles.navLinkActive : styles.navLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/kuis"))
-                        e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/kuis")) e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/kuis"))
-                        e.currentTarget.style.color = "white";
+                      if (!isActive("/kuis")) e.currentTarget.style.color = "white";
                     }}
                   >
+                    <Target size={16} />
                     Kuis
                   </Link>
                   <Link
                     to="/leaderboard"
-                    style={
-                      isActive("/leaderboard")
-                        ? styles.navLinkActive
-                        : styles.navLink
-                    }
+                    style={isActive("/leaderboard") ? styles.navLinkActive : styles.navLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/leaderboard"))
-                        e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/leaderboard"))
-                        e.currentTarget.style.color = "white";
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "white";
                     }}
                   >
+                    <Trophy size={16} />
                     Leaderboard
                   </Link>
                   <Link
                     to="/tutorial"
-                    style={
-                      isActive("/tutorial")
-                        ? styles.navLinkActive
-                        : styles.navLink
-                    }
+                    style={isActive("/tutorial") ? styles.navLinkActive : styles.navLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.color = "white";
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
                     }}
                   >
-                    Tutorial Gameplay
+                    <BookOpen size={16} />
+                    Tutorial
                   </Link>
                 </>
               ) : (
                 <>
                   <Link
                     to="/tutorial"
-                    style={
-                      isActive("/tutorial")
-                        ? styles.navLinkActive
-                        : styles.navLink
-                    }
+                    style={isActive("/tutorial") ? styles.navLinkActive : styles.navLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.color = "white";
+                      if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
                     }}
                   >
-                    Tutorial Gameplay
+                    <BookOpen size={16} />
+                    Tutorial
                   </Link>
                   <Link
                     to="/login"
-                    style={
-                      isActive("/leaderboard")
-                        ? styles.navLinkActive
-                        : styles.navLink
-                    }
+                    style={isActive("/leaderboard") ? styles.navLinkActive : styles.navLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/leaderboard"))
-                        e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/leaderboard"))
-                        e.currentTarget.style.color = "white";
+                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "white";
                     }}
                   >
+                    <Trophy size={16} />
                     Leaderboard
                   </Link>
                 </>
@@ -384,16 +377,12 @@ const Navbar = () => {
                       to="/register"
                       style={styles.registerButton}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background =
-                          "linear-gradient(to right, #f97316, #facc15)";
-                        e.currentTarget.style.boxShadow =
-                          "0 10px 15px -3px rgb(0 0 0 / 0.1)";
+                        e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
+                        e.currentTarget.style.boxShadow = "0 10px 15px -3px rgb(0 0 0 / 0.1)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background =
-                          "linear-gradient(to right, #facc15, #f97316)";
-                        e.currentTarget.style.boxShadow =
-                          "0 4px 6px -1px rgb(0 0 0 / 0.1)";
+                        e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
+                        e.currentTarget.style.boxShadow = "0 4px 6px -1px rgb(0 0 0 / 0.1)";
                       }}
                     >
                       Daftar
@@ -415,28 +404,7 @@ const Navbar = () => {
                   e.currentTarget.style.color = "white";
                 }}
               >
-                <svg
-                  style={{ width: "24px", height: "24px" }}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  {isMobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             )}
           </div>
@@ -445,8 +413,14 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div style={styles.mobileOverlay} onClick={closeMobileMenu}>
-          <div style={styles.mobileMenu} onClick={(e) => e.stopPropagation()}>
+        <div
+          style={styles.mobileOverlay}
+          onClick={closeMobileMenu}
+        >
+          <div
+            style={styles.mobileMenu}
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Mobile Menu Header */}
             <div style={styles.mobileHeader}>
               <div style={styles.mobileHeaderContainer}>
@@ -467,19 +441,7 @@ const Navbar = () => {
                     e.currentTarget.style.color = "white";
                   }}
                 >
-                  <svg
-                    style={{ width: "24px", height: "24px" }}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                  <X size={24} />
                 </button>
               </div>
 
@@ -487,19 +449,17 @@ const Navbar = () => {
               {isAuthenticated && user && (
                 <div style={styles.userProfile}>
                   <div style={styles.userAvatar}>
-                    <span
-                      style={{
-                        fontWeight: "700",
-                        color: "#654321",
-                        fontSize: "18px",
-                      }}
-                    >
+                    <span style={{ fontWeight: "700", color: "#654321", fontSize: "18px" }}>
                       {user.name.charAt(0)}
                     </span>
                   </div>
                   <div style={styles.userInfo}>
-                    <div style={styles.userName}>{user.name}</div>
-                    <div style={styles.userLevel}>{user.level}</div>
+                    <div style={styles.userName}>
+                      {user.name}
+                    </div>
+                    <div style={styles.userLevel}>
+                      {user.level}
+                    </div>
                   </div>
                 </div>
               )}
@@ -510,21 +470,16 @@ const Navbar = () => {
               <Link
                 to="/"
                 onClick={closeMobileMenu}
-                style={
-                  isActive("/")
-                    ? styles.mobileNavLinkActive
-                    : styles.mobileNavLink
-                }
+                style={isActive("/") ? styles.mobileNavLinkActive : styles.mobileNavLink}
                 onMouseEnter={(e) => {
-                  if (!isActive("/"))
-                    e.currentTarget.style.backgroundColor = "#f3f4f6";
+                  if (!isActive("/")) e.currentTarget.style.backgroundColor = "#f3f4f6";
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive("/"))
-                    e.currentTarget.style.backgroundColor = "transparent";
+                  if (!isActive("/")) e.currentTarget.style.backgroundColor = "transparent";
                 }}
               >
-                🏠 Beranda
+                <Home size={20} />
+                Beranda
               </Link>
 
               {isAuthenticated ? (
@@ -532,59 +487,44 @@ const Navbar = () => {
                   <Link
                     to="/kuis"
                     onClick={closeMobileMenu}
-                    style={
-                      isActive("/kuis")
-                        ? styles.mobileNavLinkActive
-                        : styles.mobileNavLink
-                    }
+                    style={isActive("/kuis") ? styles.mobileNavLinkActive : styles.mobileNavLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/kuis"))
-                        e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/kuis"))
-                        e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    🎯 Kuis
+                    <Target size={20} />
+                    Kuis
                   </Link>
                   <Link
                     to="/leaderboard"
                     onClick={closeMobileMenu}
-                    style={
-                      isActive("/leaderboard")
-                        ? styles.mobileNavLinkActive
-                        : styles.mobileNavLink
-                    }
+                    style={isActive("/leaderboard") ? styles.mobileNavLinkActive : styles.mobileNavLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/leaderboard"))
-                        e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/leaderboard"))
-                        e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    🏆 Leaderboard
+                    <Trophy size={20} />
+                    Leaderboard
                   </Link>
                   <Link
                     to="/tutorial"
                     onClick={closeMobileMenu}
-                    style={
-                      isActive("/tutorial")
-                        ? styles.mobileNavLinkActive
-                        : styles.mobileNavLink
-                    }
+                    style={isActive("/tutorial") ? styles.mobileNavLinkActive : styles.mobileNavLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    📖 Tutorial Gameplay
+                    <BookOpen size={20} />
+                    Tutorial
                   </Link>
 
                   {/* Mobile Menu Divider */}
@@ -602,7 +542,8 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    👤 Profil Saya
+                    <User size={20} />
+                    Profil Saya
                   </Link>
                   <Link
                     to="/stats"
@@ -615,7 +556,8 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    📊 Statistik
+                    <BarChart3 size={20} />
+                    Statistik
                   </Link>
                   <Link
                     to="/achievements"
@@ -628,7 +570,8 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    🏆 Achievement
+                    <Award size={20} />
+                    Achievement
                   </Link>
                   <Link
                     to="/settings"
@@ -641,7 +584,8 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    ⚙️ Pengaturan
+                    <Settings size={20} />
+                    Pengaturan
                   </Link>
 
                   {/* Admin Menu for Mobile */}
@@ -664,7 +608,8 @@ const Navbar = () => {
                           e.currentTarget.style.backgroundColor = "#f7f3e9";
                         }}
                       >
-                        🛠️ Admin Dashboard
+                        <Shield size={20} />
+                        Admin Dashboard
                       </Link>
                     </>
                   )}
@@ -674,21 +619,16 @@ const Navbar = () => {
                   <Link
                     to="/tutorial"
                     onClick={closeMobileMenu}
-                    style={
-                      isActive("/tutorial")
-                        ? styles.mobileNavLinkActive
-                        : styles.mobileNavLink
-                    }
+                    style={isActive("/tutorial") ? styles.mobileNavLinkActive : styles.mobileNavLink}
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial"))
-                        e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    📖 Tutorial Gameplay
+                    <BookOpen size={20} />
+                    Tutorial
                   </Link>
                   <Link
                     to="/login"
@@ -701,7 +641,8 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    🏆 Leaderboard
+                    <Trophy size={20} />
+                    Leaderboard
                   </Link>
 
                   {/* Mobile Auth Actions */}
@@ -718,7 +659,8 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    🚪 Masuk
+                    <User size={20} />
+                    Masuk
                   </Link>
                   <Link
                     to="/register"
@@ -731,15 +673,14 @@ const Navbar = () => {
                       boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background =
-                        "linear-gradient(to right, #f97316, #facc15)";
+                      e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background =
-                        "linear-gradient(to right, #facc15, #f97316)";
+                      e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
                     }}
                   >
-                    ✨ Daftar
+                    <User size={20} />
+                    Daftar
                   </Link>
                 </>
               )}
@@ -750,7 +691,7 @@ const Navbar = () => {
               <button
                 onClick={() => {
                   closeMobileMenu();
-                  // logout(); // Add logout function call here
+                  logout();
                 }}
                 style={styles.logoutButton}
                 onMouseEnter={(e) => {
@@ -760,7 +701,8 @@ const Navbar = () => {
                   e.currentTarget.style.backgroundColor = "#dc2626";
                 }}
               >
-                🚪 Keluar
+                <LogOut size={20} />
+                Keluar
               </button>
             )}
           </div>
