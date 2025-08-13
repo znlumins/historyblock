@@ -238,7 +238,7 @@ const QuizInterface = () => {
                 onClick={startQuiz}
                 className="bg-historic-brown text-white px-8 py-4 rounded-lg font-quicksand text-lg hover:bg-historic-brown-dark transition-colors flex items-center justify-center gap-2 mx-auto"
               >
-                <span>🚀</span>
+                <Rocket size={16} className="mr-2" />
                 Mulai Quiz
               </button>
             </div>
