@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "react-router-dom";
+import { BarChart3, FileText, Star, Smartphone, TrendingUp, Trophy, Zap, Users, RefreshCw, Home } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const AdminAnalytics = () => {
@@ -197,7 +198,7 @@ const AdminAnalytics = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="font-georgia text-4xl text-historic-brown-dark mb-4">
-              ��� Analytics Dashboard
+              📊 Analytics Dashboard
             </h1>
             <p className="font-merriweather text-gray-600">
               Analisis performa dan statistik aplikasi Historic Block
