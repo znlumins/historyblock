@@ -488,7 +488,6 @@ const Navbar = () => {
                       if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    <Target size={20} />
                     Kuis
                   </Link>
                   <Link
