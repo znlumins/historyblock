@@ -395,7 +395,8 @@ const QuizInterface = () => {
                   disabled={selectedAnswers[currentQuestion.id] === undefined}
                   className="px-6 py-2 bg-historic-brown text-white rounded-lg font-quicksand hover:bg-historic-brown-dark disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Selanjutnya →
+                  Selanjutnya
+                  <ArrowRight size={16} className="ml-1" />
                 </button>
               )}
             </div>
