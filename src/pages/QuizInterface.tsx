@@ -147,10 +147,10 @@ const QuizInterface = () => {
 
   if (!quiz) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
           <div className="text-4xl mb-4">📚</div>
-          <p className="font-quicksand text-lg text-gray-800 dark:text-gray-200">
+          <p className="font-quicksand text-lg text-gray-800">
             Memuat quiz...
           </p>
         </div>
@@ -160,7 +160,7 @@ const QuizInterface = () => {
 
   if (!isQuizStarted) {
     return (
-      <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 border-2 border-[#ced4da] dark:border-gray-700 rounded-lg">
+      <div className="min-h-screen flex flex-col bg-white border-2 border-[#ced4da] rounded-lg">
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Georgia:wght@400&display=swap"
@@ -168,14 +168,14 @@ const QuizInterface = () => {
 
         <Navbar />
 
-        <div className="flex-1 bg-gradient-to-r from-historic-cream-light to-historic-cream dark:from-gray-800 dark:to-gray-700 py-8 md:py-12 lg:py-20 px-4 md:px-8 lg:px-20">
+        <div className="flex-1 bg-gradient-to-r from-historic-cream-light to-historic-cream py-8 md:py-12 lg:py-20 px-4 md:px-8 lg:px-20">
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg text-center">
+            <div className="bg-white rounded-xl p-8 shadow-lg text-center">
               <div className="text-6xl mb-6">🎯</div>
-              <h1 className="font-georgia text-3xl text-historic-brown-dark dark:text-historic-yellow mb-4">
+              <h1 className="font-georgia text-3xl text-historic-brown-dark mb-4">
                 {quiz.title}
               </h1>
-              <p className="font-merriweather text-gray-600 dark:text-gray-300 mb-6">
+              <p className="font-merriweather text-gray-600 mb-6">
                 {quiz.description}
               </p>
 
@@ -387,7 +387,7 @@ const QuizInterface = () => {
                   disabled={selectedAnswers[currentQuestion.id] === undefined}
                   className="px-6 py-2 bg-historic-brown text-white rounded-lg font-quicksand hover:bg-historic-brown-dark disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Selanjutnya ��
+                  Selanjutnya →
                 </button>
               )}
             </div>
