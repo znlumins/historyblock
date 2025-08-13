@@ -407,7 +407,9 @@ const AdminAnalytics = () => {
                 to="/admin/users"
                 className="p-4 bg-historic-brown text-white rounded-lg hover:bg-historic-brown-dark transition-colors text-center"
               >
-                <div className="text-2xl mb-2">👥</div>
+                <div className="flex justify-center mb-2">
+                  <Users size={24} />
+                </div>
                 <div className="font-quicksand font-semibold">Manage Users</div>
               </Link>
               <Link
