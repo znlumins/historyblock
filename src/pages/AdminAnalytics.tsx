@@ -344,8 +344,9 @@ const AdminAnalytics = () => {
 
           {/* Quiz Performance Analysis */}
           <div className="bg-white rounded-xl p-6 shadow-lg mb-8">
-            <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6">
-              📊 Analisis Performa Quiz
+            <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <BarChart3 size={20} className="text-gray-800" />
+              Analisis Performa Quiz
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
               {analytics.quizPerformance.map((quiz, index) => (
