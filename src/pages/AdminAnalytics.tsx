@@ -398,8 +398,9 @@ const AdminAnalytics = () => {
 
           {/* Quick Actions */}
           <div className="bg-white rounded-xl p-6 shadow-lg">
-            <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6">
-              ⚡ Quick Actions
+            <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <Zap size={20} className="text-gray-800" />
+              Quick Actions
             </h3>
             <div className="grid md:grid-cols-4 gap-4">
               <Link
