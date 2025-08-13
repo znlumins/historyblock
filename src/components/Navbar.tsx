@@ -630,7 +630,6 @@ const Navbar = () => {
                       e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    <Trophy size={20} />
                     Leaderboard
                   </Link>
 
