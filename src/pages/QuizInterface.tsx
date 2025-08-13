@@ -150,7 +150,9 @@ const QuizInterface = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
-          <div className="text-4xl mb-4">📚</div>
+          <div className="flex justify-center mb-4">
+            <BookOpen size={32} className="text-gray-800" />
+          </div>
           <p className="font-quicksand text-lg text-gray-800">
             Memuat quiz...
           </p>
