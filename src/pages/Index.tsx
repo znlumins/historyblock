@@ -187,7 +187,7 @@ const Index = () => {
                 }}
               >
                 <Play size={20} />
-                Mulai Kuis
+                Jelajahi Kuis
               </Link>
             ) : (
               <>
