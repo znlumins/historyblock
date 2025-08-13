@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft, Camera, Target } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 const ARScan = () => {
   const navigate = useNavigate();
@@ -8,11 +10,15 @@ const ARScan = () => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   const styles = {
+    pageContainer: {
+      minHeight: "100vh",
+      backgroundColor: "black",
+    },
     container: {
       margin: 0,
       padding: 0,
       overflow: "hidden",
-      height: "100vh",
+      height: "calc(100vh - 80px)", // Account for navbar height
       width: "100vw",
       position: "relative" as const,
     },
@@ -23,11 +29,14 @@ const ARScan = () => {
       zIndex: 50,
       backgroundColor: "rgba(0, 0, 0, 0.7)",
       color: "white",
-      padding: "8px",
+      padding: "12px",
       borderRadius: "50%",
       border: "none",
       cursor: "pointer",
       transition: "background-color 0.2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
     loadingOverlay: {
       position: "absolute" as const,
@@ -67,9 +76,12 @@ const ARScan = () => {
       zIndex: 40,
       backgroundColor: "rgba(0, 0, 0, 0.8)",
       color: "white",
-      padding: "8px 16px",
+      padding: "12px 20px",
       borderRadius: "8px",
       textAlign: "center" as const,
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
     },
     instructionsText: {
       fontSize: "14px",
@@ -92,6 +104,9 @@ const ARScan = () => {
       cursor: "pointer",
       transition: "all 0.2s",
       animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
     },
     debugButton: {
       position: "absolute" as const,
@@ -100,7 +115,7 @@ const ARScan = () => {
       zIndex: 40,
       backgroundColor: "#3b82f6",
       color: "white",
-      padding: "4px 12px",
+      padding: "8px 16px",
       borderRadius: "4px",
       fontSize: "12px",
       opacity: 0.5,
@@ -141,21 +156,29 @@ const ARScan = () => {
       width: "100%",
       backgroundColor: "#654321",
       color: "white",
-      padding: "8px 16px",
+      padding: "12px 16px",
       borderRadius: "4px",
       border: "none",
       cursor: "pointer",
       transition: "background-color 0.2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "8px",
     },
     errorButtonSecondary: {
       width: "100%",
       backgroundColor: "#6b7280",
       color: "white",
-      padding: "8px 16px",
+      padding: "12px 16px",
       borderRadius: "4px",
       border: "none",
       cursor: "pointer",
       transition: "background-color 0.2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "8px",
     },
     aframeScene: {
       position: "absolute" as const,
@@ -233,35 +256,40 @@ const ARScan = () => {
 
   if (error) {
     return (
-      <div style={styles.errorContainer}>
-        <div style={styles.errorCard}>
-          <h2 style={styles.errorTitle}>Error Kamera</h2>
-          <p style={styles.errorText}>{error}</p>
-          <div style={styles.errorButtonContainer}>
-            <button
-              onClick={() => window.location.reload()}
-              style={styles.errorButtonPrimary}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#8b4513";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#654321";
-              }}
-            >
-              Coba Lagi
-            </button>
-            <button
-              onClick={handleBack}
-              style={styles.errorButtonSecondary}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#4b5563";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "#6b7280";
-              }}
-            >
-              Kembali
-            </button>
+      <div style={styles.pageContainer}>
+        <Navbar />
+        <div style={styles.errorContainer}>
+          <div style={styles.errorCard}>
+            <h2 style={styles.errorTitle}>Error Kamera</h2>
+            <p style={styles.errorText}>{error}</p>
+            <div style={styles.errorButtonContainer}>
+              <button
+                onClick={() => window.location.reload()}
+                style={styles.errorButtonPrimary}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#8b4513";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#654321";
+                }}
+              >
+                <Camera size={16} />
+                Coba Lagi
+              </button>
+              <button
+                onClick={handleBack}
+                style={styles.errorButtonSecondary}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#4b5563";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "#6b7280";
+                }}
+              >
+                <ArrowLeft size={16} />
+                Kembali
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -269,107 +297,112 @@ const ARScan = () => {
   }
 
   return (
-    <div style={styles.container}>
-      {/* Add CSS keyframes for animations */}
-      <style>
-        {`
-          @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-          }
-        `}
-      </style>
+    <div style={styles.pageContainer}>
+      <Navbar />
+      <div style={styles.container}>
+        {/* Add CSS keyframes for animations */}
+        <style>
+          {`
+            @keyframes spin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+            @keyframes pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.7; }
+            }
+          `}
+        </style>
 
-      {/* Back button */}
-      <button
-        onClick={handleBack}
-        style={styles.backButton}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-        }}
-      >
-        ← Kembali
-      </button>
-
-      {/* Loading overlay */}
-      {!isInitialized && (
-        <div style={styles.loadingOverlay}>
-          <div style={styles.loadingContent}>
-            <div style={styles.spinner}></div>
-            <p style={styles.loadingTitle}>Memuat Kamera AR...</p>
-            <p style={styles.loadingSubtitle}>Mohon izinkan akses kamera</p>
-          </div>
-        </div>
-      )}
-
-      {/* Instructions */}
-      <div style={styles.instructions}>
-        <p style={styles.instructionsText}>
-          📱 Arahkan kamera ke pola Historic Block
-        </p>
-      </div>
-
-      {/* Start Quiz Button */}
-      {showButton && (
+        {/* Back button */}
         <button
-          onClick={handleStartQuiz}
-          style={styles.startButton}
+          onClick={handleBack}
+          style={styles.backButton}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = "#8b4513";
+            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = "#654321";
+            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
           }}
         >
-          🎯 Mulai Kuis Sejarah
+          <ArrowLeft size={20} />
         </button>
-      )}
 
-      {/* Debug button */}
-      <button
-        onClick={() => setShowButton(!showButton)}
-        style={styles.debugButton}
-      >
-        Test
-      </button>
+        {/* Loading overlay */}
+        {!isInitialized && (
+          <div style={styles.loadingOverlay}>
+            <div style={styles.loadingContent}>
+              <div style={styles.spinner}></div>
+              <p style={styles.loadingTitle}>Memuat Kamera AR...</p>
+              <p style={styles.loadingSubtitle}>Mohon izinkan akses kamera</p>
+            </div>
+          </div>
+        )}
 
-      {/* A-Frame AR Scene */}
-      <a-scene
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
-        vr-mode-ui="enabled: false"
-        style={styles.aframeScene}
-      >
-        <a-marker
-          id="ar-marker"
-          type="pattern"
-          url="/patternHISTORICBLOCK.patt"
-          smooth="true"
-          smoothCount="10"
-          smoothTolerance="0.01"
-          smoothThreshold="5"
+        {/* Instructions */}
+        <div style={styles.instructions}>
+          <Camera size={16} />
+          <p style={styles.instructionsText}>
+            Arahkan kamera ke pola Historic Block
+          </p>
+        </div>
+
+        {/* Start Quiz Button */}
+        {showButton && (
+          <button
+            onClick={handleStartQuiz}
+            style={styles.startButton}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#8b4513";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "#654321";
+            }}
+          >
+            <Target size={20} />
+            Mulai Kuis Sejarah
+          </button>
+        )}
+
+        {/* Debug button */}
+        <button
+          onClick={() => setShowButton(!showButton)}
+          style={styles.debugButton}
         >
-          <a-image
-            src="/HISTORI.png"
-            width="1.5"
-            height="1.5"
-            position="0 0.75 0"
-            look-at="[camera]"
-          />
-        </a-marker>
-        <a-entity
-          camera
-          look-controls-enabled="false"
-          cursor="rayOrigin: mouse"
-        ></a-entity>
-      </a-scene>
+          Test
+        </button>
+
+        {/* A-Frame AR Scene */}
+        <a-scene
+          embedded
+          arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;"
+          vr-mode-ui="enabled: false"
+          style={styles.aframeScene}
+        >
+          <a-marker
+            id="ar-marker"
+            type="pattern"
+            url="/patternHISTORICBLOCK.patt"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance="0.01"
+            smoothThreshold="5"
+          >
+            <a-image
+              src="/HISTORI.png"
+              width="1.5"
+              height="1.5"
+              position="0 0.75 0"
+              look-at="[camera]"
+            />
+          </a-marker>
+          <a-entity
+            camera
+            look-controls-enabled="false"
+            cursor="rayOrigin: mouse"
+          ></a-entity>
+        </a-scene>
+      </div>
     </div>
   );
 };
