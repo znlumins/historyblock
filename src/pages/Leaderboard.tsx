@@ -380,7 +380,9 @@ const Leaderboard = () => {
               </div>
 
               <div className="bg-white rounded-xl p-6 shadow-lg">
-                <div className="text-4xl mb-4">🎯</div>
+                <div className="flex justify-center mb-4">
+                  <Target size={32} className="text-historic-brown" />
+                </div>
                 <h3 className="font-quicksand text-lg font-bold text-historic-brown mb-2">
                   Perfect Score
                 </h3>
