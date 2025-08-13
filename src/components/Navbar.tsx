@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Home, Target, Trophy, BookOpen, Menu, X, User, BarChart3, Award, Settings, LogOut, Shield } from "lucide-react";
+import { Menu, X, User, BarChart3, Award, Settings, LogOut, Shield } from "lucide-react";
 import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
