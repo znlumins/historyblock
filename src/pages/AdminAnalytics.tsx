@@ -276,8 +276,9 @@ const AdminAnalytics = () => {
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {/* Daily Activity Chart */}
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6">
-                📈 Aktivitas Harian (7 hari terakhir)
+              <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <TrendingUp size={20} className="text-gray-800" />
+                Aktivitas Harian (7 hari terakhir)
               </h3>
               <div className="space-y-4">
                 {analytics.dailyActivity.map((day, index) => (
