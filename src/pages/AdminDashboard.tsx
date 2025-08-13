@@ -251,8 +251,9 @@ const AdminDashboard = () => {
 
           {/* Recent Activity */}
           <div className="bg-white rounded-xl p-8 shadow-lg">
-            <h3 className="font-quicksand text-xl font-bold text-historic-brown-dark mb-6">
-              📈 Aktivitas Terkini
+            <h3 className="font-quicksand text-xl font-bold text-historic-brown-dark mb-6 flex items-center gap-2">
+              <TrendingUp size={20} className="text-historic-brown-dark" />
+              Aktivitas Terkini
             </h3>
             {stats.recentActivity.length > 0 ? (
               <div className="space-y-4">
