@@ -501,7 +501,6 @@ const Navbar = () => {
                       if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
-                    <Trophy size={20} />
                     Leaderboard
                   </Link>
                   <Link
