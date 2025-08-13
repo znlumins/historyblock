@@ -134,7 +134,9 @@ const AdminDashboard = () => {
                     {stats.totalUsers}
                   </p>
                 </div>
-                <div className="text-4xl">👥</div>
+                <div className="flex justify-center">
+                  <Users size={32} className="text-historic-brown" />
+                </div>
               </div>
             </div>
 
