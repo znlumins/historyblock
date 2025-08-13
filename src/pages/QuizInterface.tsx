@@ -357,7 +357,7 @@ const QuizInterface = () => {
                           : "border-gray-300"
                       }`}
                     >
-                      {selectedAnswers[currentQuestion.id] === index && "✓"}
+                      {selectedAnswers[currentQuestion.id] === index && <Check size={12} />}
                     </div>
                     <span className="font-quicksand">{option}</span>
                   </div>
