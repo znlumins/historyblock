@@ -309,8 +309,9 @@ const AdminAnalytics = () => {
 
             {/* Top Performers */}
             <div className="bg-white rounded-xl p-6 shadow-lg">
-              <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6">
-                🏆 Top Performers
+              <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                <Trophy size={20} className="text-gray-800" />
+                Top Performers
               </h3>
               <div className="space-y-4">
                 {analytics.topPerformers.map((performer, index) => (
