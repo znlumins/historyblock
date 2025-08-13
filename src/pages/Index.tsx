@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { Smartphone, BookOpen, Trophy, Sparkles, Play, LogIn, UserPlus } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Index = () => {
@@ -25,6 +26,10 @@ const Index = () => {
       color: "#1f2937",
       marginBottom: "24px",
       lineHeight: "1.2",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "16px",
     },
     heroSubtitle: {
       fontSize: "1.25rem",
@@ -41,7 +46,9 @@ const Index = () => {
       flexWrap: "wrap" as const,
     },
     primaryButton: {
-      display: "inline-block",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
       backgroundColor: "#eab308",
       color: "white",
       padding: "12px 32px",
@@ -50,9 +57,13 @@ const Index = () => {
       fontWeight: "600",
       textDecoration: "none",
       transition: "background-color 0.2s",
+      border: "none",
+      cursor: "pointer",
     },
     secondaryButton: {
-      display: "inline-block",
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
       backgroundColor: "white",
       color: "#eab308",
       border: "1px solid #eab308",
@@ -77,6 +88,10 @@ const Index = () => {
       textAlign: "center" as const,
       color: "#1f2937",
       marginBottom: "48px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "12px",
     },
     featuresGrid: {
       display: "grid",
@@ -90,8 +105,9 @@ const Index = () => {
       borderRadius: "8px",
     },
     featureIcon: {
-      fontSize: "3rem",
       marginBottom: "16px",
+      display: "flex",
+      justifyContent: "center",
     },
     featureTitle: {
       fontSize: "1.25rem",
@@ -129,6 +145,7 @@ const Index = () => {
     heroTitle: {
       ...styles.heroTitle,
       fontSize: isMobile ? "2rem" : "3rem",
+      flexDirection: isMobile ? ("column" as const) : ("row" as const),
     },
     heroSubtitle: {
       ...styles.heroSubtitle,
@@ -144,16 +161,19 @@ const Index = () => {
   return (
     <div style={styles.container}>
       <Navbar />
-
+      
       {/* Hero Section */}
       <section style={styles.heroSection}>
         <div style={styles.heroContainer}>
-          <h1 style={mobileStyles.heroTitle}>🏛️ Historic Block</h1>
+          <h1 style={mobileStyles.heroTitle}>
+            <BookOpen size={isMobile ? 32 : 48} color="#8b4513" />
+            Historic Block
+          </h1>
           <p style={mobileStyles.heroSubtitle}>
-            Belajar sejarah Indonesia dengan cara yang menyenangkan! Mainkan
-            kuis interaktif dan tes pengetahuan sejarahmu.
+            Belajar sejarah Indonesia dengan cara yang menyenangkan! 
+            Mainkan kuis interaktif dan tes pengetahuan sejarahmu.
           </p>
-
+          
           <div style={mobileStyles.buttonContainer}>
             {isAuthenticated ? (
               <Link
@@ -166,7 +186,8 @@ const Index = () => {
                   e.currentTarget.style.backgroundColor = "#eab308";
                 }}
               >
-                🎯 Mulai Kuis
+                <Play size={20} />
+                Mulai Kuis
               </Link>
             ) : (
               <>
@@ -180,7 +201,8 @@ const Index = () => {
                     e.currentTarget.style.backgroundColor = "#eab308";
                   }}
                 >
-                  📝 Daftar Sekarang
+                  <UserPlus size={20} />
+                  Daftar Sekarang
                 </Link>
                 <Link
                   to="/login"
@@ -192,7 +214,8 @@ const Index = () => {
                     e.currentTarget.style.backgroundColor = "white";
                   }}
                 >
-                  🚪 Masuk
+                  <LogIn size={20} />
+                  Masuk
                 </Link>
               </>
             )}
@@ -203,27 +226,36 @@ const Index = () => {
       {/* Features Section */}
       <section style={styles.featuresSection}>
         <div style={styles.featuresContainer}>
-          <h2 style={styles.featuresTitle}>✨ Fitur Unggulan</h2>
-
+          <h2 style={styles.featuresTitle}>
+            <Sparkles size={32} color="#eab308" />
+            Fitur Unggulan
+          </h2>
+          
           <div style={styles.featuresGrid}>
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>📱</div>
+              <div style={styles.featureIcon}>
+                <Smartphone size={48} color="#8b4513" />
+              </div>
               <h3 style={styles.featureTitle}>AR Scanner</h3>
               <p style={styles.featureDescription}>
                 Scan kartu Historic Block untuk memulai kuis
               </p>
             </div>
-
+            
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>📚</div>
+              <div style={styles.featureIcon}>
+                <BookOpen size={48} color="#8b4513" />
+              </div>
               <h3 style={styles.featureTitle}>Kuis Manual</h3>
               <p style={styles.featureDescription}>
                 Pilih topik dan tingkat kesulitan sendiri
               </p>
             </div>
-
+            
             <div style={styles.featureCard}>
-              <div style={styles.featureIcon}>🏆</div>
+              <div style={styles.featureIcon}>
+                <Trophy size={48} color="#8b4513" />
+              </div>
               <h3 style={styles.featureTitle}>Leaderboard</h3>
               <p style={styles.featureDescription}>
                 Kompetisi dengan pemain lain
