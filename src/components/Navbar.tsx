@@ -273,7 +273,6 @@ const Navbar = () => {
                   if (!isActive("/")) e.currentTarget.style.color = "white";
                 }}
               >
-                <Home size={16} />
                 Beranda
               </Link>
 
