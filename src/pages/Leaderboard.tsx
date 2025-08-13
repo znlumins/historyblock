@@ -344,8 +344,9 @@ const Leaderboard = () => {
 
           {/* Achievement Badges */}
           <div className="mt-16 text-center">
-            <h2 className="font-georgia text-3xl text-historic-brown-dark mb-8">
-              🎖️ Pencapaian Istimewa
+            <h2 className="font-georgia text-3xl text-historic-brown-dark mb-8 flex items-center justify-center gap-3">
+              <Medal size={32} className="text-historic-brown-dark" />
+              Pencapaian Istimewa
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="bg-white rounded-xl p-6 shadow-lg">
