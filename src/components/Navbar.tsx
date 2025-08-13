@@ -312,7 +312,6 @@ const Navbar = () => {
                       if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
                     }}
                   >
-                    <BookOpen size={16} />
                     Tutorial
                   </Link>
                 </>
