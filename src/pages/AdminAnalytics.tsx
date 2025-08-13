@@ -224,7 +224,9 @@ const AdminAnalytics = () => {
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-lg text-center">
-              <div className="text-3xl mb-2">📝</div>
+              <div className="flex justify-center mb-2">
+                <FileText size={24} className="text-historic-brown" />
+              </div>
               <div className="font-quicksand text-2xl font-bold text-historic-brown">
                 {analytics.quizCompletions}
               </div>
