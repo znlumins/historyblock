@@ -416,7 +416,9 @@ const AdminAnalytics = () => {
                 to="/admin/quizzes"
                 className="p-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center"
               >
-                <div className="text-2xl mb-2">📝</div>
+                <div className="flex justify-center mb-2">
+                  <FileText size={24} />
+                </div>
                 <div className="font-quicksand font-semibold">
                   Manage Quizzes
                 </div>
