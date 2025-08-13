@@ -150,7 +150,9 @@ const AdminDashboard = () => {
                     {stats.totalQuizzes}
                   </p>
                 </div>
-                <div className="text-4xl">📚</div>
+                <div className="flex justify-center">
+                  <BookOpen size={32} className="text-historic-brown" />
+                </div>
               </div>
             </div>
 
