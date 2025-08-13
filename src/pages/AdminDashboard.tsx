@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { AlertCircle, Settings, Users, BookOpen, Check, BarChart3, FileText, ArrowRight, TrendingUp, Inbox } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from "react";
 
