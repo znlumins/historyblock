@@ -182,7 +182,9 @@ const AdminDashboard = () => {
                     {stats.avgScore}
                   </p>
                 </div>
-                <div className="text-4xl">📊</div>
+                <div className="flex justify-center">
+                  <BarChart3 size={32} className="text-historic-brown" />
+                </div>
               </div>
             </div>
           </div>
