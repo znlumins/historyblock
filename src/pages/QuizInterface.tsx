@@ -372,7 +372,8 @@ const QuizInterface = () => {
                 disabled={currentQuestionIndex === 0}
                 className="px-6 py-2 border border-gray-300 rounded-lg font-quicksand hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                ← Sebelumnya
+                <ArrowLeft size={16} className="mr-1" />
+                Sebelumnya
               </button>
 
               <div className="font-quicksand text-sm text-gray-500">
