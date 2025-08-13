@@ -436,7 +436,9 @@ const AdminAnalytics = () => {
                 to="/admin"
                 className="p-4 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-center"
               >
-                <div className="text-2xl mb-2">🏠</div>
+                <div className="flex justify-center mb-2">
+                  <Home size={24} />
+                </div>
                 <div className="font-quicksand font-semibold">Dashboard</div>
               </Link>
             </div>
