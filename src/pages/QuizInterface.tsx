@@ -220,8 +220,9 @@ const QuizInterface = () => {
               </div>
 
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                <h3 className="font-quicksand font-bold text-yellow-800 mb-2">
-                  ⚠️ Petunjuk Quiz
+                <h3 className="font-quicksand font-bold text-yellow-800 mb-2 flex items-center gap-2">
+                  <AlertTriangle size={16} className="text-yellow-800" />
+                  Petunjuk Quiz
                 </h3>
                 <ul className="text-left font-quicksand text-yellow-700 text-sm space-y-1">
                   <li>• Bacalah setiap pertanyaan dengan teliti</li>
