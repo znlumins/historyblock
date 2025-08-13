@@ -166,7 +166,9 @@ const AdminDashboard = () => {
                     {stats.quizCompletions}
                   </p>
                 </div>
-                <div className="text-4xl">✅</div>
+                <div className="flex justify-center">
+                  <Check size={32} className="text-historic-brown" />
+                </div>
               </div>
             </div>
 
