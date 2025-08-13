@@ -163,13 +163,13 @@ const AdminAnalytics = () => {
 
   if (user?.role !== "admin") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <div className="text-center">
           <div className="text-6xl mb-4">🚫</div>
           <h1 className="font-georgia text-2xl text-red-600 mb-2">
             Akses Ditolak
           </h1>
-          <p className="font-quicksand text-gray-600 dark:text-gray-400">
+          <p className="font-quicksand text-gray-600">
             Anda tidak memiliki akses ke halaman admin.
           </p>
           <Link
