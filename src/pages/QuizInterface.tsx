@@ -174,7 +174,9 @@ const QuizInterface = () => {
         <div className="flex-1 bg-gradient-to-r from-historic-cream-light to-historic-cream py-8 md:py-12 lg:py-20 px-4 md:px-8 lg:px-20">
           <div className="max-w-3xl mx-auto">
             <div className="bg-white rounded-xl p-8 shadow-lg text-center">
-              <div className="text-6xl mb-6">🎯</div>
+              <div className="flex justify-center mb-6">
+                <Target size={48} className="text-historic-brown-dark" />
+              </div>
               <h1 className="font-georgia text-3xl text-historic-brown-dark mb-4">
                 {quiz.title}
               </h1>
