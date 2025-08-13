@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Trophy, Crown, Zap, Target, Medal } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Leaderboard = () => {
