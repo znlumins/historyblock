@@ -199,7 +199,8 @@ const Login = () => {
             to="/"
             className="font-quicksand text-historic-brown hover:text-historic-brown-dark"
           >
-            ← Kembali ke Beranda
+            <ArrowLeft size={16} className="mr-1" />
+            Kembali ke Beranda
           </Link>
         </div>
       </div>
