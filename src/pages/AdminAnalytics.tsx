@@ -427,7 +427,9 @@ const AdminAnalytics = () => {
                 onClick={loadAnalytics}
                 className="p-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-center"
               >
-                <div className="text-2xl mb-2">🔄</div>
+                <div className="flex justify-center mb-2">
+                  <RefreshCw size={24} />
+                </div>
                 <div className="font-quicksand font-semibold">Refresh Data</div>
               </button>
               <Link
