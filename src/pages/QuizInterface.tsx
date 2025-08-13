@@ -299,8 +299,9 @@ const QuizInterface = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="font-quicksand font-bold text-lg">
-              ⏱️ {formatTime(timeRemaining)}
+            <div className="font-quicksand font-bold text-lg flex items-center gap-1">
+              <Clock size={16} />
+              {formatTime(timeRemaining)}
             </div>
             <div className="font-quicksand text-sm">
               {currentQuestion.points} poin
