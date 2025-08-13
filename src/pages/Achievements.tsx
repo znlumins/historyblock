@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Target, Flag, Flame, Star, Trophy, BookOpen, Medal, Award, Crown, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Achievements = () => {
@@ -7,7 +8,7 @@ const Achievements = () => {
       id: 1,
       title: "First Quiz Master",
       description: "Selesaikan kuis pertama Anda",
-      icon: "🎯",
+      icon: Target,
       earned: true,
       progress: 100,
       date: "15 Jan 2024",
@@ -16,7 +17,7 @@ const Achievements = () => {
       id: 2,
       title: "Kemerdekaan Expert",
       description: "Jawab 10 soal tentang kemerdekaan dengan benar",
-      icon: "🇮🇩",
+      icon: Flag,
       earned: true,
       progress: 100,
       date: "18 Jan 2024",
@@ -25,7 +26,7 @@ const Achievements = () => {
       id: 3,
       title: "History Streak",
       description: "Mainkan kuis 7 hari berturut-turut",
-      icon: "🔥",
+      icon: Flame,
       earned: true,
       progress: 100,
       date: "25 Jan 2024",
@@ -34,7 +35,7 @@ const Achievements = () => {
       id: 4,
       title: "Perfect Score",
       description: "Dapatkan skor 100% dalam satu kuis",
-      icon: "⭐",
+      icon: Star,
       earned: true,
       progress: 100,
       date: "28 Jan 2024",
@@ -43,179 +44,365 @@ const Achievements = () => {
       id: 5,
       title: "Quiz Champion",
       description: "Selesaikan 25 kuis dengan skor rata-rata >80%",
-      icon: "🏆",
+      icon: Trophy,
       earned: true,
       progress: 100,
       date: "5 Feb 2024",
     },
     {
       id: 6,
-      title: "Knowledge Collector",
-      description: "Kumpulkan 2000 poin",
-      icon: "💎",
-      earned: true,
-      progress: 100,
-      date: "12 Feb 2024",
+      title: "Knowledge Seeker",
+      description: "Baca 50 artikel sejarah",
+      icon: BookOpen,
+      earned: false,
+      progress: 76,
+      date: null,
     },
     {
       id: 7,
-      title: "Speed Learner",
-      description: "Selesaikan kuis dalam waktu kurang dari 5 menit",
-      icon: "⚡",
+      title: "Speed Demon",
+      description: "Selesaikan kuis dalam waktu kurang dari 2 menit",
+      icon: Medal,
       earned: false,
-      progress: 80,
+      progress: 45,
       date: null,
     },
     {
       id: 8,
-      title: "Master Historian",
-      description: "Capai level 20",
-      icon: "📚",
+      title: "Social Learner",
+      description: "Ajak 5 teman bergabung di Historic Block",
+      icon: Award,
       earned: false,
-      progress: 75,
+      progress: 20,
       date: null,
     },
     {
       id: 9,
-      title: "Leaderboard King",
-      description: "Berada di posisi #1 selama 30 hari",
-      icon: "👑",
+      title: "Master Historian",
+      description: "Raih posisi #1 di leaderboard selama 1 bulan",
+      icon: Crown,
       earned: false,
-      progress: 60,
+      progress: 0,
       date: null,
     },
   ];
 
+  const styles = {
+    container: {
+      minHeight: "100vh",
+      backgroundColor: "white",
+    },
+    content: {
+      padding: "32px 16px",
+      backgroundColor: "#f9fafb",
+    },
+    contentContainer: {
+      maxWidth: "1200px",
+      margin: "0 auto",
+    },
+    header: {
+      textAlign: "center" as const,
+      marginBottom: "48px",
+    },
+    backButton: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "8px",
+      color: "#6b7280",
+      textDecoration: "none",
+      marginBottom: "24px",
+      padding: "8px 16px",
+      borderRadius: "8px",
+      transition: "all 0.2s",
+      fontSize: "14px",
+    },
+    title: {
+      fontSize: "2.5rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "16px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "16px",
+    },
+    subtitle: {
+      fontSize: "1.125rem",
+      color: "#6b7280",
+      maxWidth: "600px",
+      margin: "0 auto",
+    },
+    statsGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+      gap: "24px",
+      marginBottom: "48px",
+    },
+    statCard: {
+      backgroundColor: "white",
+      padding: "24px",
+      borderRadius: "12px",
+      textAlign: "center" as const,
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      border: "1px solid #e5e7eb",
+    },
+    statIcon: {
+      marginBottom: "12px",
+      display: "flex",
+      justifyContent: "center",
+    },
+    statValue: {
+      fontSize: "2rem",
+      fontWeight: "700",
+      color: "#1f2937",
+      marginBottom: "4px",
+    },
+    statLabel: {
+      fontSize: "0.875rem",
+      color: "#6b7280",
+    },
+    achievementsGrid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+      gap: "24px",
+    },
+    achievementCard: {
+      backgroundColor: "white",
+      padding: "24px",
+      borderRadius: "12px",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      border: "1px solid #e5e7eb",
+      transition: "transform 0.2s, box-shadow 0.2s",
+    },
+    achievementCardEarned: {
+      backgroundColor: "white",
+      padding: "24px",
+      borderRadius: "12px",
+      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
+      border: "2px solid #16a34a",
+      transition: "transform 0.2s, box-shadow 0.2s",
+      position: "relative" as const,
+    },
+    achievementHeader: {
+      display: "flex",
+      alignItems: "center",
+      gap: "16px",
+      marginBottom: "16px",
+    },
+    achievementIcon: {
+      width: "48px",
+      height: "48px",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexShrink: 0,
+    },
+    achievementIconEarned: {
+      backgroundColor: "#dcfce7",
+    },
+    achievementIconLocked: {
+      backgroundColor: "#f3f4f6",
+    },
+    achievementInfo: {
+      flex: 1,
+    },
+    achievementTitle: {
+      fontSize: "1.125rem",
+      fontWeight: "600",
+      color: "#1f2937",
+      marginBottom: "4px",
+    },
+    achievementDescription: {
+      fontSize: "0.875rem",
+      color: "#6b7280",
+      lineHeight: "1.4",
+    },
+    achievementDate: {
+      fontSize: "0.75rem",
+      color: "#16a34a",
+      fontWeight: "500",
+      marginTop: "8px",
+    },
+    progressSection: {
+      marginTop: "16px",
+    },
+    progressLabel: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "8px",
+      fontSize: "0.875rem",
+    },
+    progressBar: {
+      width: "100%",
+      height: "8px",
+      backgroundColor: "#f3f4f6",
+      borderRadius: "4px",
+      overflow: "hidden",
+    },
+    progressFill: {
+      height: "100%",
+      borderRadius: "4px",
+      transition: "width 0.3s ease",
+    },
+    progressFillEarned: {
+      backgroundColor: "#16a34a",
+    },
+    progressFillProgress: {
+      backgroundColor: "#3b82f6",
+    },
+    earnedBadge: {
+      position: "absolute" as const,
+      top: "12px",
+      right: "12px",
+      backgroundColor: "#16a34a",
+      color: "white",
+      padding: "4px 8px",
+      borderRadius: "12px",
+      fontSize: "0.75rem",
+      fontWeight: "600",
+      display: "flex",
+      alignItems: "center",
+      gap: "4px",
+    },
+  };
+
+  const earnedCount = achievements.filter(a => a.earned).length;
+  const totalCount = achievements.length;
+  const completionRate = Math.round((earnedCount / totalCount) * 100);
+
   return (
-    <div className="min-h-screen flex flex-col bg-white border-2 border-[#ced4da] rounded-lg">
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Merriweather:wght@400;700&family=Georgia:wght@400&display=swap"
-      />
-
-      {/* Header */}
+    <div style={styles.container}>
       <Navbar />
-
-      {/* Main Content */}
-      <div className="flex-1 bg-gradient-to-r from-historic-cream-light to-historic-cream py-8 md:py-12 lg:py-20 px-4 md:px-8 lg:px-20">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="font-georgia text-4xl text-historic-brown-dark mb-2">
-              🏅 Achievement
+      
+      <div style={styles.content}>
+        <div style={styles.contentContainer}>
+          <div style={styles.header}>
+            <Link 
+              to="/profile" 
+              style={styles.backButton}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#f3f4f6";
+                e.currentTarget.style.color = "#374151";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = "#6b7280";
+              }}
+            >
+              <ArrowLeft size={16} />
+              Kembali ke Profil
+            </Link>
+            
+            <h1 style={styles.title}>
+              <Award size={40} color="#facc15" />
+              Achievement
             </h1>
-            <p className="font-merriweather text-gray-600">
-              Kumpulkan semua prestasi dalam perjalanan belajar sejarah Anda
+            <p style={styles.subtitle}>
+              Lihat pencapaian Anda dalam mempelajari sejarah Indonesia
             </p>
           </div>
 
-          {/* Progress Summary */}
-          <div className="bg-white rounded-xl p-6 shadow-lg mb-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="font-quicksand text-xl font-bold text-gray-800">
-                  Progress Achievement
-                </h2>
-                <p className="text-gray-600">
-                  6 dari 9 achievement telah dibuka
-                </p>
+          {/* Statistics Overview */}
+          <div style={styles.statsGrid}>
+            <div style={styles.statCard}>
+              <div style={styles.statIcon}>
+                <Trophy size={32} color="#facc15" />
               </div>
-              <div className="text-right">
-                <div className="text-3xl font-bold text-historic-brown-dark">
-                  67%
-                </div>
-                <div className="text-sm text-gray-600">Selesai</div>
-              </div>
+              <div style={styles.statValue}>{earnedCount}</div>
+              <div style={styles.statLabel}>Achievement Terbuka</div>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-3 mt-4">
-              <div
-                className="bg-gradient-to-r from-historic-yellow to-historic-orange h-3 rounded-full"
-                style={{ width: "67%" }}
-              ></div>
+            
+            <div style={styles.statCard}>
+              <div style={styles.statIcon}>
+                <Target size={32} color="#3b82f6" />
+              </div>
+              <div style={styles.statValue}>{totalCount - earnedCount}</div>
+              <div style={styles.statLabel}>Masih Terkunci</div>
+            </div>
+            
+            <div style={styles.statCard}>
+              <div style={styles.statIcon}>
+                <Medal size={32} color="#16a34a" />
+              </div>
+              <div style={styles.statValue}>{completionRate}%</div>
+              <div style={styles.statLabel}>Tingkat Penyelesaian</div>
             </div>
           </div>
 
-          {/* Achievement Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {/* Achievements Grid */}
+          <div style={styles.achievementsGrid}>
             {achievements.map((achievement) => (
               <div
                 key={achievement.id}
-                className={`bg-white rounded-xl p-6 shadow-lg transition-all hover:scale-105 ${
-                  achievement.earned
-                    ? "border-2 border-historic-yellow"
-                    : "border border-gray-200 opacity-75"
-                }`}
+                style={achievement.earned ? styles.achievementCardEarned : styles.achievementCard}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.boxShadow = "0 10px 15px -3px rgb(0 0 0 / 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0px)";
+                  e.currentTarget.style.boxShadow = "0 4px 6px -1px rgb(0 0 0 / 0.1)";
+                }}
               >
-                <div className="text-center">
-                  <div
-                    className={`text-4xl mb-3 ${
-                      achievement.earned ? "" : "grayscale"
-                    }`}
-                  >
-                    {achievement.icon}
+                {achievement.earned && (
+                  <div style={styles.earnedBadge}>
+                    <Star size={12} />
+                    Earned
                   </div>
-                  <h3 className="font-quicksand font-bold text-lg text-gray-800 mb-2">
-                    {achievement.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {achievement.description}
-                  </p>
+                )}
+                
+                <div style={styles.achievementHeader}>
+                  <div style={{
+                    ...styles.achievementIcon,
+                    ...(achievement.earned ? styles.achievementIconEarned : styles.achievementIconLocked)
+                  }}>
+                    <achievement.icon 
+                      size={24} 
+                      color={achievement.earned ? "#16a34a" : "#9ca3af"} 
+                    />
+                  </div>
+                  <div style={styles.achievementInfo}>
+                    <h3 style={styles.achievementTitle}>
+                      {achievement.title}
+                    </h3>
+                    <p style={styles.achievementDescription}>
+                      {achievement.description}
+                    </p>
+                    {achievement.earned && achievement.date && (
+                      <p style={styles.achievementDate}>
+                        Diraih pada {achievement.date}
+                      </p>
+                    )}
+                  </div>
+                </div>
 
-                  {achievement.earned ? (
-                    <div className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-quicksand">
-                      Selesai • {achievement.date}
-                    </div>
-                  ) : (
-                    <div className="space-y-2">
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-historic-brown h-2 rounded-full"
-                          style={{ width: `${achievement.progress}%` }}
-                        ></div>
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {achievement.progress}% selesai
-                      </div>
-                    </div>
-                  )}
+                {/* Progress Bar */}
+                <div style={styles.progressSection}>
+                  <div style={styles.progressLabel}>
+                    <span style={{ color: achievement.earned ? "#16a34a" : "#6b7280", fontWeight: "500" }}>
+                      Progress
+                    </span>
+                    <span style={{ color: achievement.earned ? "#16a34a" : "#3b82f6", fontWeight: "600" }}>
+                      {achievement.progress}%
+                    </span>
+                  </div>
+                  <div style={styles.progressBar}>
+                    <div
+                      style={{
+                        ...styles.progressFill,
+                        ...(achievement.earned ? styles.progressFillEarned : styles.progressFillProgress),
+                        width: `${achievement.progress}%`,
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-12">
-            <div className="bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto">
-              <div className="text-4xl mb-4">🎯</div>
-              <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-2">
-                Raih Achievement Lebih Banyak!
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Terus berlatih untuk membuka semua achievement
-              </p>
-              <Link
-                to="/kuis"
-                className="inline-block bg-historic-brown-dark text-white px-6 py-3 rounded-lg font-quicksand hover:bg-historic-brown transition-colors"
-              >
-                Mulai Kuis
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="w-full bg-historic-brown border-t-4 border-historic-brown-dark py-6 md:py-9 px-4 md:px-8 lg:px-36">
-        <div className="max-w-6xl mx-auto text-center">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c339a674deb6423c5cd64cac74684504d5ed5944?placeholderIfAbsent=true"
-            alt="HISTORIC BLOCK"
-            className="w-[62px] h-[62px] mx-auto mb-4"
-          />
-          <p className="font-merriweather text-historic-cream-light">
-            Belajar sejarah dengan cara yang menyenangkan
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
