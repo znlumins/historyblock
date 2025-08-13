@@ -298,7 +298,9 @@ const AdminDashboard = () => {
               </div>
             ) : (
               <div className="text-center py-8">
-                <div className="text-4xl mb-2">📭</div>
+                <div className="flex justify-center mb-2">
+                  <Inbox size={32} className="text-gray-600" />
+                </div>
                 <p className="font-quicksand text-gray-600">
                   Belum ada aktivitas terkini
                 </p>
