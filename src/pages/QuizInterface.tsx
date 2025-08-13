@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { BookOpen, Target, AlertTriangle, Clock, Check, ArrowLeft, ArrowRight, Rocket } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Quiz, QuizQuestion, QuizResult } from "@/data/quizData";
 import { getQuizById } from "@/data/quizData";
