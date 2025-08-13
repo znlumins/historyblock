@@ -225,7 +225,7 @@ const AdminDashboard = () => {
               </p>
               <div className="inline-flex items-center gap-2 text-historic-brown font-quicksand font-semibold">
                 <span>Kelola Pengguna</span>
-                <span>→</span>
+                <ArrowRight size={16} />
               </div>
             </Link>
 
