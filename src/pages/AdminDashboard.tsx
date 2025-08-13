@@ -214,7 +214,9 @@ const AdminDashboard = () => {
               to="/admin/users"
               className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow text-center border-2 border-transparent hover:border-historic-yellow"
             >
-              <div className="text-6xl mb-4">👥</div>
+              <div className="flex justify-center mb-4">
+                <Users size={48} className="text-historic-brown-dark" />
+              </div>
               <h3 className="font-quicksand text-xl font-bold text-historic-brown-dark mb-2">
                 Kelola Pengguna
               </h3>
