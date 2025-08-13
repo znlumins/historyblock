@@ -113,8 +113,9 @@ const AdminDashboard = () => {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="font-georgia text-4xl text-historic-brown-dark mb-4">
-              🛠️ Admin Dashboard
+            <h1 className="font-georgia text-4xl text-historic-brown-dark mb-4 flex items-center justify-center gap-3">
+              <Settings size={36} className="text-historic-brown-dark" />
+              Admin Dashboard
             </h1>
             <p className="font-merriweather text-gray-600">
               Kelola sistem Historic Block dan monitor aktivitas pengguna
