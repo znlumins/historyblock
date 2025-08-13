@@ -326,8 +326,8 @@ const Leaderboard = () => {
 
                     {/* Trophy Icon for Winner */}
                     {position === 1 && (
-                      <div className="absolute top-4 right-4 text-4xl animate-bounce">
-                        🏆
+                      <div className="absolute top-4 right-4">
+                        <Trophy size={32} className="text-white" />
                       </div>
                     )}
                     {position === 2 && (
