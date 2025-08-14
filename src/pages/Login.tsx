@@ -163,19 +163,24 @@ const Login = () => {
             </p>
             <div className="text-xs font-quicksand text-gray-500 space-y-1">
               <div className="flex items-center gap-1">
-                <Mail size={12} /> daffa@historic.com | <Key size={12} /> password123 (Level 15)
+                <Mail size={12} /> daffa@historic.com | <Key size={12} />{" "}
+                password123 (Level 15)
               </div>
               <div className="flex items-center gap-1">
-                <Mail size={12} /> adenia@historic.com | <Key size={12} /> adenia123 (Level 11)
+                <Mail size={12} /> adenia@historic.com | <Key size={12} />{" "}
+                adenia123 (Level 11)
               </div>
               <div className="flex items-center gap-1">
-                <Mail size={12} /> aymarda@historic.com | <Key size={12} /> aymarda123 (Level 12)
+                <Mail size={12} /> aymarda@historic.com | <Key size={12} />{" "}
+                aymarda123 (Level 12)
               </div>
               <div className="flex items-center gap-1">
-                <Mail size={12} /> admin@historic.com | <Key size={12} /> admin123 (Admin)
+                <Mail size={12} /> admin@historic.com | <Key size={12} />{" "}
+                admin123 (Admin)
               </div>
               <div className="flex items-center gap-1">
-                <Mail size={12} /> user@test.com | <Key size={12} /> test123 (Level 5)
+                <Mail size={12} /> user@test.com | <Key size={12} /> test123
+                (Level 5)
               </div>
             </div>
           </div>

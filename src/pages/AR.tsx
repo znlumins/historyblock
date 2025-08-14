@@ -67,7 +67,7 @@ const AR = () => {
   return (
     <div style={styles.pageContainer}>
       <Navbar />
-      
+
       {/* Back button */}
       <button
         onClick={handleBack}
@@ -86,8 +86,8 @@ const AR = () => {
         <div style={styles.content}>
           <h1 style={styles.title}>AR Scanner</h1>
           <p style={styles.subtitle}>
-            Fitur AR Scanner sedang dalam tahap pengembangan. 
-            Kembali lagi nanti untuk pengalaman AR yang menakjubkan!
+            Fitur AR Scanner sedang dalam tahap pengembangan. Kembali lagi nanti
+            untuk pengalaman AR yang menakjubkan!
           </p>
           <div style={styles.comingSoon}>
             <p>🚧 Coming Soon 🚧</p>

@@ -133,7 +133,9 @@ const Leaderboard = () => {
           totalQuestions: 84,
           correctAnswers: 63,
           lastActive: new Date().toISOString(),
-          joinDate: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(),
+          joinDate: new Date(
+            Date.now() - 8 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
         },
         {
           id: "9",
@@ -146,7 +148,9 @@ const Leaderboard = () => {
           totalQuestions: 70,
           correctAnswers: 51,
           lastActive: new Date().toISOString(),
-          joinDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
+          joinDate: new Date(
+            Date.now() - 6 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
         },
         {
           id: "10",
@@ -159,7 +163,9 @@ const Leaderboard = () => {
           totalQuestions: 56,
           correctAnswers: 39,
           lastActive: new Date().toISOString(),
-          joinDate: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
+          joinDate: new Date(
+            Date.now() - 4 * 24 * 60 * 60 * 1000,
+          ).toISOString(),
         },
       ];
 
@@ -210,8 +216,8 @@ const Leaderboard = () => {
                       ? position === 1
                         ? "bg-gradient-to-r from-yellow-400 to-yellow-500"
                         : position === 2
-                        ? "bg-gradient-to-r from-gray-300 to-gray-400"
-                        : "bg-gradient-to-r from-orange-400 to-orange-500"
+                          ? "bg-gradient-to-r from-gray-300 to-gray-400"
+                          : "bg-gradient-to-r from-orange-400 to-orange-500"
                       : "bg-white shadow-lg"
                   }`}
                 >
@@ -233,9 +239,7 @@ const Leaderboard = () => {
                         <div>
                           <h3
                             className={`font-quicksand text-xl md:text-2xl font-bold ${
-                              isTopThree
-                                ? "text-white"
-                                : "text-gray-800"
+                              isTopThree ? "text-white" : "text-gray-800"
                             }`}
                           >
                             {player.name}
@@ -249,8 +253,8 @@ const Leaderboard = () => {
                                 : "text-gray-600"
                             }`}
                           >
-                            Level {player.level} • {player.quizzesCompleted} Quiz
-                            Selesai
+                            Level {player.level} • {player.quizzesCompleted}{" "}
+                            Quiz Selesai
                           </div>
                           <div
                             className={`font-quicksand text-xs md:text-sm ${
@@ -261,8 +265,8 @@ const Leaderboard = () => {
                                 : "text-gray-500"
                             }`}
                           >
-                            Akurasi: {player.accuracy}% ({player.correctAnswers}/
-                            {player.totalQuestions})
+                            Akurasi: {player.accuracy}% ({player.correctAnswers}
+                            /{player.totalQuestions})
                           </div>
                         </div>
                       </div>
@@ -271,9 +275,7 @@ const Leaderboard = () => {
                       <div className="text-right">
                         <div
                           className={`font-quicksand text-2xl md:text-3xl font-bold ${
-                            isTopThree
-                              ? "text-white"
-                              : "text-historic-brown"
+                            isTopThree ? "text-white" : "text-historic-brown"
                           }`}
                         >
                           {player.score.toLocaleString()}
@@ -298,7 +300,9 @@ const Leaderboard = () => {
                         <div className="grid grid-cols-3 gap-4 text-center">
                           <div>
                             <div className="font-quicksand text-lg font-bold text-white">
-                              {Math.round(player.score / player.quizzesCompleted)}
+                              {Math.round(
+                                player.score / player.quizzesCompleted,
+                              )}
                             </div>
                             <div className="text-xs text-white text-opacity-70">
                               Avg/Quiz
@@ -360,7 +364,12 @@ const Leaderboard = () => {
                   Menyelesaikan 15+ quiz dengan akurasi 90%+
                 </p>
                 <div className="mt-3 text-xs text-green-600 font-semibold">
-                  {topPlayers.filter(p => p.quizzesCompleted >= 15 && p.accuracy >= 90).length} pemain mencapai
+                  {
+                    topPlayers.filter(
+                      (p) => p.quizzesCompleted >= 15 && p.accuracy >= 90,
+                    ).length
+                  }{" "}
+                  pemain mencapai
                 </div>
               </div>
 
@@ -375,7 +384,8 @@ const Leaderboard = () => {
                   Menyelesaikan 10+ quiz dalam waktu singkat
                 </p>
                 <div className="mt-3 text-xs text-blue-600 font-semibold">
-                  {topPlayers.filter(p => p.quizzesCompleted >= 10).length} pemain mencapai
+                  {topPlayers.filter((p) => p.quizzesCompleted >= 10).length}{" "}
+                  pemain mencapai
                 </div>
               </div>
 
@@ -390,7 +400,8 @@ const Leaderboard = () => {
                   Mendapat skor sempurna di minimal 1 quiz
                 </p>
                 <div className="mt-3 text-xs text-purple-600 font-semibold">
-                  {topPlayers.filter(p => p.accuracy >= 95).length} pemain mencapai
+                  {topPlayers.filter((p) => p.accuracy >= 95).length} pemain
+                  mencapai
                 </div>
               </div>
             </div>

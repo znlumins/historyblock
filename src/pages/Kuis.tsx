@@ -1,6 +1,22 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Smartphone, BookOpen, Target, Flag, Crown, Swords, BarChart3, Award, TrendingUp, Users, Play, Book, X, Gamepad2, Camera } from "lucide-react";
+import {
+  Smartphone,
+  BookOpen,
+  Target,
+  Flag,
+  Crown,
+  Swords,
+  BarChart3,
+  Award,
+  TrendingUp,
+  Users,
+  Play,
+  Book,
+  X,
+  Gamepad2,
+  Camera,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Kuis = () => {
@@ -339,9 +355,7 @@ const Kuis = () => {
               <div style={styles.modalIcon}>
                 <BookOpen size={64} color="#8b4513" />
               </div>
-              <h3 style={styles.modalTitle}>
-                Pilih Quiz Manual
-              </h3>
+              <h3 style={styles.modalTitle}>Pilih Quiz Manual</h3>
               <p style={styles.modalDescription}>
                 Pilih quiz berdasarkan era atau tingkat kesulitan
               </p>
@@ -373,9 +387,7 @@ const Kuis = () => {
                       <div style={styles.cardContent}>
                         <Target size={24} color="#8b4513" />
                         <div>
-                          <h5 style={styles.cardTitle}>
-                            {quiz.name}
-                          </h5>
+                          <h5 style={styles.cardTitle}>{quiz.name}</h5>
                           <p style={styles.cardSubtitle}>
                             {quiz.era} • {quiz.difficulty} • Discan{" "}
                             {quiz.timesScanned} kali
@@ -419,9 +431,7 @@ const Kuis = () => {
                     <div style={styles.cardContent}>
                       <Flag size={24} color="#dc2626" />
                       <div>
-                        <h4 style={styles.cardTitle}>
-                          Proklamasi Kemerdekaan
-                        </h4>
+                        <h4 style={styles.cardTitle}>Proklamasi Kemerdekaan</h4>
                         <p style={styles.cardSubtitle}>
                           Era Kemerdekaan • Mudah • 500 poin
                         </p>
@@ -445,9 +455,7 @@ const Kuis = () => {
                     <div style={styles.cardContent}>
                       <Crown size={24} color="#facc15" />
                       <div>
-                        <h4 style={styles.cardTitle}>
-                          Kerajaan Majapahit
-                        </h4>
+                        <h4 style={styles.cardTitle}>Kerajaan Majapahit</h4>
                         <p style={styles.cardSubtitle}>
                           Era Hindu-Buddha • Sedang • 750 poin
                         </p>
@@ -471,9 +479,7 @@ const Kuis = () => {
                     <div style={styles.cardContent}>
                       <Swords size={24} color="#7c2d12" />
                       <div>
-                        <h4 style={styles.cardTitle}>
-                          Perang Diponegoro
-                        </h4>
+                        <h4 style={styles.cardTitle}>Perang Diponegoro</h4>
                         <p style={styles.cardSubtitle}>
                           Era Kolonial • Sulit • 1000 poin
                         </p>
@@ -538,11 +544,22 @@ const Kuis = () => {
               <div style={styles.modalIcon}>
                 <Target size={64} color="#16a34a" />
               </div>
-              <h3 style={styles.modalTitle}>
-                Kartu Terdeteksi!
-              </h3>
-              <div style={{ backgroundColor: "#f3f4f6", borderRadius: "8px", padding: "16px", marginBottom: "16px" }}>
-                <h4 style={{ fontSize: "1.25rem", fontWeight: "700", color: "#1f2937" }}>
+              <h3 style={styles.modalTitle}>Kartu Terdeteksi!</h3>
+              <div
+                style={{
+                  backgroundColor: "#f3f4f6",
+                  borderRadius: "8px",
+                  padding: "16px",
+                  marginBottom: "16px",
+                }}
+              >
+                <h4
+                  style={{
+                    fontSize: "1.25rem",
+                    fontWeight: "700",
+                    color: "#1f2937",
+                  }}
+                >
                   {detectedCard.name}
                 </h4>
                 <p style={{ color: "#4b5563", marginTop: "4px" }}>
@@ -551,7 +568,13 @@ const Kuis = () => {
                 <p style={{ color: "#4b5563" }}>
                   Tingkat: {detectedCard.difficulty}
                 </p>
-                <p style={{ fontSize: "0.875rem", color: "#374151", marginTop: "8px" }}>
+                <p
+                  style={{
+                    fontSize: "0.875rem",
+                    color: "#374151",
+                    marginTop: "8px",
+                  }}
+                >
                   {detectedCard.description}
                 </p>
               </div>
@@ -611,7 +634,7 @@ const Kuis = () => {
 
           <div style={styles.optionsGrid}>
             {/* AR Scan Option */}
-            <div 
+            <div
               style={styles.optionCard}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "#f97316";
@@ -623,9 +646,7 @@ const Kuis = () => {
               <div style={styles.optionIcon}>
                 <Camera size={64} color="#8b4513" />
               </div>
-              <h2 style={styles.optionTitle}>
-                AR Scan Kartu
-              </h2>
+              <h2 style={styles.optionTitle}>AR Scan Kartu</h2>
               <p style={styles.optionDescription}>
                 Gunakan kamera untuk memindai kartu Historic Block dan mulai
                 kuis otomatis
@@ -660,7 +681,7 @@ const Kuis = () => {
             </div>
 
             {/* Manual Quiz Option */}
-            <div 
+            <div
               style={styles.optionCardSecondary}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = "#fbbf24";
@@ -672,9 +693,7 @@ const Kuis = () => {
               <div style={styles.optionIcon}>
                 <BookOpen size={64} color="#8b4513" />
               </div>
-              <h2 style={styles.optionTitle}>
-                Kuis Manual
-              </h2>
+              <h2 style={styles.optionTitle}>Kuis Manual</h2>
               <p style={styles.optionDescription}>
                 Pilih sendiri topik dan tingkat kesulitan kuis sejarah yang
                 ingin dimainkan
@@ -695,8 +714,8 @@ const Kuis = () => {
               </div>
               <button
                 onClick={() => setShowManualQuizDialog(true)}
-                style={{ 
-                  ...styles.buttonSecondary, 
+                style={{
+                  ...styles.buttonSecondary,
                   width: "100%",
                   backgroundColor: "#6b7280",
                   color: "white",
@@ -750,9 +769,17 @@ const Kuis = () => {
           <p style={styles.footerSubtitle}>
             Belajar sejarah dengan cara yang menyenangkan
           </p>
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "24px", fontSize: "14px" }}>
-            <Link 
-              to="/about" 
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "24px",
+              fontSize: "14px",
+            }}
+          >
+            <Link
+              to="/about"
               style={styles.footerLink}
               onMouseEnter={(e) => {
                 e.currentTarget.style.color = "white";

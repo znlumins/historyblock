@@ -1,7 +1,18 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Link } from "react-router-dom";
-import { BarChart3, FileText, Star, Smartphone, TrendingUp, Trophy, Zap, Users, RefreshCw, Home } from "lucide-react";
+import {
+  BarChart3,
+  FileText,
+  Star,
+  Smartphone,
+  TrendingUp,
+  Trophy,
+  Zap,
+  Users,
+  RefreshCw,
+  Home,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const AdminAnalytics = () => {
@@ -215,9 +226,7 @@ const AdminAnalytics = () => {
               <div className="font-quicksand text-2xl font-bold text-historic-brown">
                 {analytics.totalUsers}
               </div>
-              <div className="font-quicksand text-gray-600">
-                Total Users
-              </div>
+              <div className="font-quicksand text-gray-600">Total Users</div>
               <div className="text-xs text-green-600 mt-1">
                 {analytics.activeUsers} aktif 7 hari terakhir
               </div>
@@ -245,9 +254,7 @@ const AdminAnalytics = () => {
               <div className="font-quicksand text-2xl font-bold text-historic-brown">
                 {analytics.avgScore}
               </div>
-              <div className="font-quicksand text-gray-600">
-                Avg Score
-              </div>
+              <div className="font-quicksand text-gray-600">Avg Score</div>
               <div className="text-xs text-yellow-600 mt-1">
                 {analytics.avgAccuracy}% akurasi rata-rata
               </div>
@@ -263,9 +270,7 @@ const AdminAnalytics = () => {
                     .length
                 }
               </div>
-              <div className="font-quicksand text-gray-600">
-                AR Scans
-              </div>
+              <div className="font-quicksand text-gray-600">AR Scans</div>
               <div className="text-xs text-purple-600 mt-1">
                 total kartu discan
               </div>
@@ -359,25 +364,19 @@ const AdminAnalytics = () => {
                   </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">
-                        Attempts:
-                      </span>
+                      <span className="text-gray-600">Attempts:</span>
                       <span className="font-semibold text-gray-800">
                         {quiz.attempts}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">
-                        Avg Score:
-                      </span>
+                      <span className="text-gray-600">Avg Score:</span>
                       <span className="font-semibold text-gray-800">
                         {quiz.avgScore}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">
-                        Avg Accuracy:
-                      </span>
+                      <span className="text-gray-600">Avg Accuracy:</span>
                       <span className="font-semibold text-gray-800">
                         {quiz.avgAccuracy}%
                       </span>

@@ -1,5 +1,16 @@
 import { Link } from "react-router-dom";
-import { Target, Flag, Flame, Star, Trophy, BookOpen, Medal, Award, Crown, ArrowLeft } from "lucide-react";
+import {
+  Target,
+  Flag,
+  Flame,
+  Star,
+  Trophy,
+  BookOpen,
+  Medal,
+  Award,
+  Crown,
+  ArrowLeft,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Achievements = () => {
@@ -268,19 +279,19 @@ const Achievements = () => {
     },
   };
 
-  const earnedCount = achievements.filter(a => a.earned).length;
+  const earnedCount = achievements.filter((a) => a.earned).length;
   const totalCount = achievements.length;
   const completionRate = Math.round((earnedCount / totalCount) * 100);
 
   return (
     <div style={styles.container}>
       <Navbar />
-      
+
       <div style={styles.content}>
         <div style={styles.contentContainer}>
           <div style={styles.header}>
-            <Link 
-              to="/profile" 
+            <Link
+              to="/profile"
               style={styles.backButton}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "#f3f4f6";
@@ -294,7 +305,7 @@ const Achievements = () => {
               <ArrowLeft size={16} />
               Kembali ke Profil
             </Link>
-            
+
             <h1 style={styles.title}>
               <Award size={40} color="#facc15" />
               Achievement
@@ -313,7 +324,7 @@ const Achievements = () => {
               <div style={styles.statValue}>{earnedCount}</div>
               <div style={styles.statLabel}>Achievement Terbuka</div>
             </div>
-            
+
             <div style={styles.statCard}>
               <div style={styles.statIcon}>
                 <Target size={32} color="#3b82f6" />
@@ -321,7 +332,7 @@ const Achievements = () => {
               <div style={styles.statValue}>{totalCount - earnedCount}</div>
               <div style={styles.statLabel}>Masih Terkunci</div>
             </div>
-            
+
             <div style={styles.statCard}>
               <div style={styles.statIcon}>
                 <Medal size={32} color="#16a34a" />
@@ -336,14 +347,20 @@ const Achievements = () => {
             {achievements.map((achievement) => (
               <div
                 key={achievement.id}
-                style={achievement.earned ? styles.achievementCardEarned : styles.achievementCard}
+                style={
+                  achievement.earned
+                    ? styles.achievementCardEarned
+                    : styles.achievementCard
+                }
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "0 10px 15px -3px rgb(0 0 0 / 0.1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 15px -3px rgb(0 0 0 / 0.1)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0px)";
-                  e.currentTarget.style.boxShadow = "0 4px 6px -1px rgb(0 0 0 / 0.1)";
+                  e.currentTarget.style.boxShadow =
+                    "0 4px 6px -1px rgb(0 0 0 / 0.1)";
                 }}
               >
                 {achievement.earned && (
@@ -352,21 +369,23 @@ const Achievements = () => {
                     Earned
                   </div>
                 )}
-                
+
                 <div style={styles.achievementHeader}>
-                  <div style={{
-                    ...styles.achievementIcon,
-                    ...(achievement.earned ? styles.achievementIconEarned : styles.achievementIconLocked)
-                  }}>
-                    <achievement.icon 
-                      size={24} 
-                      color={achievement.earned ? "#16a34a" : "#9ca3af"} 
+                  <div
+                    style={{
+                      ...styles.achievementIcon,
+                      ...(achievement.earned
+                        ? styles.achievementIconEarned
+                        : styles.achievementIconLocked),
+                    }}
+                  >
+                    <achievement.icon
+                      size={24}
+                      color={achievement.earned ? "#16a34a" : "#9ca3af"}
                     />
                   </div>
                   <div style={styles.achievementInfo}>
-                    <h3 style={styles.achievementTitle}>
-                      {achievement.title}
-                    </h3>
+                    <h3 style={styles.achievementTitle}>{achievement.title}</h3>
                     <p style={styles.achievementDescription}>
                       {achievement.description}
                     </p>
@@ -381,10 +400,20 @@ const Achievements = () => {
                 {/* Progress Bar */}
                 <div style={styles.progressSection}>
                   <div style={styles.progressLabel}>
-                    <span style={{ color: achievement.earned ? "#16a34a" : "#6b7280", fontWeight: "500" }}>
+                    <span
+                      style={{
+                        color: achievement.earned ? "#16a34a" : "#6b7280",
+                        fontWeight: "500",
+                      }}
+                    >
                       Progress
                     </span>
-                    <span style={{ color: achievement.earned ? "#16a34a" : "#3b82f6", fontWeight: "600" }}>
+                    <span
+                      style={{
+                        color: achievement.earned ? "#16a34a" : "#3b82f6",
+                        fontWeight: "600",
+                      }}
+                    >
                       {achievement.progress}%
                     </span>
                   </div>
@@ -392,7 +421,9 @@ const Achievements = () => {
                     <div
                       style={{
                         ...styles.progressFill,
-                        ...(achievement.earned ? styles.progressFillEarned : styles.progressFillProgress),
+                        ...(achievement.earned
+                          ? styles.progressFillEarned
+                          : styles.progressFillProgress),
                         width: `${achievement.progress}%`,
                       }}
                     />

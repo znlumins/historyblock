@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { AlertCircle, FileText, ArrowLeft, Check, BarChart3 } from "lucide-react";
+import {
+  AlertCircle,
+  FileText,
+  ArrowLeft,
+  Check,
+  BarChart3,
+} from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
 import { quizDatabase, Quiz, QuizQuestion } from "@/data/quizData";
@@ -198,7 +204,10 @@ const AdminQuizzes = () => {
                                     }`}
                                   >
                                     {optionIndex === question.correctAnswer && (
-                                      <Check size={14} className="text-green-600 inline mr-1" />
+                                      <Check
+                                        size={14}
+                                        className="text-green-600 inline mr-1"
+                                      />
                                     )}
                                     {option}
                                   </div>

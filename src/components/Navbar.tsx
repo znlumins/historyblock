@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Menu, X, User, BarChart3, Award, Settings, LogOut, Shield } from "lucide-react";
+import {
+  Menu,
+  X,
+  User,
+  BarChart3,
+  Award,
+  Settings,
+  LogOut,
+  Shield,
+} from "lucide-react";
 import UserDropdown from "./UserDropdown";
 
 const Navbar = () => {
@@ -248,7 +257,7 @@ const Navbar = () => {
                 alt="HISTORIC BLOCK"
                 style={{
                   ...styles.logo,
-                  ":hover": { transform: "scale(1.05)" }
+                  ":hover": { transform: "scale(1.05)" },
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "scale(1.05)";
@@ -280,36 +289,52 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/kuis"
-                    style={isActive("/kuis") ? styles.navLinkActive : styles.navLink}
+                    style={
+                      isActive("/kuis") ? styles.navLinkActive : styles.navLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/kuis")) e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/kuis"))
+                        e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/kuis")) e.currentTarget.style.color = "white";
+                      if (!isActive("/kuis"))
+                        e.currentTarget.style.color = "white";
                     }}
                   >
                     Kuis
                   </Link>
                   <Link
                     to="/leaderboard"
-                    style={isActive("/leaderboard") ? styles.navLinkActive : styles.navLink}
+                    style={
+                      isActive("/leaderboard")
+                        ? styles.navLinkActive
+                        : styles.navLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/leaderboard"))
+                        e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "white";
+                      if (!isActive("/leaderboard"))
+                        e.currentTarget.style.color = "white";
                     }}
                   >
                     Leaderboard
                   </Link>
                   <Link
                     to="/tutorial"
-                    style={isActive("/tutorial") ? styles.navLinkActive : styles.navLink}
+                    style={
+                      isActive("/tutorial")
+                        ? styles.navLinkActive
+                        : styles.navLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.color = "white";
                     }}
                   >
                     Tutorial
@@ -319,24 +344,36 @@ const Navbar = () => {
                 <>
                   <Link
                     to="/tutorial"
-                    style={isActive("/tutorial") ? styles.navLinkActive : styles.navLink}
+                    style={
+                      isActive("/tutorial")
+                        ? styles.navLinkActive
+                        : styles.navLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.color = "white";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.color = "white";
                     }}
                   >
                     Tutorial
                   </Link>
                   <Link
                     to="/login"
-                    style={isActive("/leaderboard") ? styles.navLinkActive : styles.navLink}
+                    style={
+                      isActive("/leaderboard")
+                        ? styles.navLinkActive
+                        : styles.navLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "#fef9c3";
+                      if (!isActive("/leaderboard"))
+                        e.currentTarget.style.color = "#fef9c3";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/leaderboard")) e.currentTarget.style.color = "white";
+                      if (!isActive("/leaderboard"))
+                        e.currentTarget.style.color = "white";
                     }}
                   >
                     Leaderboard
@@ -371,12 +408,16 @@ const Navbar = () => {
                       to="/register"
                       style={styles.registerButton}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
-                        e.currentTarget.style.boxShadow = "0 10px 15px -3px rgb(0 0 0 / 0.1)";
+                        e.currentTarget.style.background =
+                          "linear-gradient(to right, #f97316, #facc15)";
+                        e.currentTarget.style.boxShadow =
+                          "0 10px 15px -3px rgb(0 0 0 / 0.1)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
-                        e.currentTarget.style.boxShadow = "0 4px 6px -1px rgb(0 0 0 / 0.1)";
+                        e.currentTarget.style.background =
+                          "linear-gradient(to right, #facc15, #f97316)";
+                        e.currentTarget.style.boxShadow =
+                          "0 4px 6px -1px rgb(0 0 0 / 0.1)";
                       }}
                     >
                       Daftar
@@ -407,14 +448,8 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div
-          style={styles.mobileOverlay}
-          onClick={closeMobileMenu}
-        >
-          <div
-            style={styles.mobileMenu}
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div style={styles.mobileOverlay} onClick={closeMobileMenu}>
+          <div style={styles.mobileMenu} onClick={(e) => e.stopPropagation()}>
             {/* Mobile Menu Header */}
             <div style={styles.mobileHeader}>
               <div style={styles.mobileHeaderContainer}>
@@ -443,17 +478,19 @@ const Navbar = () => {
               {isAuthenticated && user && (
                 <div style={styles.userProfile}>
                   <div style={styles.userAvatar}>
-                    <span style={{ fontWeight: "700", color: "#654321", fontSize: "18px" }}>
+                    <span
+                      style={{
+                        fontWeight: "700",
+                        color: "#654321",
+                        fontSize: "18px",
+                      }}
+                    >
                       {user.name.charAt(0)}
                     </span>
                   </div>
                   <div style={styles.userInfo}>
-                    <div style={styles.userName}>
-                      {user.name}
-                    </div>
-                    <div style={styles.userLevel}>
-                      {user.level}
-                    </div>
+                    <div style={styles.userName}>{user.name}</div>
+                    <div style={styles.userLevel}>{user.level}</div>
                   </div>
                 </div>
               )}
@@ -464,12 +501,18 @@ const Navbar = () => {
               <Link
                 to="/"
                 onClick={closeMobileMenu}
-                style={isActive("/") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                style={
+                  isActive("/")
+                    ? styles.mobileNavLinkActive
+                    : styles.mobileNavLink
+                }
                 onMouseEnter={(e) => {
-                  if (!isActive("/")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                  if (!isActive("/"))
+                    e.currentTarget.style.backgroundColor = "#f3f4f6";
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive("/")) e.currentTarget.style.backgroundColor = "transparent";
+                  if (!isActive("/"))
+                    e.currentTarget.style.backgroundColor = "transparent";
                 }}
               >
                 Beranda
@@ -480,12 +523,18 @@ const Navbar = () => {
                   <Link
                     to="/kuis"
                     onClick={closeMobileMenu}
-                    style={isActive("/kuis") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    style={
+                      isActive("/kuis")
+                        ? styles.mobileNavLinkActive
+                        : styles.mobileNavLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/kuis"))
+                        e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/kuis")) e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/kuis"))
+                        e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
                     Kuis
@@ -493,12 +542,18 @@ const Navbar = () => {
                   <Link
                     to="/leaderboard"
                     onClick={closeMobileMenu}
-                    style={isActive("/leaderboard") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    style={
+                      isActive("/leaderboard")
+                        ? styles.mobileNavLinkActive
+                        : styles.mobileNavLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/leaderboard"))
+                        e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/leaderboard")) e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/leaderboard"))
+                        e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
                     Leaderboard
@@ -506,12 +561,18 @@ const Navbar = () => {
                   <Link
                     to="/tutorial"
                     onClick={closeMobileMenu}
-                    style={isActive("/tutorial") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    style={
+                      isActive("/tutorial")
+                        ? styles.mobileNavLinkActive
+                        : styles.mobileNavLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
                     Tutorial
@@ -609,12 +670,18 @@ const Navbar = () => {
                   <Link
                     to="/tutorial"
                     onClick={closeMobileMenu}
-                    style={isActive("/tutorial") ? styles.mobileNavLinkActive : styles.mobileNavLink}
+                    style={
+                      isActive("/tutorial")
+                        ? styles.mobileNavLinkActive
+                        : styles.mobileNavLink
+                    }
                     onMouseEnter={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "#f3f4f6";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.backgroundColor = "#f3f4f6";
                     }}
                     onMouseLeave={(e) => {
-                      if (!isActive("/tutorial")) e.currentTarget.style.backgroundColor = "transparent";
+                      if (!isActive("/tutorial"))
+                        e.currentTarget.style.backgroundColor = "transparent";
                     }}
                   >
                     Tutorial
@@ -661,10 +728,12 @@ const Navbar = () => {
                       boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = "linear-gradient(to right, #f97316, #facc15)";
+                      e.currentTarget.style.background =
+                        "linear-gradient(to right, #f97316, #facc15)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "linear-gradient(to right, #facc15, #f97316)";
+                      e.currentTarget.style.background =
+                        "linear-gradient(to right, #facc15, #f97316)";
                     }}
                   >
                     <User size={20} />

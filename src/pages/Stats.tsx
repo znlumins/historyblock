@@ -1,5 +1,16 @@
 import { Link } from "react-router-dom";
-import { BarChart3, Trophy, BookOpen, Target, TrendingUp, Calendar, ArrowLeft, Award, Star, Clock } from "lucide-react";
+import {
+  BarChart3,
+  Trophy,
+  BookOpen,
+  Target,
+  TrendingUp,
+  Calendar,
+  ArrowLeft,
+  Award,
+  Star,
+  Clock,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Stats = () => {
@@ -169,12 +180,12 @@ const Stats = () => {
   return (
     <div style={styles.container}>
       <Navbar />
-      
+
       <div style={styles.content}>
         <div style={styles.contentContainer}>
           <div style={styles.header}>
-            <Link 
-              to="/profile" 
+            <Link
+              to="/profile"
               style={styles.backButton}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "#f3f4f6";
@@ -243,7 +254,7 @@ const Stats = () => {
               <Award size={20} />
               Progress Achievement
             </h3>
-            
+
             <div style={styles.progressList}>
               <div>
                 <div style={styles.progressItem}>
@@ -283,7 +294,7 @@ const Stats = () => {
               <Calendar size={20} />
               Aktivitas Minggu Ini
             </h3>
-            
+
             <div style={styles.activityGrid}>
               {weekDays.map((day, index) => (
                 <div key={day} style={styles.activityDay}>
@@ -291,11 +302,12 @@ const Stats = () => {
                   <div
                     style={{
                       ...styles.activityBlock,
-                      backgroundColor: index < 5 
-                        ? "#8b4513" 
-                        : index === 5 
-                          ? "rgba(139, 69, 19, 0.5)" 
-                          : "#f3f4f6"
+                      backgroundColor:
+                        index < 5
+                          ? "#8b4513"
+                          : index === 5
+                            ? "rgba(139, 69, 19, 0.5)"
+                            : "#f3f4f6",
                     }}
                   />
                   <div style={styles.activityCount}>

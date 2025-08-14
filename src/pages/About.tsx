@@ -66,31 +66,31 @@ const About = () => {
   return (
     <div style={styles.container}>
       <Navbar />
-      
+
       <div style={styles.content}>
         <div style={styles.contentContainer}>
           <h1 style={styles.title}>
             <BookOpen size={40} color="#8b4513" />
             Tentang Historic Block
           </h1>
-          
+
           <p style={styles.description}>
-            Historic Block adalah platform pembelajaran sejarah Indonesia yang 
-            menggabungkan teknologi AR dan kuis interaktif untuk pengalaman 
+            Historic Block adalah platform pembelajaran sejarah Indonesia yang
+            menggabungkan teknologi AR dan kuis interaktif untuk pengalaman
             belajar yang menyenangkan.
           </p>
-          
+
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>
               <Target size={24} color="#16a34a" />
               Misi Kami
             </h2>
             <p style={styles.sectionContent}>
-              Membuat pembelajaran sejarah Indonesia menjadi lebih menarik dan 
+              Membuat pembelajaran sejarah Indonesia menjadi lebih menarik dan
               interaktif melalui teknologi Augmented Reality dan gamifikasi.
             </p>
           </div>
-          
+
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>
               <Rocket size={24} color="#3b82f6" />
@@ -117,7 +117,7 @@ const About = () => {
               </div>
             </div>
           </div>
-          
+
           <div style={styles.section}>
             <h2 style={styles.sectionTitle}>
               <Phone size={24} color="#eab308" />

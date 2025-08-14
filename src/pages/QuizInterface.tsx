@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { BookOpen, Target, AlertTriangle, Clock, Check, ArrowLeft, ArrowRight, Rocket } from "lucide-react";
+import {
+  BookOpen,
+  Target,
+  AlertTriangle,
+  Clock,
+  Check,
+  ArrowLeft,
+  ArrowRight,
+  Rocket,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import { Quiz, QuizQuestion, QuizResult } from "@/data/quizData";
 import { getQuizById } from "@/data/quizData";
@@ -153,9 +162,7 @@ const QuizInterface = () => {
           <div className="flex justify-center mb-4">
             <BookOpen size={32} className="text-gray-800" />
           </div>
-          <p className="font-quicksand text-lg text-gray-800">
-            Memuat quiz...
-          </p>
+          <p className="font-quicksand text-lg text-gray-800">Memuat quiz...</p>
         </div>
       </div>
     );
@@ -357,7 +364,9 @@ const QuizInterface = () => {
                           : "border-gray-300"
                       }`}
                     >
-                      {selectedAnswers[currentQuestion.id] === index && <Check size={12} />}
+                      {selectedAnswers[currentQuestion.id] === index && (
+                        <Check size={12} />
+                      )}
                     </div>
                     <span className="font-quicksand">{option}</span>
                   </div>

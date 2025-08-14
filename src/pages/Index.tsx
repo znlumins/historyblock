@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { Smartphone, BookOpen, Trophy, Sparkles, Play, LogIn, UserPlus } from "lucide-react";
+import {
+  Smartphone,
+  BookOpen,
+  Trophy,
+  Sparkles,
+  Play,
+  LogIn,
+  UserPlus,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 const Index = () => {
@@ -161,7 +169,7 @@ const Index = () => {
   return (
     <div style={styles.container}>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section style={styles.heroSection}>
         <div style={styles.heroContainer}>
@@ -170,10 +178,10 @@ const Index = () => {
             Historic Block
           </h1>
           <p style={mobileStyles.heroSubtitle}>
-            Belajar sejarah Indonesia dengan cara yang menyenangkan! 
-            Mainkan kuis interaktif dan tes pengetahuan sejarahmu.
+            Belajar sejarah Indonesia dengan cara yang menyenangkan! Mainkan
+            kuis interaktif dan tes pengetahuan sejarahmu.
           </p>
-          
+
           <div style={mobileStyles.buttonContainer}>
             {isAuthenticated ? (
               <Link
@@ -230,7 +238,7 @@ const Index = () => {
             <Sparkles size={32} color="#eab308" />
             Fitur Unggulan
           </h2>
-          
+
           <div style={styles.featuresGrid}>
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
@@ -241,7 +249,7 @@ const Index = () => {
                 Scan kartu Historic Block untuk memulai kuis
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
                 <BookOpen size={48} color="#8b4513" />
@@ -251,7 +259,7 @@ const Index = () => {
                 Pilih topik dan tingkat kesulitan sendiri
               </p>
             </div>
-            
+
             <div style={styles.featureCard}>
               <div style={styles.featureIcon}>
                 <Trophy size={48} color="#8b4513" />
