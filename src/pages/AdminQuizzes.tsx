@@ -339,8 +339,9 @@ const AdminQuizzes = () => {
 
           {/* Statistics */}
           <div className="mt-12 bg-white rounded-xl p-6 shadow-lg">
-            <h3 className="font-quicksand text-xl font-bold text-historic-brown-dark mb-6">
-              📊 Statistik Kuis
+            <h3 className="font-quicksand text-xl font-bold text-historic-brown-dark mb-6 flex items-center gap-2">
+              <BarChart3 size={20} className="text-historic-brown-dark" />
+              Statistik Kuis
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
