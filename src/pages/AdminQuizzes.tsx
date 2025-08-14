@@ -197,8 +197,9 @@ const AdminQuizzes = () => {
                                         : "bg-white"
                                     }`}
                                   >
-                                    {optionIndex === question.correctAnswer &&
-                                      "✅ "}
+                                    {optionIndex === question.correctAnswer && (
+                                      <Check size={14} className="text-green-600 inline mr-1" />
+                                    )}
                                     {option}
                                   </div>
                                 ))}
