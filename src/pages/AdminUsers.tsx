@@ -366,7 +366,9 @@ const AdminUsers = () => {
 
               {filteredUsers.length === 0 && (
                 <div className="text-center py-12">
-                  <div className="text-4xl mb-4">👤</div>
+                  <div className="flex justify-center mb-4">
+                    <User size={32} className="text-gray-600" />
+                  </div>
                   <p className="font-quicksand text-gray-600">
                     {searchTerm
                       ? "Tidak ada pengguna yang sesuai dengan pencarian"
