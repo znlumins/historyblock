@@ -78,8 +78,9 @@ const AdminQuizzes = () => {
           {/* Header */}
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h1 className="font-georgia text-4xl text-historic-brown-dark mb-2">
-                📝 Kelola Kuis
+              <h1 className="font-georgia text-4xl text-historic-brown-dark mb-2 flex items-center justify-center gap-3">
+                <FileText size={36} className="text-historic-brown-dark" />
+                Kelola Kuis
               </h1>
               <p className="font-merriweather text-gray-600">
                 Tambah, edit, atau hapus kuis dan pertanyaan
