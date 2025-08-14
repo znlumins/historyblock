@@ -147,8 +147,9 @@ const AdminUsers = () => {
           {/* Header */}
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h1 className="font-georgia text-4xl text-historic-brown-dark mb-2">
-                👥 Kelola Pengguna
+              <h1 className="font-georgia text-4xl text-historic-brown-dark mb-2 flex items-center justify-center gap-3">
+                <Users size={36} className="text-historic-brown-dark" />
+                Kelola Pengguna
               </h1>
               <p className="font-merriweather text-gray-600">
                 Lihat dan kelola data pengguna sistem
