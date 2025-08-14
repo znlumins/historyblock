@@ -91,7 +91,8 @@ const AdminQuizzes = () => {
                 to="/admin"
                 className="px-6 py-2 border border-gray-300 rounded-lg font-quicksand hover:bg-gray-50"
               >
-                ← Kembali ke Dashboard
+                <ArrowLeft size={16} className="mr-1" />
+                Kembali ke Dashboard
               </Link>
               <button
                 onClick={() => setShowAddQuiz(true)}
