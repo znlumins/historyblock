@@ -239,8 +239,9 @@ const AdminQuizzes = () => {
           {showAddQuiz && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="bg-white rounded-xl p-8 max-w-2xl mx-4 max-h-[80vh] overflow-y-auto">
-                <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6">
-                  📝 Tambah Kuis Baru
+                <h3 className="font-quicksand text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+                  <FileText size={20} className="text-gray-800" />
+                  Tambah Kuis Baru
                 </h3>
                 <div className="space-y-4">
                   <div>
