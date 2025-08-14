@@ -392,7 +392,7 @@ const AdminUsers = () => {
                     onClick={() => setSelectedUser(null)}
                     className="text-gray-500 hover:text-gray-700 text-2xl"
                   >
-                    ✕
+                    <X size={16} />
                   </button>
                 </div>
 
