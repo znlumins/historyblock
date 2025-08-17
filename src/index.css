@@ -1,21 +1,87 @@
+/* ==========================================================================
+   1. Inisialisasi Tailwind CSS
+   ========================================================================== */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ==========================================================================
+   2. Aturan Dasar & Tema Global
+   ========================================================================== */
+@layer base {
+  :root {
+    /* -- PALET TEMA NUSANTARA (bisa digunakan di tailwind.config.js juga) -- */
+    --kayu-jati: #654321;
+    --kayu-gelap: #4E342E;
+    --emas-kerajaan: #facc15;
+    --emas-terang: #ffdf70;
+    --merah-pusaka: #B71C1C;
+    --kertas-lontar: #f7f3e9;
+    
+    /* -- WARNA TEKS -- */
+    --teks-putih-gading: #F5F5F5;
+    --teks-coklat-tua: #3E2723;
+
+    /* -- FONT -- */
+    --font-judul: 'Merriweather', serif;
+    --font-body: 'Quicksand', sans-serif;
+  }
+
+  /* 
+    Aturan dasar untuk body (Mode Normal).
+    Tailwind sudah menangani font-smoothing dan box-sizing, jadi kita hanya perlu yang esensial.
+  */
+  body {
+    font-family: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--kertas-lontar);
+    color: var(--teks-coklat-tua);
+  }
+
+  /* 
+    #root adalah layout utama untuk halaman biasa (bukan AR).
+    Ini setara dengan .app { min-height: 100vh } sebelumnya.
+  */
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-#root {
-  min-height: 100vh;
+/* ==========================================================================
+   3. OVERRIDE KHUSUS UNTUK MODE AUGMENTED REALITY (AR)
+   ========================================================================== */
+
+/* 
+  Aturan-aturan ini dibungkus dalam `@layer components` agar bisa menimpa
+  aturan `@layer base` dari Tailwind dengan benar saat dibutuhkan.
+*/
+@layer components {
+  /*
+    Saat AR aktif, kita mengunci <body> dan menimpa semua style dasar.
+  */
+  body.ar-mode-active {
+    @apply fixed inset-0 w-screen h-screen overflow-hidden m-0 p-0;
+  }
+
+  /*
+    Ini adalah aturan terpenting untuk mengatasi zoom pada video AR.
+  */
+  body.ar-mode-active a-scene video[autoplay][playsinline] {
+    @apply w-screen h-screen object-contain;
+    
+    /* Reset posisi manual jika diperlukan, object-contain seringkali sudah cukup */
+    position: absolute; /* Pastikan posisinya relatif terhadap viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /*
+    Pastikan canvas AR selalu berada di lapisan paling belakang.
+  */
+  body.ar-mode-active .a-canvas {
+    @apply -z-10 pointer-events-none;
+  }
 }

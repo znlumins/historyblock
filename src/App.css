@@ -1,29 +1,88 @@
-/* Basic global styles */
+/* ==========================================================================
+   TEMA GLOBAL & FONDASI
+   ========================================================================== */
+
+/* 1. Impor Font Kustom */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Quicksand:wght@500;700&display=swap');
+
+/* 2. Variabel Tema (Palet Warna & Font) */
+:root {
+  /* -- PALET TEMA NUSANTARA -- */
+  --kayu-jati: #654321;           /* Warna .bg-historic-brown Anda */
+  --kayu-gelap: #4E342E;
+  --emas-kerajaan: #facc15;       /* Warna .bg-historic-yellow Anda */
+  --emas-terang: #ffdf70;
+  --merah-pusaka: #B71C1C;
+  --kertas-lontar: #f7f3e9;       /* Warna .bg-historic-cream Anda */
+  
+  /* -- WARNA TEKS -- */
+  --teks-putih-gading: #F5F5F5;
+  --teks-coklat-tua: #3E2723;
+
+  /* -- FONT -- */
+  --font-judul: 'Merriweather', serif;
+  --font-body: 'Quicksand', sans-serif;
+}
+
+/* 3. Aturan Dasar untuk Seluruh Situs (Mode Normal) */
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--kertas-lontar);
+  color: var(--teks-coklat-tua);
+  margin: 0;
+  padding: 0;
+  min-height: 100%; /* Memastikan body mengisi tinggi html */
+}
+
+/* 
+   Ini adalah aturan layout utama untuk halaman-halaman normal Anda.
+   Sangat penting ini TIDAK aktif saat mode AR.
+*/
 .app {
   min-height: 100vh;
 }
 
-/* Custom Historic Block colors */
-.bg-historic-brown {
-  background-color: #654321;
+/* 
+   Utility classes kustom Anda.
+   Ini bisa digunakan di komponen mana saja.
+*/
+.bg-historic-brown { background-color: var(--kayu-jati); }
+.bg-historic-yellow { background-color: var(--emas-kerajaan); }
+.bg-historic-cream { background-color: var(--kertas-lontar); }
+.text-historic-brown { color: var(--kayu-jati); }
+.text-historic-yellow { color: var(--emas-kerajaan); }
+.border-historic-brown { border-color: var(--kayu-jati); }
+
+
+/* ==========================================================================
+   OVERRIDE KHUSUS UNTUK MODE AUGMENTED REALITY (AR)
+   ========================================================================== */
+   
+/* 
+  Aturan di bawah ini HANYA akan aktif jika <body> memiliki class 'ar-mode-active'.
+  Ini akan menimpa semua aturan di atas untuk sementara.
+*/
+body.ar-mode-active {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100dvh !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.bg-historic-yellow {
-  background-color: #facc15;
+body.ar-mode-active a-scene video[autoplay][playsinline] {
+  object-fit: contain !important; /* Anti-zoom */
 }
 
-.bg-historic-cream {
-  background-color: #f7f3e9;
-}
-
-.text-historic-brown {
-  color: #654321;
-}
-
-.text-historic-yellow {
-  color: #facc15;
-}
-
-.border-historic-brown {
-  border-color: #654321;
+body.ar-mode-active .a-canvas {
+  z-index: -1 !important;
+  pointer-events: none;
 }

@@ -10,7 +10,7 @@ import Register from "./pages/Register";
 import Tutorial from "./pages/Tutorial";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
-import AR from "./pages/AR";
+// Baris untuk import AR telah dihapus
 
 // Protected pages
 import Kuis from "./pages/Kuis";
@@ -44,7 +44,7 @@ const App = () => (
           <Route path="/register" element={<Register />} />
           <Route path="/tutorial" element={<Tutorial />} />
           <Route path="/about" element={<About />} />
-          <Route path="/ar" element={<AR />} />
+          {/* Baris untuk Route /ar telah dihapus */}
 
           {/* Protected Routes */}
           <Route
