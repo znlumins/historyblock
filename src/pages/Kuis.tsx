@@ -1,46 +1,26 @@
+// src/pages/Kuis.jsx
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 
+// Komponen Kuis Utama
 const Kuis = () => {
   const navigate = useNavigate();
   const [detectedCard, setDetectedCard] = useState(null);
   const [showQuizDialog, setShowQuizDialog] = useState(false);
   const [showManualQuizDialog, setShowManualQuizDialog] = useState(false);
 
+  const getScannedQuizzes = () => {
+    return JSON.parse(localStorage.getItem("scannedQuizzes") || "[]");
+  };
+
   const handleARScan = () => {
     navigate("/ar-scan");
   };
 
-  const handleCardDetected = (cardData) => {
-    setDetectedCard(cardData);
-
-    // Simpan kuis yang sudah discan ke localStorage
-    const scannedQuizzes = JSON.parse(
-      localStorage.getItem("scannedQuizzes") || "[]",
-    );
-    const quizExists = scannedQuizzes.find((quiz) => quiz.id === cardData.id);
-
-    if (!quizExists) {
-      const newScannedQuiz = {
-        ...cardData,
-        scannedAt: new Date().toISOString(),
-        timesScanned: 1,
-      };
-      scannedQuizzes.push(newScannedQuiz);
-      localStorage.setItem("scannedQuizzes", JSON.stringify(scannedQuizzes));
-    } else {
-      // Update times scanned
-      quizExists.timesScanned += 1;
-      quizExists.lastScannedAt = new Date().toISOString();
-      localStorage.setItem("scannedQuizzes", JSON.stringify(scannedQuizzes));
-    }
-
-    setShowQuizDialog(true);
-  };
-
   const handleStartQuiz = () => {
-    // Navigate to actual quiz interface
+    if (!detectedCard) return;
     setShowQuizDialog(false);
     const quizId = detectedCard.id.replace("hc", "quiz-");
     const quizMap = {
@@ -51,699 +31,246 @@ const Kuis = () => {
     const targetQuiz = quizMap[quizId] || "quiz-proklamasi";
     navigate(`/quiz/${targetQuiz}`);
   };
-
-  const getScannedQuizzes = () => {
-    return JSON.parse(localStorage.getItem("scannedQuizzes") || "[]");
-  };
-
-  const styles = {
-    container: {
-      minHeight: "100vh",
-      backgroundColor: "white",
-    },
-    overlay: {
-      position: "fixed" as const,
-      inset: "0",
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      zIndex: 50,
-    },
-    modal: {
-      backgroundColor: "white",
-      borderRadius: "12px",
-      padding: "32px",
-      maxWidth: "768px",
-      margin: "16px",
-      maxHeight: "90vh",
-      overflowY: "auto" as const,
-    },
-    modalSmall: {
-      backgroundColor: "white",
-      borderRadius: "12px",
-      padding: "32px",
-      maxWidth: "512px",
-      margin: "16px",
-    },
-    modalCenter: {
-      textAlign: "center" as const,
-      marginBottom: "24px",
-    },
-    modalIcon: {
-      fontSize: "4rem",
-      marginBottom: "16px",
-    },
-    modalTitle: {
-      fontSize: "1.5rem",
-      fontWeight: "700",
-      color: "#1f2937",
-      marginBottom: "8px",
-    },
-    modalDescription: {
-      color: "#4b5563",
-    },
-    sectionTitle: {
-      fontSize: "1.125rem",
-      fontWeight: "700",
-      color: "#1f2937",
-      marginBottom: "16px",
-      display: "flex",
-      alignItems: "center",
-      gap: "8px",
-    },
-    grid: {
-      display: "grid",
-      gap: "16px",
-      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    },
-    quizCard: {
-      padding: "16px",
-      border: "2px solid #fbbf24",
-      borderRadius: "8px",
-      textAlign: "left" as const,
-      transition: "border-color 0.2s",
-      backgroundColor: "#fefce8",
-      cursor: "pointer",
-    },
-    quizCardHover: {
-      borderColor: "#f97316",
-    },
-    cardContent: {
-      display: "flex",
-      alignItems: "center",
-      gap: "12px",
-    },
-    cardIcon: {
-      fontSize: "1.5rem",
-    },
-    cardTitle: {
-      fontWeight: "700",
-      color: "#1f2937",
-    },
-    cardSubtitle: {
-      fontSize: "0.875rem",
-      color: "#4b5563",
-    },
-    cardMeta: {
-      fontSize: "0.75rem",
-      color: "#6b7280",
-    },
-    divider: {
-      borderTop: "1px solid #e5e7eb",
-      margin: "24px 0",
-    },
-    buttonPrimary: {
-      backgroundColor: "#eab308",
-      color: "white",
-      padding: "12px 24px",
-      borderRadius: "8px",
-      fontWeight: "600",
-      border: "none",
-      cursor: "pointer",
-      transition: "background-color 0.2s",
-      textDecoration: "none",
-      display: "inline-block",
-    },
-    buttonSecondary: {
-      backgroundColor: "transparent",
-      color: "#374151",
-      padding: "12px 24px",
-      borderRadius: "8px",
-      fontWeight: "400",
-      border: "1px solid #d1d5db",
-      cursor: "pointer",
-      transition: "background-color 0.2s",
-      textDecoration: "none",
-      display: "inline-block",
-    },
-    buttonFull: {
-      width: "100%",
-      marginTop: "24px",
-    },
-    buttonGroup: {
-      display: "flex",
-      gap: "16px",
-    },
-    mainContent: {
-      padding: "64px 16px",
-      backgroundColor: "#f9fafb",
-    },
-    contentContainer: {
-      maxWidth: "1024px",
-      margin: "0 auto",
-    },
-    pageTitle: {
-      fontSize: "2.5rem",
-      fontWeight: "700",
-      color: "#1f2937",
-      marginBottom: "16px",
-      textAlign: "center" as const,
-    },
-    pageDescription: {
-      fontSize: "1.125rem",
-      color: "#4b5563",
-      maxWidth: "512px",
-      margin: "0 auto",
-      textAlign: "center" as const,
-    },
-    optionsGrid: {
-      display: "grid",
-      gap: "32px",
-      gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-      marginBottom: "48px",
-    },
-    optionCard: {
-      backgroundColor: "white",
-      borderRadius: "12px",
-      padding: "32px",
-      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-      textAlign: "center" as const,
-      border: "2px solid #fbbf24",
-      transition: "border-color 0.2s",
-    },
-    optionCardSecondary: {
-      backgroundColor: "white",
-      borderRadius: "12px",
-      padding: "32px",
-      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-      textAlign: "center" as const,
-      border: "2px solid #e5e7eb",
-      transition: "border-color 0.2s",
-    },
-    optionIcon: {
-      fontSize: "4rem",
-      marginBottom: "16px",
-    },
-    optionTitle: {
-      fontSize: "1.5rem",
-      fontWeight: "700",
-      color: "#1f2937",
-      marginBottom: "16px",
-    },
-    optionDescription: {
-      color: "#4b5563",
-      marginBottom: "24px",
-    },
-    featureList: {
-      display: "flex",
-      flexDirection: "column" as const,
-      gap: "12px",
-      marginBottom: "24px",
-    },
-    featureItem: {
-      display: "flex",
-      alignItems: "center",
-      fontSize: "0.875rem",
-      color: "#4b5563",
-    },
-    statsCard: {
-      backgroundColor: "white",
-      borderRadius: "12px",
-      padding: "24px",
-      boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-    },
-    statsTitle: {
-      fontSize: "1.25rem",
-      fontWeight: "700",
-      color: "#1f2937",
-      marginBottom: "16px",
-      textAlign: "center" as const,
-    },
-    statsGrid: {
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
-      gap: "16px",
-      textAlign: "center" as const,
-    },
-    statItem: {
-      backgroundColor: "#f3f4f6",
-      borderRadius: "8px",
-      padding: "16px",
-    },
-    statValue: {
-      fontSize: "1.5rem",
-      fontWeight: "700",
-      color: "#1f2937",
-    },
-    statLabel: {
-      fontSize: "0.875rem",
-      color: "#4b5563",
-    },
-    footer: {
-      backgroundColor: "#1f2937",
-      color: "white",
-      padding: "32px 16px",
-    },
-    footerContainer: {
-      maxWidth: "1536px",
-      margin: "0 auto",
-      textAlign: "center" as const,
-    },
-    footerTitle: {
-      fontSize: "18px",
-      fontWeight: "600",
-      marginBottom: "8px",
-    },
-    footerSubtitle: {
-      color: "#9ca3af",
-      marginBottom: "16px",
-    },
-    footerLink: {
-      color: "#9ca3af",
-      textDecoration: "underline",
-      transition: "color 0.2s",
-    },
-  };
-
+  
   return (
-    <div style={styles.container}>
+    <div className="min-h-screen bg-gray-50 font-sans">
       <Navbar />
 
-      {/* Manual Quiz Selection Dialog */}
       {showManualQuizDialog && (
-        <div style={styles.overlay}>
-          <div style={styles.modal}>
-            <div style={styles.modalCenter}>
-              <div style={styles.modalIcon}>📚</div>
-              <h3 style={styles.modalTitle}>Pilih Quiz Manual</h3>
-              <p style={styles.modalDescription}>
-                Pilih quiz berdasarkan era atau tingkat kesulitan
-              </p>
-            </div>
-
-            {/* Kuis yang Sudah Discan */}
-            {getScannedQuizzes().length > 0 && (
-              <div style={{ marginBottom: "32px" }}>
-                <h4 style={styles.sectionTitle}>
-                  📱 Kuis yang Sudah Discan ({getScannedQuizzes().length})
-                </h4>
-                <div style={styles.grid}>
-                  {getScannedQuizzes().map((quiz, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        setShowManualQuizDialog(false);
-                        navigate(`/quiz/${quiz.id.replace("hc", "quiz-")}`);
-                      }}
-                      style={styles.quizCard}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = "#f97316";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "#fbbf24";
-                      }}
-                    >
-                      <div style={styles.cardContent}>
-                        <div style={styles.cardIcon}>🎯</div>
-                        <div>
-                          <h5 style={styles.cardTitle}>{quiz.name}</h5>
-                          <p style={styles.cardSubtitle}>
-                            {quiz.era} • {quiz.difficulty} • Discan{" "}
-                            {quiz.timesScanned} kali
-                          </p>
-                          <p style={styles.cardMeta}>
-                            Terakhir discan:{" "}
-                            {new Date(
-                              quiz.lastScannedAt || quiz.scannedAt,
-                            ).toLocaleDateString("id-ID")}
-                          </p>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-                <div style={styles.divider}></div>
-              </div>
-            )}
-
-            {/* Kuis Manual */}
-            {getScannedQuizzes().length > 0 ? (
-              <div>
-                <h4 style={styles.sectionTitle}>
-                  📖 Kuis Lainnya yang Tersedia
-                </h4>
-                <div style={styles.grid}>
-                  <button
-                    onClick={() => {
-                      setShowManualQuizDialog(false);
-                      navigate("/quiz/quiz-proklamasi");
-                    }}
-                    style={styles.quizCard}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#f97316";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#fbbf24";
-                    }}
-                  >
-                    <div style={styles.cardContent}>
-                      <div style={styles.cardIcon}>🇮🇩</div>
-                      <div>
-                        <h4 style={styles.cardTitle}>Proklamasi Kemerdekaan</h4>
-                        <p style={styles.cardSubtitle}>
-                          Era Kemerdekaan • Mudah • 500 poin
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setShowManualQuizDialog(false);
-                      navigate("/quiz/quiz-majapahit");
-                    }}
-                    style={styles.quizCard}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#f97316";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#fbbf24";
-                    }}
-                  >
-                    <div style={styles.cardContent}>
-                      <div style={styles.cardIcon}>🏛️</div>
-                      <div>
-                        <h4 style={styles.cardTitle}>Kerajaan Majapahit</h4>
-                        <p style={styles.cardSubtitle}>
-                          Era Hindu-Buddha • Sedang • 750 poin
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setShowManualQuizDialog(false);
-                      navigate("/quiz/quiz-diponegoro");
-                    }}
-                    style={styles.quizCard}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = "#f97316";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = "#fbbf24";
-                    }}
-                  >
-                    <div style={styles.cardContent}>
-                      <div style={styles.cardIcon}>⚔️</div>
-                      <div>
-                        <h4 style={styles.cardTitle}>Perang Diponegoro</h4>
-                        <p style={styles.cardSubtitle}>
-                          Era Kolonial • Sulit • 1000 poin
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div style={{ textAlign: "center", padding: "32px 0" }}>
-                <div style={styles.modalIcon}>📱</div>
-                <h4 style={styles.modalTitle}>
-                  Scan Kartu Historic Block Dulu!
-                </h4>
-                <p style={styles.modalDescription}>
-                  Untuk mengakses kuis manual, kamu perlu scan kartu Historic
-                  Block terlebih dahulu menggunakan AR Scanner.
-                </p>
-                <button
-                  onClick={() => {
-                    setShowManualQuizDialog(false);
-                    handleARScan();
-                  }}
-                  style={{ ...styles.buttonPrimary, marginTop: "16px" }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#ca8a04";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "#eab308";
-                  }}
-                >
-                  🎯 Mulai AR Scan
-                </button>
-              </div>
-            )}
-
-            <button
-              onClick={() => setShowManualQuizDialog(false)}
-              style={{ ...styles.buttonSecondary, ...styles.buttonFull }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#f9fafb";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-              }}
-            >
-              Tutup
-            </button>
-          </div>
-        </div>
+        <ManualQuizDialog 
+          onClose={() => setShowManualQuizDialog(false)} 
+          scannedQuizzes={getScannedQuizzes()}
+          navigate={navigate}
+          startArScan={handleARScan}
+        />
       )}
 
-      {/* Quiz Detection Dialog */}
       {showQuizDialog && detectedCard && (
-        <div style={styles.overlay}>
-          <div style={styles.modalSmall}>
-            <div style={styles.modalCenter}>
-              <div style={styles.modalIcon}>🎯</div>
-              <h3 style={styles.modalTitle}>Kartu Terdeteksi!</h3>
-              <div
-                style={{
-                  backgroundColor: "#f3f4f6",
-                  borderRadius: "8px",
-                  padding: "16px",
-                  marginBottom: "16px",
-                }}
-              >
-                <h4
-                  style={{
-                    fontSize: "1.25rem",
-                    fontWeight: "700",
-                    color: "#1f2937",
-                  }}
-                >
-                  {detectedCard.name}
-                </h4>
-                <p style={{ color: "#4b5563", marginTop: "4px" }}>
-                  Era: {detectedCard.era}
-                </p>
-                <p style={{ color: "#4b5563" }}>
-                  Tingkat: {detectedCard.difficulty}
-                </p>
-                <p
-                  style={{
-                    fontSize: "0.875rem",
-                    color: "#374151",
-                    marginTop: "8px",
-                  }}
-                >
-                  {detectedCard.description}
-                </p>
-              </div>
-            </div>
-
-            <div style={{ textAlign: "center", marginBottom: "24px" }}>
-              <p style={styles.modalDescription}>
-                Apakah Anda siap memulai kuis berdasarkan kartu ini?
-              </p>
-            </div>
-
-            <div style={styles.buttonGroup}>
-              <button
-                onClick={() => setShowQuizDialog(false)}
-                style={styles.buttonSecondary}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#f9fafb";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                }}
-              >
-                Nanti
-              </button>
-              <button
-                onClick={handleStartQuiz}
-                style={styles.buttonPrimary}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#ca8a04";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#eab308";
-                }}
-              >
-                Mulai Kuis
-              </button>
-            </div>
-          </div>
-        </div>
+        <DetectedCardDialog
+          card={detectedCard}
+          onClose={() => setShowQuizDialog(false)}
+          onStartQuiz={handleStartQuiz}
+        />
       )}
 
-      {/* Main Content */}
-      <div style={styles.mainContent}>
-        <div style={styles.contentContainer}>
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <h1 style={styles.pageTitle}>🎮 Kuis Historic Block</h1>
-            <p style={styles.pageDescription}>
-              Mulai petualangan sejarah Anda! Gunakan AR untuk memindai kartu
-              atau pilih kuis manual.
+      <main className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 tracking-tight">
+              Uji Wawasan Sejarahmu!
+            </h1>
+            <p className="mt-4 max-w-xl mx-auto text-lg text-gray-600">
+              Pindai kartu ajaib dengan AR atau pilih kuis favoritmu secara manual. Siap jadi ahli sejarah?
             </p>
           </div>
 
-          <div style={styles.optionsGrid}>
-            {/* AR Scan Option */}
-            <div
-              style={styles.optionCard}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#f97316";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#fbbf24";
-              }}
-            >
-              <div style={styles.optionIcon}>📱</div>
-              <h2 style={styles.optionTitle}>AR Scan Kartu</h2>
-              <p style={styles.optionDescription}>
-                Gunakan kamera untuk memindai kartu Historic Block dan mulai
-                kuis otomatis
-              </p>
-              <div style={styles.featureList}>
-                <div style={styles.featureItem}>
-                  <span style={{ marginRight: "8px" }}>✅</span>
-                  Deteksi kartu otomatis
-                </div>
-                <div style={styles.featureItem}>
-                  <span style={{ marginRight: "8px" }}>✅</span>
-                  Kuis disesuaikan dengan kartu
-                </div>
-                <div style={styles.featureItem}>
-                  <span style={{ marginRight: "8px" }}>✅</span>
-                  Pengalaman interaktif
-                </div>
-              </div>
-              <button
-                onClick={handleARScan}
-                style={{ ...styles.buttonPrimary, width: "100%" }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#ca8a04";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#eab308";
-                }}
-              >
-                🎯 Mulai AR Scan
-              </button>
-            </div>
-
-            {/* Manual Quiz Option */}
-            <div
-              style={styles.optionCardSecondary}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "#fbbf24";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "#e5e7eb";
-              }}
-            >
-              <div style={styles.optionIcon}>📚</div>
-              <h2 style={styles.optionTitle}>Kuis Manual</h2>
-              <p style={styles.optionDescription}>
-                Pilih sendiri topik dan tingkat kesulitan kuis sejarah yang
-                ingin dimainkan
-              </p>
-              <div style={styles.featureList}>
-                <div style={styles.featureItem}>
-                  <span style={{ marginRight: "8px" }}>✅</span>
-                  Pilih topik sendiri
-                </div>
-                <div style={styles.featureItem}>
-                  <span style={{ marginRight: "8px" }}>✅</span>
-                  Berbagai tingkat kesulitan
-                </div>
-                <div style={styles.featureItem}>
-                  <span style={{ marginRight: "8px" }}>✅</span>
-                  Akses semua materi
-                </div>
-              </div>
-              <button
-                onClick={() => setShowManualQuizDialog(true)}
-                style={{
-                  ...styles.buttonSecondary,
-                  width: "100%",
-                  backgroundColor: "#6b7280",
-                  color: "white",
-                  borderColor: "#6b7280",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#4b5563";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "#6b7280";
-                }}
-              >
-                📖 Pilih Kuis Manual
-              </button>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <OptionCard
+              title="Pindai Kartu AR"
+              description="Arahkan kamera ke kartu Historic Block. Biarkan keajaiban AR membawamu langsung ke kuis yang relevan!"
+              features={[
+                "Deteksi kartu super cepat",
+                "Kuis yang sesuai dengan kartumu",
+                "Pengalaman belajar interaktif",
+              ]}
+              buttonText="Mulai Pindai AR"
+              onButtonClick={handleARScan}
+              isPrimary
+            />
+            <OptionCard
+              title="Pilih Kuis Manual"
+              description="Tak ada kartu? Tenang. Pilih sendiri topik sejarah yang ingin kamu taklukkan dari koleksi kami."
+              features={[
+                "Akses semua topik kuis",
+                "Pilih tingkat kesulitan sendiri",
+                "Asah pengetahuan kapan saja",
+              ]}
+              buttonText="Pilih Kuis Manual"
+              onButtonClick={() => setShowManualQuizDialog(true)}
+            />
           </div>
 
-          {/* Quick Stats */}
-          <div style={styles.statsCard}>
-            <h3 style={styles.statsTitle}>📊 Statistik Cepat</h3>
-            <div style={styles.statsGrid}>
-              <div style={styles.statItem}>
-                <div style={styles.statValue}>15</div>
-                <div style={styles.statLabel}>Kuis Selesai</div>
-              </div>
-              <div style={styles.statItem}>
-                <div style={styles.statValue}>85%</div>
-                <div style={styles.statLabel}>Akurasi</div>
-              </div>
-              <div style={styles.statItem}>
-                <div style={styles.statValue}>1,250</div>
-                <div style={styles.statLabel}>Total Poin</div>
-              </div>
-              <div style={styles.statItem}>
-                <div style={styles.statValue}>#5</div>
-                <div style={styles.statLabel}>Ranking</div>
-              </div>
-            </div>
-          </div>
+          <StatsSection />
         </div>
-      </div>
+      </main>
 
-      {/* Footer */}
-      <footer style={styles.footer}>
-        <div style={styles.footerContainer}>
-          <p style={styles.footerTitle}>Historic Block</p>
-          <p style={styles.footerSubtitle}>
-            Belajar sejarah dengan cara yang menyenangkan
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "24px",
-              fontSize: "14px",
-            }}
-          >
-            <Link
-              to="/about"
-              style={styles.footerLink}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "white";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "#9ca3af";
-              }}
-            >
-              About
-            </Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
+
+// --- KOMPONEN-KOMPONEN KECIL ---
+
+const OptionCard = ({ title, description, features, buttonText, onButtonClick, isPrimary = false }) => (
+  <div className={`bg-white rounded-2xl shadow-lg p-8 flex flex-col border-2 transition-all duration-300 ${isPrimary ? 'border-yellow-400 hover:border-yellow-500 hover:shadow-xl' : 'border-gray-200 hover:border-gray-300 hover:shadow-xl'}`}>
+    <h2 className="text-2xl font-bold text-gray-800 mb-3">{title}</h2>
+    <p className="text-gray-600 mb-6 flex-grow">{description}</p>
+    <ul className="space-y-3 mb-8">
+      {features.map((feature, index) => (
+        <li key={index} className="flex items-start text-gray-700">
+          <span className="text-green-500 font-bold mr-3 mt-1">✓</span>
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+    <button onClick={onButtonClick} className={`w-full font-semibold py-3 px-6 rounded-lg transition-all duration-300 mt-auto ${isPrimary ? 'bg-yellow-500 text-white hover:bg-yellow-600 shadow-md hover:shadow-lg' : 'bg-gray-700 text-white hover:bg-gray-800'}`}>
+      {buttonText}
+    </button>
+  </div>
+);
+
+// --- PERBAIKAN DI SINI ---
+// Menggunakan implicit return () agar JSX dikembalikan
+const StatsSection = () => {
+  const stats = [
+      { value: 15, label: 'Kuis Selesai' },
+      { value: '85%', label: 'Akurasi Jawaban' },
+      { value: '1.250', label: 'Total Poin' },
+      { value: '#5', label: 'Peringkat' },
+  ];
+
+  return (
+      <div className="bg-white rounded-2xl shadow-lg p-8">
+          <h3 className="text-2xl font-bold text-gray-800 text-center mb-6">Papan Skor Kilat</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {stats.map(stat => (
+                  <div key={stat.label} className="bg-gray-100 rounded-lg p-4 text-center">
+                      <div className="text-3xl font-extrabold text-yellow-600">{stat.value}</div>
+                      <div className="text-sm font-semibold text-gray-600 mt-1">{stat.label}</div>
+                  </div>
+              ))}
+          </div>
+      </div>
+  );
+};
+
+// --- DAN PERBAIKAN DI SINI ---
+// Menggunakan implicit return () agar JSX dikembalikan
+const DetectedCardDialog = ({ card, onClose, onStartQuiz }) => (
+  <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+    <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-8 text-center animate-fade-in-up">
+      <h3 className="text-2xl font-bold text-gray-800">Kartu Ditemukan!</h3>
+      <div className="bg-gray-100 rounded-lg p-4 my-6 text-left">
+        <h4 className="font-bold text-lg text-gray-900">{card.name}</h4>
+        <p className="text-sm text-gray-600">{card.era} • {card.difficulty}</p>
+        <p className="text-sm text-gray-700 mt-2">{card.description}</p>
+      </div>
+      <p className="text-gray-600 mb-6">Anda siap untuk memulai tantangan kuis dari kartu ini?</p>
+      <div className="flex gap-4">
+        <button onClick={onClose} className="w-full bg-gray-200 text-gray-700 font-semibold py-3 rounded-lg hover:bg-gray-300 transition-colors">
+          Nanti Saja
+        </button>
+        <button onClick={onStartQuiz} className="w-full bg-yellow-500 text-white font-semibold py-3 rounded-lg hover:bg-yellow-600 transition-colors shadow-md hover:shadow-lg">
+          Mulai Kuis
+        </button>
+      </div>
+    </div>
+  </div>
+);
+
+
+const ManualQuizDialog = ({ onClose, scannedQuizzes, navigate, startArScan }) => {
+  const hasScanned = scannedQuizzes.length > 0;
+  const allManualQuizzes = [
+    { id: "quiz-proklamasi", icon: "🇮🇩", title: "Proklamasi Kemerdekaan", details: "Era Kemerdekaan • Mudah • 500 poin" },
+    { id: "quiz-majapahit", icon: "🏛️", title: "Kerajaan Majapahit", details: "Era Hindu-Buddha • Sedang • 750 poin" },
+    { id: "quiz-diponegoro", icon: "⚔️", title: "Perang Diponegoro", details: "Era Kolonial • Sulit • 1000 poin" },
+  ];
+  const scannedQuizIds = new Set(scannedQuizzes.map(q => q.id.replace("hc", "quiz-")));
+  const otherAvailableQuizzes = allManualQuizzes.filter(q => !scannedQuizIds.has(q.id));
+  const handleNavigate = (path) => {
+    onClose();
+    navigate(path);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-8 animate-fade-in-up max-h-[90vh] overflow-y-auto">
+        {hasScanned ? (
+          <div>
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-bold text-gray-800">Pilih Kuis Manual</h3>
+              <p className="text-gray-600 mt-2">Pilih dari koleksimu atau jelajahi kuis lainnya.</p>
+            </div>
+            <div>
+              <h4 className="font-bold text-lg text-gray-800 mb-4">Koleksi Kartumu ({scannedQuizzes.length})</h4>
+              <div className="space-y-4">
+                {scannedQuizzes.map((quiz, index) => (
+                  <QuizManualCard
+                    key={index}
+                    icon={allManualQuizzes.find(mq => mq.id === quiz.id.replace("hc", "quiz-"))?.icon || "📜"}
+                    title={quiz.name}
+                    details={`${quiz.era} • ${quiz.difficulty}`}
+                    onClick={() => handleNavigate(`/quiz/${quiz.id.replace("hc", "quiz-")}`)}
+                  />
+                ))}
+              </div>
+            </div>
+            {otherAvailableQuizzes.length > 0 && (
+              <div className="mt-8 pt-6 border-t">
+                <h4 className="font-bold text-lg text-gray-800 mb-4">Kuis Lainnya Tersedia</h4>
+                <div className="space-y-4">
+                  {otherAvailableQuizzes.map((quiz) => (
+                    <QuizManualCard
+                      key={quiz.id}
+                      icon={quiz.icon}
+                      title={quiz.title}
+                      details={quiz.details}
+                      onClick={() => handleNavigate(`/quiz/${quiz.id}`)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="text-center p-4">
+            <div className="text-6xl mb-4">📱</div>
+            <h3 className="text-2xl font-bold text-gray-800">Buka Akses Penuh!</h3>
+            <p className="text-gray-600 mt-2 mb-6 max-w-sm mx-auto">
+              Untuk mengakses semua kuis manual, kamu perlu memindai minimal satu kartu Historic Block terlebih dahulu.
+            </p>
+            <button
+              onClick={() => {
+                onClose();
+                startArScan();
+              }}
+              className="w-full sm:w-auto bg-yellow-500 text-white font-semibold py-3 px-8 rounded-lg hover:bg-yellow-600 transition-colors shadow-md hover:shadow-lg"
+            >
+              Mulai Pindai AR
+            </button>
+          </div>
+        )}
+        <button onClick={onClose} className="w-full mt-8 bg-gray-200 text-gray-700 font-semibold py-3 rounded-lg hover:bg-gray-300 transition-colors">
+          Tutup
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const QuizManualCard = ({ icon, title, details, onClick }) => (
+    <button onClick={onClick} className="w-full text-left p-4 bg-yellow-50 border-2 border-yellow-300 rounded-lg hover:bg-yellow-100 hover:border-yellow-400 transition-all flex items-center gap-4">
+        <span className="text-3xl flex-shrink-0 w-8 text-center">{icon}</span>
+        <div>
+            <h5 className="font-bold text-gray-800">{title}</h5>
+            <p className="text-sm text-gray-600">{details}</p>
+        </div>
+    </button>
+);
+
+const Footer = () => (
+    <footer className="bg-gray-800 text-white">
+        <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <h4 className="text-xl font-semibold">Historic Block</h4>
+            <p className="text-gray-400 mt-1">Belajar sejarah jadi luar biasa.</p>
+            <div className="mt-4">
+                <Link to="/about" className="text-gray-400 hover:text-white transition-colors underline">
+                    Tentang Kami
+                </Link>
+            </div>
+        </div>
+    </footer>
+);
 
 export default Kuis;

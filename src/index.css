@@ -81,7 +81,7 @@
   /*
     Pastikan canvas AR selalu berada di lapisan paling belakang.
   */
-  /* body.ar-mode-active .a-canvas {
+  body.ar-mode-active .a-canvas {
     @apply -z-10 pointer-events-none;
-  } */
+  }
 }
