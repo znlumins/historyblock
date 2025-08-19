@@ -49,35 +49,181 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
       .toUpperCase();
   };
 
+  const styles = {
+    container: {
+      position: "relative" as const,
+    },
+    button: {
+      background: "linear-gradient(to right, #facc15, #f97316)",
+      borderRadius: "8px",
+      padding: "8px 16px",
+      color: "white",
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      transition: "all 0.2s",
+      border: "none",
+      cursor: "pointer",
+    },
+    avatar: {
+      width: "32px",
+      height: "32px",
+      backgroundColor: "rgba(255, 255, 255, 0.2)",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    avatarText: {
+      color: "white",
+      fontWeight: "700",
+      fontSize: "14px",
+    },
+    userInfo: {
+      display: "flex",
+      flexDirection: "column" as const,
+      alignItems: "flex-start",
+    },
+    userName: {
+      color: "white",
+      fontWeight: "700",
+      fontSize: "14px",
+      lineHeight: "1.2",
+    },
+    userLevel: {
+      color: "#fef9c3",
+      fontSize: "12px",
+      lineHeight: "1.2",
+    },
+    arrow: {
+      width: "16px",
+      height: "16px",
+      color: "white",
+      transition: "transform 0.2s",
+    },
+    dropdown: {
+      position: "absolute" as const,
+      right: "0",
+      top: "56px",
+      width: "256px",
+      backgroundColor: "white",
+      borderRadius: "8px",
+      boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+      border: "1px solid #e5e7eb",
+      padding: "8px 0",
+      zIndex: 50,
+    },
+    dropdownHeader: {
+      padding: "12px 16px",
+      borderBottom: "1px solid #f3f4f6",
+    },
+    dropdownHeaderContent: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+    },
+    dropdownAvatar: {
+      width: "40px",
+      height: "40px",
+      backgroundColor: "#6b7280",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    dropdownAvatarText: {
+      color: "white",
+      fontWeight: "700",
+    },
+    dropdownUserInfo: {
+      flex: 1,
+    },
+    dropdownUserName: {
+      fontWeight: "700",
+      color: "#1f2937",
+      fontSize: "14px",
+    },
+    dropdownUserLevel: {
+      fontSize: "12px",
+      color: "#6b7280",
+    },
+    menuContent: {
+      padding: "8px 0",
+    },
+    menuItem: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      padding: "12px 16px",
+      transition: "background-color 0.2s",
+      textDecoration: "none",
+      color: "#374151",
+    },
+    menuItemIcon: {
+      fontSize: "18px",
+    },
+    adminItem: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      padding: "12px 16px",
+      transition: "background-color 0.2s",
+      textDecoration: "none",
+      backgroundColor: "#fef9c3",
+      color: "#654321",
+      fontWeight: "600",
+    },
+    divider: {
+      borderTop: "1px solid #f3f4f6",
+      margin: "8px 0",
+    },
+    logoutButton: {
+      display: "flex",
+      alignItems: "center",
+      gap: "12px",
+      padding: "12px 16px",
+      width: "100%",
+      textAlign: "left" as const,
+      transition: "background-color 0.2s",
+      border: "none",
+      backgroundColor: "transparent",
+      cursor: "pointer",
+      color: "#dc2626",
+    },
+  };
+
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div style={styles.container} ref={dropdownRef}>
       {/* User Profile Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-gradient-to-r from-historic-yellow to-historic-orange rounded-lg border-0 h-12 px-4 relative hover:from-historic-orange hover:to-historic-yellow transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-3 min-w-[200px]"
+        style={styles.button}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background =
+            "linear-gradient(to right, #f97316, #facc15)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background =
+            "linear-gradient(to right, #facc15, #f97316)";
+        }}
       >
         {/* User Avatar */}
-        <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-          <span className="text-white font-quicksand font-bold text-sm">
-            {getInitials(userName)}
-          </span>
+        <div style={styles.avatar}>
+          <span style={styles.avatarText}>{getInitials(userName)}</span>
         </div>
 
         {/* User Info */}
-        <div className="flex flex-col items-start flex-1">
-          <div className="text-white font-quicksand font-bold text-sm leading-tight truncate max-w-[120px]">
-            {userName}
-          </div>
-          <div className="text-historic-yellow-light font-quicksand text-xs leading-tight">
-            {userLevel}
-          </div>
+        <div style={styles.userInfo}>
+          <div style={styles.userName}>{userName}</div>
+          <div style={styles.userLevel}>{userLevel}</div>
         </div>
 
         {/* Dropdown Arrow */}
         <svg
-          className={`w-4 h-4 text-white transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          style={{
+            ...styles.arrow,
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+          }}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -93,78 +239,80 @@ const UserDropdown = ({ userName, userLevel }: UserDropdownProps) => {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-14 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 py-2 z-50 animate-in slide-in-from-top-2 duration-200">
+        <div style={styles.dropdown}>
           {/* User Info Header */}
-          <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-historic-brown rounded-full flex items-center justify-center">
-                <span className="text-white font-quicksand font-bold">
+          <div style={styles.dropdownHeader}>
+            <div style={styles.dropdownHeaderContent}>
+              <div style={styles.dropdownAvatar}>
+                <span style={styles.dropdownAvatarText}>
                   {getInitials(userName)}
                 </span>
               </div>
-              <div className="flex-1">
-                <div className="font-quicksand font-bold text-gray-800 dark:text-gray-200 text-sm">
-                  {userName}
-                </div>
-                <div className="font-quicksand text-xs text-gray-600 dark:text-gray-400">
-                  {userLevel}
-                </div>
+              <div style={styles.dropdownUserInfo}>
+                <div style={styles.dropdownUserName}>{userName}</div>
+                <div style={styles.dropdownUserLevel}>{userLevel}</div>
               </div>
             </div>
           </div>
 
           {/* Menu Items */}
-          <div className="py-2">
+          <div style={styles.menuContent}>
             {menuItems.map((item, index) => (
               <Link
                 key={index}
                 to={item.href}
-                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                style={styles.menuItem}
                 onClick={() => setIsOpen(false)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#f9fafb";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                }}
               >
-                <span className="text-lg group-hover:scale-110 transition-transform">
-                  {item.icon}
-                </span>
-                <span className="font-quicksand text-gray-700 dark:text-gray-300 group-hover:text-historic-brown dark:group-hover:text-historic-yellow">
-                  {item.label}
-                </span>
+                <span style={styles.menuItemIcon}>{item.icon}</span>
+                <span>{item.label}</span>
               </Link>
             ))}
 
             {/* Admin Menu (only for admin users) */}
             {user?.role === "admin" && (
               <>
-                <div className="border-t border-gray-100 dark:border-gray-700 my-2"></div>
+                <div style={styles.divider}></div>
                 <Link
                   to="/admin"
-                  className="flex items-center gap-3 px-4 py-3 hover:bg-historic-cream dark:hover:bg-gray-700 transition-colors group"
+                  style={styles.adminItem}
                   onClick={() => setIsOpen(false)}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = "#facc15";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = "#fef9c3";
+                  }}
                 >
-                  <span className="text-lg group-hover:scale-110 transition-transform">
-                    🛠️
-                  </span>
-                  <span className="font-quicksand text-historic-brown dark:text-historic-yellow font-semibold">
-                    Admin Dashboard
-                  </span>
+                  <span style={styles.menuItemIcon}>🛠️</span>
+                  <span>Admin Dashboard</span>
                 </Link>
               </>
             )}
           </div>
 
           {/* Separator */}
-          <div className="border-t border-gray-100 dark:border-gray-700 my-2"></div>
+          <div style={styles.divider}></div>
 
           {/* Logout */}
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full text-left hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors group"
+            style={styles.logoutButton}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#fef2f2";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "transparent";
+            }}
           >
-            <span className="text-lg group-hover:scale-110 transition-transform">
-              🚪
-            </span>
-            <span className="font-quicksand text-red-600 dark:text-red-400 group-hover:text-red-700 dark:group-hover:text-red-300">
-              Keluar
-            </span>
+            <span style={styles.menuItemIcon}>🚪</span>
+            <span>Keluar</span>
           </button>
         </div>
       )}
